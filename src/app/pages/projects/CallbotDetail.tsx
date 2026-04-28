@@ -44,6 +44,16 @@ export function CallbotDetail() {
           </p>
         </Section>
 
+        {/* 데모 */}
+        <Section title="Demo" delay={0.12}>
+          <ImagePlaceholder label="콜봇 데모 화면 스크린샷" />
+        </Section>
+
+        {/* 시스템 아키텍처 */}
+        <Section title="System Architecture" delay={0.15}>
+          <ImagePlaceholder label="시스템 아키텍처 다이어그램 — WebSocket ↔ STT/LLM/TTS 백엔드 구조" />
+        </Section>
+
         {/* 하이브리드 라우팅 */}
         <Section title="하이브리드 라우팅 — LLM 호출 85% 절감" delay={0.2}>
           <p className="text-base text-gray-700 leading-relaxed mb-4">
@@ -59,7 +69,8 @@ export function CallbotDetail() {
               <Step num="5" title="현재 노드 유효성 검사" />
             </div>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <ImagePlaceholder label="5단계 하이브리드 라우팅 플로우차트" />
+          <div className="grid md:grid-cols-2 gap-4 mt-4">
             <MetricCard label="RULE 경로 (85%)" value="~15ms" desc="인사·동의·긍정답변 등 8개 단순 의도 → 템플릿 응답 (LLM 미사용)" />
             <MetricCard label="HEAVY 경로 (15%)" value="LLM Tool Calling" desc="불만·위험징후·모호응답 등 10개 복잡 의도 → EXAONE 32B AWQ" />
           </div>
@@ -75,7 +86,8 @@ export function CallbotDetail() {
           <p className="text-base text-gray-700 leading-relaxed mb-4">
             7노드 상태 머신으로 대화 흐름을 제어하고, 9개 LLM Tool(Function Calling)로 각 단계의 작업을 자동화했습니다.
           </p>
-          <div className="bg-gray-50 rounded-lg p-4 mb-4">
+          <ImagePlaceholder label="7노드 상태 머신 다이어그램" />
+          <div className="bg-gray-50 rounded-lg p-4 mb-4 mt-4">
             <p className="text-sm font-mono text-gray-600">
               ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED
             </p>
@@ -203,6 +215,18 @@ function MetricCard({ label, value, desc }: { label: string; value: string; desc
       <div className="text-xs text-gray-500 mb-1">{label}</div>
       <div className="text-lg font-bold text-gray-900 mb-1">{value}</div>
       <div className="text-xs text-gray-600">{desc}</div>
+    </div>
+  );
+}
+
+function ImagePlaceholder({ label }: { label: string }) {
+  return (
+    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[200px]">
+      <div className="text-center">
+        <div className="text-gray-400 text-4xl mb-2">🖼️</div>
+        <p className="text-sm text-gray-500">{label}</p>
+        <p className="text-xs text-gray-400 mt-1">이미지 준비 중</p>
+      </div>
     </div>
   );
 }
