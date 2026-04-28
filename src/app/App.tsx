@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { NavigationBar } from "./components/NavigationBar";
 import { HeroSection } from "./components/HeroSection";
 import { FilterBar } from "./components/FilterBar";
 import { PortfolioCard } from "./components/PortfolioCard";
+import { ProjectDetailPage } from "./components/ProjectDetailPage";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
@@ -14,6 +15,23 @@ import { projects, sections } from "../config";
 export default function App() {
   const [activeDomain, setActiveDomain] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+
+  // Hash-based routing for project detail pages
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash.startsWith("project-")) {
+        setActiveProjectId(hash.replace("project-", ""));
+        window.scrollTo(0, 0);
+      } else {
+        setActiveProjectId(null);
+      }
+    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   const filteredItems = useMemo(() => {
     return projects.filter((item) => {
@@ -28,6 +46,12 @@ export default function App() {
       return matchesDomain && matchesSearch;
     });
   }, [activeDomain, searchQuery]);
+
+  // Project detail page
+  if (activeProjectId) {
+    const project = projects.find(p => p.id === activeProjectId);
+    if (project) return <ProjectDetailPage project={project} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
