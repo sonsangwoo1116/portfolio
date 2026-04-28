@@ -12,12 +12,7 @@ import { profile } from "../../config";
 
 const defaultNavLinks = [
   { id: "overview", label: "Overview" },
-  { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
-  { id: "certifications", label: "Certifications" },
-  { id: "publications", label: "Publications" },
-  { id: "awards", label: "Awards" },
   { id: "skills", label: "Skills" },
 ];
 
