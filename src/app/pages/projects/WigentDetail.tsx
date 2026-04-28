@@ -67,6 +67,7 @@ export function WigentDetail() {
             <p className="text-base text-gray-700 leading-relaxed">
               Build with TRAE Seoul (ByteDance) 해커톤에서 3인 엔지니어 팀으로 3.5시간 만에 개발하여 <strong>대상(Grand Prize)</strong>을 수상했습니다.
             </p>
+            <DemoImage src="/portfolio/wigent-demo.png" alt="WIGENT 초기 화면" caption="주제 입력 화면 — 프리셋(한국문화 수출, 1인 SaaS, Z세대 소설) 또는 자유 주제 입력" />
           </Section>
         </div>
 
@@ -144,6 +145,7 @@ export function WigentDetail() {
                 <p className="text-xs text-gray-600 mt-1 italic">단순 로테이션이 아닌 균형 있는 참여를 보장</p>
               </div>
             </div>
+            <DemoImage src="/portfolio/wigent-debate.png" alt="Slack 스타일 실시간 토론" caption="PM 김현우 + 문화 커뮤니케이터 이지훈 + 디자이너 박지윤이 실시간 토론. 왼쪽 사이드바에 ONLINE 에이전트 목록, 다크 테마 채팅 UI" />
           </Section>
         </div>
 
@@ -181,6 +183,7 @@ export function WigentDetail() {
                 8턴 추가 토론을 진행합니다. 후반 토론(수렴 단계) 프롬프트를 적용하여 빠르게 새 결론에 도달합니다.
               </p>
             </div>
+            <DemoImage src="/portfolio/wigent-spawn-retire.png" alt="에이전트 퇴장 및 새 전문가 입장" caption="박민수 퇴장('좋은 논의였습니다') → 이수혁 기술 전문가 입장. OFFLINE 섹션에 이전 에이전트 표시" />
           </Section>
         </div>
 
@@ -201,9 +204,10 @@ export function WigentDetail() {
                 <Step num="5" title="Fallback" desc="GPT 거부 시 FALLBACK_HTML 템플릿 사용. markdown 코드 펜스 자동 제거" />
               </div>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mb-4">
               채팅 UI에서 랜딩 페이지로 Framer Motion 애니메이션 전환 — 토론 결과가 실제 제품으로 변환되는 "와우 모멘트"를 구현했습니다.
             </p>
+            <DemoImage src="/portfolio/wigent-landing.png" alt="자동 생성된 랜딩 페이지" caption="'코리안 미라지' 랜딩 페이지 — TARGET·DIFFERENTIATOR·REVENUE 카드 + Next Steps. 우측에 '결과 반려'(추가 토론) / '결과 만족' / 'Next.js 코드 추출' 버튼" />
           </Section>
         </div>
 
@@ -323,6 +327,15 @@ export function WigentDetail() {
 }
 
 // ── Helper Components ──
+
+function DemoImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <div className="my-4">
+      <img src={src} alt={alt} className="w-full rounded-lg border border-gray-200 shadow-sm" />
+      {caption && <p className="text-xs text-gray-500 mt-2 text-center">{caption}</p>}
+    </div>
+  );
+}
 
 function Section({ title, delay, children }: { title: string; delay: number; children: React.ReactNode }) {
   return (
