@@ -6,6 +6,7 @@ import { PortfolioCard } from "./components/PortfolioCard";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
 import { CallbotDetail } from "./pages/projects/CallbotDetail";
 import { RagDetail } from "./pages/projects/RagDetail";
+import { SymphonyDetail } from "./pages/projects/SymphonyDetail";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
@@ -52,6 +53,7 @@ export default function App() {
   // Project detail page — custom pages for key projects
   if (activeProjectId) {
     if (activeProjectId === "1") return <CallbotDetail />;
+    if (activeProjectId === "3") return <SymphonyDetail />;
     if (activeProjectId === "4") return <RagDetail />;
     const project = projects.find(p => p.id === activeProjectId);
     if (project) return <ProjectDetailPage project={project} />;
