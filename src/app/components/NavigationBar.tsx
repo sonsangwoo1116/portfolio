@@ -11,9 +11,13 @@ import {
 import { profile } from "../../config";
 
 const defaultNavLinks = [
-  { id: "overview", label: "Overview" },
   { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
+  { id: "publications", label: "Publications" },
+  { id: "awards", label: "Awards" },
+  { id: "academic", label: "Academic" },
+  { id: "parttime", label: "Part-time" },
 ];
 
 export const careerNavLinks = [
