@@ -1,28 +1,19 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { NavigationBar } from "./components/NavigationBar";
 import { HeroSection } from "./components/HeroSection";
 import { FilterBar } from "./components/FilterBar";
 import { PortfolioCard } from "./components/PortfolioCard";
-import { CareerPage } from "./pages/CareerPage";
-import { ArrowRight } from "lucide-react";
+import { ExperienceSection } from "./components/ExperienceSection";
+import { EducationSection } from "./components/EducationSection";
+import { PublicationsSection } from "./components/PublicationsSection";
+import { AwardsSection } from "./components/AwardsSection";
+import { AcademicProjectsSection } from "./components/AcademicProjectsSection";
+import { PartTimeJobSection } from "./components/PartTimeJobSection";
 import { projects, sections } from "../config";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<"home" | "career">(() => {
-    const hash = window.location.hash.slice(1);
-    return hash === "career" ? "career" : "home";
-  });
   const [activeDomain, setActiveDomain] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      setCurrentPage(hash === "career" ? "career" : "home");
-    };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
 
   const filteredItems = useMemo(() => {
     return projects.filter((item) => {
@@ -38,14 +29,12 @@ export default function App() {
     });
   }, [activeDomain, searchQuery]);
 
-  if (currentPage === "career") return <CareerPage />;
-
   return (
     <div className="min-h-screen bg-gray-50">
       <NavigationBar showNavLinks={false} />
       <HeroSection />
 
-      <section id="tech-projects" className="py-12 bg-white">
+      <section id="projects" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
@@ -73,6 +62,14 @@ export default function App() {
         </div>
       </section>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {sections.experience && <ExperienceSection />}
+        {sections.education && <EducationSection />}
+        {sections.publications && <PublicationsSection />}
+        {sections.awards && <AwardsSection />}
+        {sections.academicProjects && <AcademicProjectsSection />}
+        {sections.partTimeJob && <PartTimeJobSection />}
+      </div>
 
       <footer className="bg-white border-t border-gray-200 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-8">
