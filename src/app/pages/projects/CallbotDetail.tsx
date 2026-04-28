@@ -31,9 +31,9 @@ export function CallbotDetail() {
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
             {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "채널 용량 분석", "역할 및 협업", "Tech Stack"].map((item, i) => (
-              <a key={i} href={`#callbot-${i}`} className="text-sm text-blue-600 hover:text-blue-800 hover:underline">
+              <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
-              </a>
+              </button>
             ))}
           </nav>
         </Section>
