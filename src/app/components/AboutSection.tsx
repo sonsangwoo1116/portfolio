@@ -4,73 +4,61 @@ import { GraduationCap, Briefcase, BookOpen, Award, Target, Lightbulb } from "lu
 export function AboutSection() {
   const experiences = [
     {
-      period: "2023.01 - Present",
-      title: "예시 회사 B",
-      role: "시니어 분석가",
-      description: "데이터 분석팀 | 조직 효과성 연구, People Analytics 기반 의사결정 지원, 진단 도구 개발"
+      period: "2025.01 - Present",
+      title: "(주)사운드마인드",
+      role: "팀장 / AX",
+      description: "AI Agent 개발 및 LLM 기반 서비스 구축, 음성 AI 모델 개발 및 프로덕션 배포, 팀원 LLM 개발 코칭"
     },
     {
-      period: "2019.03 - 2022.12",
-      title: "예시 회사 A",
-      role: "주임 연구원",
-      description: "HR 솔루션팀 | HR 데이터 기반 조직 분석, 인사 의사결정 지원, 데이터 기반 HR 솔루션 개발"
+      period: "2023.01 - 2024.07",
+      title: "디지털새싹",
+      role: "보조강사",
+      description: "AI·데이터 분석 강의 보조, 초·중·고 블록 코딩/딥러닝 교육 멘토링"
     },
-    {
-      period: "2017.06 - 2019.02",
-      title: "예시 스타트업",
-      role: "어시스턴트 매니저",
-      description: "기획팀 | 조직 문화 개선, 콘텐츠 기획 및 실행, 사내 교육 프로그램 운영"
-    },
-    {
-      period: "2015.03 - 2017.02",
-      title: "예시 대학교",
-      role: "대학원 조교",
-      description: "연구 보조 및 학사 관리, 세미나 운영, 행정 업무"
-    }
   ];
 
   const expertise = [
     {
       icon: Lightbulb,
-      title: "People Analytics",
-      description: "데이터 기반 인사 의사결정 및 조직 분석",
+      title: "AI Agent",
+      description: "상태 머신, LLM Tool Calling, 가드레일 기반 대화 에이전트 설계",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Target,
-      title: "리더십 연구",
-      description: "리더십 진단, 평가 및 개발 프로그램 설계",
+      title: "LLM/RAG",
+      description: "LangGraph, RAG 파이프라인, Map-Reduce 요약, 프롬프트 엔지니어링",
       color: "from-purple-500 to-pink-500"
     },
     {
-      icon: GraduationCap,
-      title: "HRD 설계",
-      description: "학습 경험 설계 및 교육 프로그램 개발",
+      icon: BookOpen,
+      title: "Voice AI",
+      description: "STT/TTS 모델 서빙, VAD, 에코 필터, 실시간 음성 처리",
       color: "from-orange-500 to-red-500"
     },
     {
-      icon: BookOpen,
-      title: "인지심리학",
-      description: "학습 과학 및 인지 프로세스 연구 적용",
+      icon: GraduationCap,
+      title: "ML Serving",
+      description: "Triton, vLLM, TensorRT, Docker 기반 모델 서빙 및 최적화",
       color: "from-green-500 to-emerald-500"
     }
   ];
 
   const achievements = [
     {
-      icon: BookOpen,
-      title: "주요 성과 1",
-      description: "config.ts에서 내용을 설정하세요"
+      icon: Award,
+      title: "ACL 2026 Accept",
+      description: "System Demonstrations · Rating 7.50 · 2nd Author"
     },
     {
       icon: Award,
-      title: "학력 사항",
-      description: "config.ts에서 내용을 설정하세요"
+      title: "해커톤 대상",
+      description: "Build with TRAE · WIGENT: AI Agent 실시간 토론 플랫폼"
     },
     {
-      icon: Briefcase,
-      title: "프로젝트 실적",
-      description: "config.ts에서 내용을 설정하세요"
+      icon: GraduationCap,
+      title: "석사 4.5/4.5",
+      description: "한신대학교 IT영상데이터융합(협) · 멀티모달 딥러닝 연구"
     }
   ];
 
@@ -88,8 +76,9 @@ export function AboutSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            심리학을 베이스로 학습자 질문, 측정 및 분석 방법론, Tech 및 AI 활용에 관심이 많으며
-            HRM과 HRD를 교차한 경력으로 데이터 분석 영역을 확대해 나가고 있습니다.
+            석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고,
+            졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.
+            좋은 팀과 함께 더 많은 문제를 풀어나가며, 끊임없이 성장하는 엔지니어가 되고 싶습니다.
           </p>
         </motion.div>
 
@@ -132,14 +121,10 @@ export function AboutSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative pl-8 pb-12 last:pb-0"
               >
-                {/* Timeline line */}
                 {index < experiences.length - 1 && (
                   <div className="absolute left-[7px] top-8 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500"></div>
                 )}
-
-                {/* Timeline dot */}
                 <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 shadow-lg"></div>
-
                 <div className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold text-blue-600">{exp.period}</span>
@@ -184,15 +169,17 @@ export function AboutSection() {
           transition={{ duration: 0.6 }}
           className="mt-20 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8"
         >
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Tech Stack & Tools</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Tech Stack</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {[
-              "Python", "R", "SQL", "JavaScript", "TypeScript",
-              "Pandas", "NumPy", "Scikit-learn", "TensorFlow",
-              "Streamlit", "Flask", "React", "Next.js",
-              "OpenAI API", "Claude AI", "HuggingFace",
-              "PostgreSQL", "Redis", "Docker",
-              "Git", "GitHub Actions", "Vercel", "Netlify"
+              "Python", "PyTorch", "TensorFlow",
+              "FastAPI", "LangGraph", "LangChain",
+              "vLLM", "Triton", "TensorRT",
+              "Docker", "Temporal",
+              "OpenAI API", "Whisper", "Silero VAD",
+              "RAG", "LLM Tool Calling", "Multi-Agent",
+              "Prometheus", "Grafana",
+              "Git", "GitHub Actions"
             ].map((skill, index) => (
               <span
                 key={index}

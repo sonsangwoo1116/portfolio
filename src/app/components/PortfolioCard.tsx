@@ -10,11 +10,11 @@ interface PortfolioCardProps {
 }
 
 const domainConfig: Record<string, { label: string; color: string }> = {
-  "hr-analytics": { label: "진단/분석", color: "bg-blue-100 text-blue-700" },
-  "assessment": { label: "평가/코칭", color: "bg-green-100 text-green-700" },
-  "ai-tools": { label: "AI 도구", color: "bg-purple-100 text-purple-700" },
-  "workshop": { label: "워크샵", color: "bg-orange-100 text-orange-700" },
-  "education": { label: "교육", color: "bg-teal-100 text-teal-700" }
+  "AI Agent": { label: "AI Agent", color: "bg-blue-100 text-blue-700" },
+  "AI/Voice": { label: "AI/Voice", color: "bg-green-100 text-green-700" },
+  "LLM/RAG": { label: "LLM/RAG", color: "bg-purple-100 text-purple-700" },
+  "AI/LLM": { label: "AI/LLM", color: "bg-orange-100 text-orange-700" },
+  "Side Project": { label: "사이드 프로젝트", color: "bg-teal-100 text-teal-700" },
 };
 
 export function PortfolioCard({ item, index }: PortfolioCardProps) {

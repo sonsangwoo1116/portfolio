@@ -10,11 +10,11 @@ interface FilterBarProps {
 
 const domains = [
   { id: "all", label: "전체" },
-  { id: "hr-analytics", label: "진단/분석" },
-  { id: "assessment", label: "평가/코칭" },
-  { id: "ai-tools", label: "AI 도구/자동화" },
-  { id: "workshop", label: "워크샵/협업" },
-  { id: "education", label: "교육/지식공유" },
+  { id: "AI Agent", label: "AI Agent" },
+  { id: "AI/Voice", label: "AI/Voice" },
+  { id: "LLM/RAG", label: "LLM/RAG" },
+  { id: "AI/LLM", label: "AI/LLM" },
+  { id: "Side Project", label: "사이드 프로젝트" },
 ];
 
 export function FilterBar({ activeDomain, onDomainChange, searchQuery, onSearchChange }: FilterBarProps) {

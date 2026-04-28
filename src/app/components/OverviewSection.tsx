@@ -17,9 +17,9 @@ export function OverviewSection() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            데이터 분석과 현업 경험을 바탕으로 다양한 프로젝트를 수행해
-            왔습니다. 문제를 정의하고, 데이터로 인사이트를 도출하며,
-            실질적인 변화를 만드는 일을 해왔습니다.
+            AI 콜봇 대화 엔진, RAG 시스템, 음성인식 파이프라인 등
+            AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지
+            전 과정을 주도해왔습니다.
           </p>
         </motion.div>
       </div>
