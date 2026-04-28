@@ -13,8 +13,7 @@ const domainConfig: Record<string, { label: string; color: string }> = {
   "AI Agent": { label: "AI Agent", color: "bg-blue-100 text-blue-700" },
   "AI/Voice": { label: "AI/Voice", color: "bg-green-100 text-green-700" },
   "LLM/RAG": { label: "LLM/RAG", color: "bg-purple-100 text-purple-700" },
-  "AI/LLM": { label: "AI/LLM", color: "bg-orange-100 text-orange-700" },
-  "Side Project": { label: "사이드 프로젝트", color: "bg-teal-100 text-teal-700" },
+  "Side Project": { label: "Side Project", color: "bg-teal-100 text-teal-700" },
 };
 
 export function PortfolioCard({ item, index }: PortfolioCardProps) {

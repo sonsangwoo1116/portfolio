@@ -13,8 +13,7 @@ const domains = [
   { id: "AI Agent", label: "AI Agent" },
   { id: "AI/Voice", label: "AI/Voice" },
   { id: "LLM/RAG", label: "LLM/RAG" },
-  { id: "AI/LLM", label: "AI/LLM" },
-  { id: "Side Project", label: "사이드 프로젝트" },
+  { id: "Side Project", label: "Side Project" },
 ];
 
 export function FilterBar({ activeDomain, onDomainChange, searchQuery, onSearchChange }: FilterBarProps) {
