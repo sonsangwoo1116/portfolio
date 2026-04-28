@@ -98,6 +98,7 @@ export function WigvoDetail() {
                 </ul>
               </div>
             </div>
+            <DemoImage src="/portfolio/wigvo-architecture.png" alt="WIGVO 시스템 아키텍처" caption="Session A(빨강): 사용자 음성 → OpenAI Realtime API → G.711 → Twilio PSTN. Session B(파랑): PSTN 오디오 → 3-Stage Filter → Session B Pipeline. Echo Windows가 TTS 에코를 차단" />
             <div className="bg-gray-50 rounded-lg p-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-2">3계층 구조</h4>
               <div className="space-y-2">
@@ -135,6 +136,7 @@ export function WigvoDetail() {
                 <Step num="3" title="일반 구간" desc="RMS ≥ 150 에너지 임계값. 에코 게이트 중 상대방이 실제로 말하면(RMS > 임계) 즉시 해제" />
               </div>
             </div>
+            <DemoImage src="/portfolio/wigvo-pipeline.png" alt="3-Stage 오디오 필터 파이프라인" caption="(A) Echo Gate → Energy Gate → Silero VAD 플로우차트. (B) Echo Gate Complementary Operation — TTS 재생 중 Active Filtering → Dynamic Settling → Normal VAD 시간축 다이어그램" />
             <div className="bg-gray-50 rounded-lg p-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-3">7단계 진화 — Ablation</h4>
               <div className="overflow-x-auto">
@@ -351,6 +353,10 @@ export function WigvoDetail() {
                 </tbody>
               </table>
             </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              <DemoImage src="/portfolio/wigvo-latency.png" alt="E2E 지연시간 분포" caption="Session A (N=814 turns) / Session B (N=744 turns) 지연시간 히스토그램" />
+              <DemoImage src="/portfolio/wigvo-scatter.png" alt="발화 길이 vs 지연시간" caption="발화 길이 vs Session B 지연시간 산점도 (Pearson r=0.400, p<0.001)" />
+            </div>
           </Section>
         </div>
 
@@ -380,6 +386,15 @@ export function WigvoDetail() {
 }
 
 // ── Helper Components ──
+
+function DemoImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <div className="my-4">
+      <img src={src} alt={alt} className="w-full rounded-lg border border-gray-200 shadow-sm" />
+      {caption && <p className="text-xs text-gray-500 mt-2 text-center">{caption}</p>}
+    </div>
+  );
+}
 
 function Section({ title, delay, children }: { title: string; delay: number; children: React.ReactNode }) {
   return (
