@@ -16,7 +16,7 @@ export function CertificationsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Certifications</h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600">{certifications.length}개 자격증 및 수료</p>
         </motion.div>
 

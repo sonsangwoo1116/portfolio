@@ -86,7 +86,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
             transition={{ delay: 0.2 }}
           >
             <h1
-              className="text-xl font-semibold bg-gray-800 bg-clip-text text-transparent cursor-pointer select-none"
+              className="text-xl font-semibold text-gray-800 cursor-pointer select-none"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               Portfolio
@@ -160,7 +160,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                     </button>
                   </SheetTrigger>
                   <SheetContent side="right" className="w-72">
-                    <SheetTitle className="text-lg font-semibold bg-gray-800 bg-clip-text text-transparent">
+                    <SheetTitle className="text-lg font-semibold text-gray-800">
                       Portfolio
                     </SheetTitle>
                     <nav className="flex flex-col gap-1 mt-6">

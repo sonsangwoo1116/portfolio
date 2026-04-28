@@ -19,7 +19,7 @@ export function AcademicProjectsSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Academic Projects
           </h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600">
             {items.length}개 학술 및 연구 프로젝트
           </p>

@@ -15,7 +15,7 @@ export function OverviewSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Career Overview
           </h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             AI 콜봇 대화 엔진, RAG 시스템, 음성인식 파이프라인 등
             AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지

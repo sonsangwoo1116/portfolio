@@ -16,7 +16,7 @@ export function PublicationsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Publications</h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600">{publications.length}개 출판물 및 학술 논문</p>
         </motion.div>
 

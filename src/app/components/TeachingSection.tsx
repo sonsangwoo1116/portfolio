@@ -17,7 +17,7 @@ export function TeachingSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Teaching</h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
           <p className="text-lg text-gray-600">강의 경험</p>
         </motion.div>
 

@@ -68,7 +68,7 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6"></div>
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고,
             졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.
@@ -116,9 +116,9 @@ export function AboutSection() {
                 className="relative pl-8 pb-12 last:pb-0"
               >
                 {index < experiences.length - 1 && (
-                  <div className="absolute left-[7px] top-8 bottom-0 w-0.5 bg-gray-800"></div>
+                  <div className="absolute left-[7px] top-8 bottom-0 w-0.5 bg-blue-300"></div>
                 )}
-                <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-gray-800 shadow-lg"></div>
+                <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-blue-500 shadow-lg"></div>
                 <div className="bg-gray-50 rounded-lg p-6 hover:shadow-md transition-shadow">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold text-blue-600">{exp.period}</span>
