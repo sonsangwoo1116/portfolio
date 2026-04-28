@@ -43,36 +43,34 @@ export function ExperienceSection() {
                   )}
                   <div className="absolute left-0 top-2 w-4 h-4 rounded-full border-2 border-blue-500 bg-white" />
 
-                  <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-4">
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
-                      <span className="text-sm font-semibold text-blue-600">
+                  <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-6">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+                      <span className="text-base font-semibold text-blue-600">
                         {formatPeriod(pos.startDate, pos.endDate)}
                       </span>
                       <span className="text-gray-300">|</span>
-                      <span className="text-base font-bold text-gray-900">{pos.company}</span>
+                      <span className="text-lg font-bold text-gray-900">{pos.company}</span>
                       <span className="text-gray-300">|</span>
-                      <span className="text-sm text-gray-700">{pos.title}</span>
+                      <span className="text-base text-gray-700">{pos.title}</span>
                     </div>
 
                     {hasHighlights && (
-                      <div className="space-y-4 mt-3">
+                      <div className="space-y-5 mt-4">
                         {pos.highlights!.map((item, i) => {
-                          // [프로젝트명 | 기간] 형식에서 제목 추출
                           const titleMatch = item.match(/^\[(.+?)\]/);
                           const title = titleMatch ? titleMatch[1] : null;
                           const content = title ? item.replace(/^\[.+?\]\s*/, "") : item;
-                          // — 구분자로 불릿 분리
                           const bullets = content.split(" — ").map(s => s.trim()).filter(Boolean);
 
                           return (
-                            <div key={i} className="border-l-2 border-blue-200 pl-3">
+                            <div key={i} className="border-l-2 border-blue-300 pl-4">
                               {title && (
-                                <div className="text-sm font-semibold text-gray-800 mb-1">{title}</div>
+                                <div className="text-base font-semibold text-gray-800 mb-2">{title}</div>
                               )}
-                              <ul className="space-y-1">
+                              <ul className="space-y-1.5">
                                 {bullets.map((bullet, j) => (
-                                  <li key={j} className="text-xs text-gray-600 flex items-start gap-1.5">
-                                    <span className="mt-1.5 w-1 h-1 rounded-full bg-gray-400 shrink-0" />
+                                  <li key={j} className="text-sm text-gray-600 flex items-start gap-2">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                                     <span>{bullet}</span>
                                   </li>
                                 ))}

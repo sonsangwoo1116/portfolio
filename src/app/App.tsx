@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <NavigationBar showNavLinks={false} />
+      <NavigationBar showNavLinks={true} />
       <HeroSection />
 
       <section id="projects" className="py-12 bg-white">
