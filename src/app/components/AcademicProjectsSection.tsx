@@ -19,7 +19,7 @@ export function AcademicProjectsSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Academic Projects
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
           <p className="text-lg text-gray-600">
             {items.length}개 학술 및 연구 프로젝트
           </p>
@@ -37,7 +37,7 @@ export function AcademicProjectsSection() {
                 className="bg-white rounded-xl p-5 shadow-sm border border-gray-100"
               >
                 <div className="flex items-start gap-3">
-                  <div className="inline-flex p-2 rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 shrink-0 mt-0.5">
+                  <div className="inline-flex p-2 rounded-lg bg-gray-100 shrink-0 mt-0.5">
                     <FlaskConical className="w-4 h-4 text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">

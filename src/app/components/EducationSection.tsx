@@ -16,7 +16,7 @@ export function EducationSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Education</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
@@ -33,9 +33,9 @@ export function EducationSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <div className={`rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-3 h-full`}>
-                    <div className={`relative rounded-lg p-2 ${isFeatured ? "bg-gradient-to-br from-blue-50 to-purple-50" : ""}`}>
+                    <div className={`relative rounded-lg p-2 ${isFeatured ? "bg-gray-100" : ""}`}>
                       <div className="flex items-start gap-4">
-                        <div className={`inline-flex p-3 rounded-full shrink-0 ${isFeatured ? "bg-gradient-to-br from-blue-100 to-purple-100" : "bg-gray-100"}`}>
+                        <div className={`inline-flex p-3 rounded-full shrink-0 ${isFeatured ? "bg-gray-200" : "bg-gray-100"}`}>
                           <GraduationCap className={`w-6 h-6 ${isFeatured ? "text-blue-600" : "text-gray-600"}`} />
                         </div>
                         <div className="flex-1">

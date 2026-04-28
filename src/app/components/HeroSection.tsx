@@ -8,7 +8,7 @@ const profileImage = import.meta.env.BASE_URL + "profile.png";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden">
+    <section className="relative bg-gray-50 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
@@ -27,12 +27,12 @@ export function HeroSection() {
           >
             <div className="relative aspect-[3/4] max-w-xs mx-auto lg:mx-0 lg:max-w-full">
               {/* Decorative elements */}
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-purple-200/40 to-pink-200/40 rounded-full blur-2xl"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gray-200/40 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-gray-200/40 rounded-full blur-2xl"></div>
 
               {/* Main image */}
               <div className="relative h-full rounded-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gray-500/10 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
                 <img
                   src={profileImage}
                   alt={`${profile.name} 프로필`}

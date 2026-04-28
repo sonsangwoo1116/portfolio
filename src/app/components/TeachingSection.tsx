@@ -17,7 +17,7 @@ export function TeachingSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Teaching</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
           <p className="text-lg text-gray-600">강의 경험</p>
         </motion.div>
 
@@ -31,7 +31,7 @@ export function TeachingSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100">
+                <div className="bg-gray-100 rounded-xl p-6 border border-blue-100">
                   <div className="inline-flex p-3 rounded-full bg-white/80 mb-4 shadow-sm">
                     <GraduationCap className="w-6 h-6 text-blue-600" />
                   </div>

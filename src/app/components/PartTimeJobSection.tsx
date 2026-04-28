@@ -19,7 +19,7 @@ export function PartTimeJobSection() {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Part-time Job Experience
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
           <p className="text-lg text-gray-600">
             {items.length}개 파트타임 경력
           </p>
@@ -37,7 +37,7 @@ export function PartTimeJobSection() {
                 className="bg-white rounded-xl p-5 shadow-sm border border-gray-100"
               >
                 <div className="flex items-start gap-4">
-                  <div className="inline-flex p-3 rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 shrink-0">
+                  <div className="inline-flex p-3 rounded-lg bg-gray-100 shrink-0">
                     <Briefcase className="w-5 h-5 text-blue-600" />
                   </div>
                   <div className="flex-1 min-w-0">

@@ -16,7 +16,7 @@ export function AwardsSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Awards</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-6" />
+          <div className="w-20 h-1 bg-gray-800 mx-auto mb-6" />
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
@@ -31,7 +31,7 @@ export function AwardsSection() {
             >
               <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-3 h-full">
                 <div className="text-center space-y-2">
-                  <div className="inline-flex p-2 rounded-full bg-gradient-to-br from-yellow-50 to-orange-50">
+                  <div className="inline-flex p-2 rounded-full bg-gray-100">
                     <Trophy className="w-5 h-5 text-yellow-600" />
                   </div>
                   <h3 className="text-sm font-semibold text-gray-900 line-clamp-2">{award.title}</h3>
