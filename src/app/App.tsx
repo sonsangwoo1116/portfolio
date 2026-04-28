@@ -4,6 +4,7 @@ import { HeroSection } from "./components/HeroSection";
 import { FilterBar } from "./components/FilterBar";
 import { PortfolioCard } from "./components/PortfolioCard";
 import { ProjectDetailPage } from "./components/ProjectDetailPage";
+import { CallbotDetail } from "./pages/projects/CallbotDetail";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
@@ -47,8 +48,9 @@ export default function App() {
     });
   }, [activeDomain, searchQuery]);
 
-  // Project detail page
+  // Project detail page — custom pages for key projects
   if (activeProjectId) {
+    if (activeProjectId === "1") return <CallbotDetail />;
     const project = projects.find(p => p.id === activeProjectId);
     if (project) return <ProjectDetailPage project={project} />;
   }
