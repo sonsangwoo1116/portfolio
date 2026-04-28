@@ -30,7 +30,7 @@ export function RagDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "LangGraph 듀얼 그래프", "문서 파싱 및 구조 보존", "Map-Reduce 요약", "로컬 임베딩 + 멀티 유저", "역할", "Tech Stack"].map((item, i) => (
+            {["Overview", "System Architecture", "DocumentManagement Graph", "ChatBot Graph", "문서 파싱 및 구조 보존", "Map-Reduce 요약", "로컬 임베딩 + 멀티 유저", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`rag-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -48,6 +48,7 @@ export function RagDetail() {
                 <li className="text-sm text-gray-700">• 최대 50MB / 100페이지 문서 즉시 처리</li>
                 <li className="text-sm text-gray-700">• 토크나이저 기반 동적 Map-Reduce 재귀적 요약</li>
                 <li className="text-sm text-gray-700">• 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거</li>
+                <li className="text-sm text-gray-700">• 청크 500토큰 / 오버랩 100토큰, 검색 Top-3</li>
               </ul>
             </div>
             <p className="text-base text-gray-700 leading-relaxed mb-3">
@@ -65,59 +66,91 @@ export function RagDetail() {
         <div id="rag-1">
           <Section title="2. System Architecture" delay={0.15}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              DocumentManagement와 ChatBot 두 개의 독립적인 LangGraph 그래프로 구성됩니다.
-              각 그래프는 내부에서 조건부 라우팅으로 워크플로우를 자동 분기합니다.
+              DocumentManagement와 ChatBot 두 개의 독립적인 LangGraph StateGraph로 구성됩니다.
+              문서 처리(동기, 무거움)와 채팅(비동기, 가벼움)의 실행 패턴이 달라 단일 그래프로 합치면
+              문서 처리 중 채팅이 블로킹되는 문제가 발생하여 분리했습니다.
             </p>
-            <ImagePlaceholder label="시스템 아키텍처 — DocumentManagement Graph + ChatBot Graph + VectorDB + vLLM" />
-            <div className="mt-4 grid md:grid-cols-3 gap-3">
-              <MetricCard label="LLM" value="Qwen3-14B-AWQ" desc="vLLM 서빙, max_tokens 2048" />
-              <MetricCard label="Embedding" value="BGE-M3" desc="로컬 Ollama, 100개 언어" />
-              <MetricCard label="VectorDB" value="Chroma" desc="즉시 인덱싱, 유저별 격리" />
+            <ImagePlaceholder label="시스템 아키텍처 — DocumentManagement Graph + ChatBot Graph + Chroma VectorDB + vLLM(Qwen3-14B-AWQ) + Ollama(BGE-M3)" />
+            <div className="mt-4 grid md:grid-cols-4 gap-3">
+              <MetricCard label="LLM" value="Qwen3-14B-AWQ" desc="vLLM 서빙, port 8000" />
+              <MetricCard label="Embedding" value="BGE-M3" desc="로컬 Ollama" />
+              <MetricCard label="VectorDB" value="Chroma" desc="유저별 persist" />
+              <MetricCard label="API" value="FastAPI" desc="port 10101" />
             </div>
           </Section>
         </div>
 
-        {/* 3. LangGraph 듀얼 그래프 */}
+        {/* 3. DocumentManagement Graph */}
         <div id="rag-2">
-          <Section title="3. LangGraph 듀얼 그래프" delay={0.2}>
+          <Section title="3. DocumentManagement Graph" delay={0.2}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              문서 처리(동기, 무거움)와 채팅(비동기, 가벼움)의 실행 패턴이 달라
-              단일 그래프로 합치면 문서 처리 중 채팅이 블로킹되는 문제가 발생했습니다.
-              이를 해결하기 위해 두 개의 독립적인 LangGraph 그래프로 분리 설계했습니다.
+              문서 추가(Add)와 삭제(Delete)를 처리하는 그래프입니다. RoutingNodeLogic이 operation에 따라 분기하고,
+              Add 경로에서는 7단계 파이프라인을 거쳐 VectorDB에 인덱싱됩니다.
             </p>
-            <ImagePlaceholder label="LangGraph 듀얼 그래프 플로우 — DocumentManagement(Add/Delete 분기) + ChatBot(QA/Summary 분기)" />
-            <div className="grid md:grid-cols-2 gap-4 mt-4">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">DocumentManagement Graph</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• RoutingNodeLogic → Add / Delete 분기</li>
-                  <li className="text-xs text-gray-600">• Parse → Chunk → VectorDB Add</li>
-                  <li className="text-xs text-gray-600">• 동기 처리, 무거운 작업</li>
-                </ul>
+            <ImagePlaceholder label="DocumentManagement Graph 플로우 다이어그램" />
+            <div className="bg-gray-50 rounded-lg p-4 my-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-3">Add 경로 — 7개 노드</h4>
+              <div className="space-y-3">
+                <Step num="1" title="routing_node" desc="RoutingNodeLogic — Add / Delete 분기" />
+                <Step num="2" title="create_history_node" desc="사용자별 이력 디렉토리 생성 (history/{date}_{uuid}/)" />
+                <Step num="3" title="document_parse_node" desc="Upstage Document Parse API로 PDF → JSON (캐시 적용)" />
+                <Step num="4" title="make_documents_node" desc="JSON → 페이지별 LangChain Document 생성 (metadata: page/total_pages)" />
+                <Step num="5" title="chunking_node" desc="chunk_size=500, chunk_overlap=100으로 분할" />
+                <Step num="6" title="add_vector_db_node" desc="Ollama BGE-M3 임베딩 → Chroma VectorDB 저장" />
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">ChatBot Graph</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• TaskRouting → QA / Summary 분기</li>
-                  <li className="text-xs text-gray-600">• VectorCheck → Retrieval → Answer</li>
-                  <li className="text-xs text-gray-600">• 비동기 스트리밍, 가벼운 작업</li>
-                </ul>
+              <div className="mt-4 pt-3 border-t border-gray-200">
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Delete 경로</h4>
+                <p className="text-sm text-gray-600">routing_node → delete_vector_db_node → END</p>
               </div>
             </div>
-            <ImagePlaceholder label="DocumentManagement 동작 스크린샷 — 문서 업로드 → 파싱 → 인덱싱" />
+            <ImagePlaceholder label="문서 업로드 → 파싱 → 인덱싱 동작 스크린샷" />
           </Section>
         </div>
 
-        {/* 4. 문서 파싱 및 구조 보존 */}
+        {/* 4. ChatBot Graph */}
         <div id="rag-3">
-          <Section title="4. 문서 파싱 및 구조 보존" delay={0.25}>
+          <Section title="4. ChatBot Graph" delay={0.25}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              일반 텍스트 추출(pdfplumber, PyPDF)로는 PDF의 표, 제목 계층, 이미지, 목차 구조가 전부 손실됩니다.
-              RAG 청킹할 때 의미 단위를 놓치게 되어 — 표의 헤더와 데이터가 별개 청크에 들어가는 등 — 검색 품질이 떨어졌습니다.
+              사용자 질의를 처리하는 그래프입니다. TaskRoutingNodeLogic이 task(QA/Summary)에 따라 분기하고,
+              QA 경로에서는 VectorDB 존재 여부를 먼저 확인합니다.
             </p>
+            <ImagePlaceholder label="ChatBot Graph 플로우 다이어그램" />
+            <div className="grid md:grid-cols-2 gap-4 my-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">QA 경로</h4>
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-600">1. TaskRouting → "QA"</p>
+                  <p className="text-xs text-gray-600">2. VectorCheckNode — VectorDB 존재 확인</p>
+                  <p className="text-xs text-gray-600">3-a. 있으면 → GetRetrievalNode (Top-3 검색) → GetAnswerNode (스트리밍 응답)</p>
+                  <p className="text-xs text-gray-600">3-b. 없으면 → EmptyVectorResponseNode ("문서를 업로드해주세요")</p>
+                </div>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Summary 경로</h4>
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-600">1. TaskRouting → "Summary"</p>
+                  <p className="text-xs text-gray-600">2. DocumentSummaryNode</p>
+                  <p className="text-xs text-gray-600">3. Map(페이지별 요약) → Reduce(재귀적 축약)</p>
+                  <p className="text-xs text-gray-600">4. figure/chart 카테고리 자동 필터링</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-3">
+              <MetricCard label="검색 결과" value="Top-3" desc="similarity_search k=3" />
+              <MetricCard label="LLM 온도" value="0.0" desc="결정적 응답" />
+              <MetricCard label="최대 토큰" value="2,048" desc="max_tokens" />
+            </div>
+            <ImagePlaceholder label="RAG Q&A 동작 스크린샷 — 질의 → 검색 → 응답 생성" />
+          </Section>
+        </div>
+
+        {/* 5. 문서 파싱 및 구조 보존 */}
+        <div id="rag-4">
+          <Section title="5. 문서 파싱 및 구조 보존" delay={0.3}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              Upstage Document Parse를 적용하여 PDF를 Markdown으로 변환, 구조를 보존했습니다.
-              페이지별로 Document를 생성하고 metadata에 page/total_pages를 포함시켜 검색 시 페이지 필터링이 가능합니다.
+              일반 텍스트 추출로는 PDF의 표, 제목 계층, 이미지 구조가 전부 손실됩니다.
+              Upstage Document Parse API를 사용하여 HTML/Markdown/Text 3가지 형식으로 변환하고,
+              figure/chart는 base64로 인코딩하여 PNG로 저장합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
@@ -132,33 +165,40 @@ export function RagDetail() {
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">After — Upstage Document Parse</h4>
                 <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• Markdown 구조 보존</li>
-                  <li className="text-xs text-gray-600">• 제목/목차/표/리스트 유지</li>
-                  <li className="text-xs text-gray-600">• 이미지 base64 → PNG 저장</li>
-                  <li className="text-xs text-gray-600">• 페이지별 metadata 포함</li>
+                  <li className="text-xs text-gray-600">• HTML/Markdown/Text 3형식 출력</li>
+                  <li className="text-xs text-gray-600">• 제목/목차/표/리스트 구조 보존</li>
+                  <li className="text-xs text-gray-600">• figure/chart base64 → PNG 저장</li>
+                  <li className="text-xs text-gray-600">• 페이지별 Document + metadata</li>
                 </ul>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
-              파싱 결과를 json_tmp/ 디렉토리에 캐시하여 동일 문서 재업로드 시 API 중복 호출을 차단했습니다.
+            <p className="text-sm text-gray-600 mb-4">
+              파싱 결과를 json_tmp/ 디렉토리에 캐시합니다. <code className="text-xs bg-gray-100 px-1 rounded">ExistCheck(output_file)</code>로
+              동일 문서 재업로드 시 API 중복 호출을 차단하여 비용과 지연을 절감합니다.
             </p>
-            <ImagePlaceholder label="문서 파싱 결과 비교 — 일반 텍스트 vs Upstage Document Parse Markdown" />
+            <p className="text-sm text-gray-600">
+              Summary에서는 <code className="text-xs bg-gray-100 px-1 rounded">_get_pages()</code>에서
+              figure/chart 카테고리를 자동 필터링하여 텍스트 요약에 이미지 설명이 섞이지 않도록 합니다.
+            </p>
+            <ImagePlaceholder label="문서 파싱 결과 비교 — 일반 텍스트 vs Upstage Markdown 변환" />
           </Section>
         </div>
 
-        {/* 5. Map-Reduce 요약 */}
-        <div id="rag-4">
-          <Section title="5. Map-Reduce 요약" delay={0.3}>
+        {/* 6. Map-Reduce 요약 */}
+        <div id="rag-5">
+          <Section title="6. Map-Reduce 요약" delay={0.35}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              대규모 문서 요약에서 고정 배치 크기(예: 5개씩)로 묶으면 각 요약의 길이가 달라서
-              어떤 묶음은 토큰이 넘치고 어떤 묶음은 남는 문제가 있었습니다.
-              실제 토크나이저로 토큰 수를 계산해서 max_tokens를 초과하지 않게 동적으로 그룹을 생성하는 방식으로 해결했습니다.
+              고정 배치 크기로 묶으면 각 요약의 길이가 달라서 토큰 오버플로우가 발생합니다.
+              <code className="text-xs bg-gray-100 px-1 rounded">group_by_token_limit()</code>으로
+              실제 토크나이저(Qwen)로 프롬프트 템플릿 토큰 + 각 컨텍스트 토큰을 합산하여
+              max_tokens를 초과하지 않게 동적으로 그룹을 생성합니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
-                <Step num="1" title="Map — 페이지별 요약" desc="batch_size=20으로 GPU 병렬 처리" />
-                <Step num="2" title="Group — 토크나이저 기반 동적 그룹핑" desc="프롬프트 템플릿 토큰 + 각 컨텍스트 토큰을 합산하여 max_tokens(2048) 초과 방지" />
-                <Step num="3" title="Reduce — 재귀적 축약" desc="Reduce 결과가 여전히 여러 청크이면 다시 Reduce → 최종 하나로 수렴" />
+                <Step num="1" title="Map — 페이지별 요약" desc="batch_size=20, GPU 병렬 처리. figure/chart 카테고리 자동 제외" />
+                <Step num="2" title="Group — 토크나이저 기반 동적 그룹핑" desc="template_token + context_token 합산, max_tokens(2048) 초과 시 새 그룹 생성" />
+                <Step num="3" title="Reduce — 재귀적 축약" desc="_reduce_summarize()가 len(chunks)>1이면 재귀 호출 → 최종 하나로 수렴" />
+                <Step num="4" title="Final — 최종 요약 스트리밍" desc="마지막 청크를 reduce_chain.astream()으로 실시간 전송" />
               </div>
             </div>
             <div className="grid md:grid-cols-3 gap-3">
@@ -170,56 +210,48 @@ export function RagDetail() {
           </Section>
         </div>
 
-        {/* 6. 로컬 임베딩 + 멀티 유저 */}
-        <div id="rag-5">
-          <Section title="6. 로컬 임베딩 + 멀티 유저 데이터 격리" delay={0.35}>
+        {/* 7. 로컬 임베딩 + 멀티 유저 */}
+        <div id="rag-6">
+          <Section title="7. 로컬 임베딩 + 멀티 유저 데이터 격리" delay={0.4}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              외부 임베딩 API(OpenAI, Cohere)는 요청당 비용, 네트워크 지연, 가용성 의존 문제가 있습니다.
-              로컬 Ollama(BGE-M3)를 선택하여 무료, 즉시, 항상 가용한 임베딩을 제공했습니다.
+              외부 임베딩 API의 비용/지연/가용성 문제를 해결하기 위해 로컬 Ollama(BGE-M3)를 선택했습니다.
               100개 언어를 지원하여 다국어 요구사항도 충족합니다.
             </p>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              멀티 유저 환경에서 데이터 오염을 방지하기 위해 <code className="text-sm bg-gray-100 px-1 rounded">history/{'{date}_{uuid}'}/</code> 구조로
-              raw JSON, 이미지, VectorDB를 사용자별 완전 분리했습니다.
+              멀티 유저 환경에서 데이터 오염을 방지하기 위해
+              <code className="text-xs bg-gray-100 px-1 rounded">history/{'{date}_{uuid}'}/</code> 구조로
+              raw JSON, 이미지, VectorDB(persist_directory)를 사용자별 완전 분리했습니다.
             </p>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">외부 API 방식</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• 요청당 비용 발생</li>
-                  <li className="text-xs text-gray-600">• 네트워크 지연</li>
-                  <li className="text-xs text-gray-600">• 가용성 의존</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">로컬 Ollama (BGE-M3)</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• 무료, 즉시, 항상 가용</li>
-                  <li className="text-xs text-gray-600">• 100개 언어 지원</li>
-                  <li className="text-xs text-gray-600">• 외부 의존성 제거</li>
-                </ul>
-              </div>
+            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-2">유저별 디렉토리 구조</h4>
+              <pre className="text-xs text-gray-600 font-mono">
+{`history/{date}_{uuid}/
+├── raw/          # Upstage 파싱 JSON + 이미지
+├── images/       # figure/chart PNG
+└── vectorDB/     # Chroma persist_directory`}
+              </pre>
             </div>
-            <ImagePlaceholder label="RAG Q&A 동작 — 문서 검색 + 응답 생성 스크린샷" />
+            <p className="text-sm text-gray-600">
+              스트리밍 응답에서는 <code className="text-xs bg-gray-100 px-1 rounded">token_generator()</code>의
+              finally 블록에서 전체 응답과 검색 결과를 한 번에 로깅합니다.
+              사용자는 즉시 토큰을 받고, 관리자는 완전한 로그를 수집할 수 있습니다.
+            </p>
+            <ImagePlaceholder label="RAG Q&A 동작 — 검색 결과 + 응답 생성 스크린샷" />
           </Section>
         </div>
 
-        {/* 7. 역할 */}
-        <div id="rag-6">
-          <Section title="7. 역할" delay={0.4}>
-            <ul className="space-y-3">
-              <BulletItem text="전체 RAG 파이프라인(파싱 → 임베딩 → 검색 → 응답 → 요약) 설계부터 구현까지 단독 수행" />
-              <BulletItem text="LangGraph 그래프 2개의 아키텍처, 토큰 기반 그룹핑, 멀티유저 격리 등 세부 설계 전부 직접" />
-              <BulletItem text="Streamlit 데모 UI + FastAPI 백엔드 + vLLM 서빙 구성" />
-            </ul>
-          </Section>
-        </div>
-
-        {/* 8. Tech Stack */}
+        {/* 8. 역할 및 Tech Stack */}
         <div id="rag-7">
-          <Section title="8. Tech Stack" delay={0.45}>
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">역할</h4>
+            <ul className="space-y-2 mb-6">
+              <BulletItem text="전체 RAG 파이프라인(파싱 → 임베딩 → 검색 → 응답 → 요약) 설계부터 구현까지 단독 수행" />
+              <BulletItem text="LangGraph 듀얼 그래프 아키텍처, 토큰 기반 그룹핑, 멀티유저 격리 등 세부 설계 전부 직접" />
+              <BulletItem text="Streamlit 데모 UI + FastAPI 백엔드(port 10101) + vLLM 서빙(port 8000) 구성" />
+            </ul>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
-              {["Python", "FastAPI", "LangGraph", "LangChain", "vLLM (Qwen3-14B-AWQ)", "Ollama (BGE-M3)", "Chroma", "Upstage Document Parse", "Streamlit"].map((tag, i) => (
+              {["Python", "FastAPI", "LangGraph", "LangChain", "vLLM (Qwen3-14B-AWQ)", "Ollama (BGE-M3)", "Chroma", "Upstage Document Parse", "Streamlit", "AutoTokenizer"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
