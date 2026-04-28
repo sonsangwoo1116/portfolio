@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Github } from "lucide-react";
+import { DemoImage } from "../../components/DemoImage";
 
 export function WigentDetail() {
   return (
@@ -327,15 +328,6 @@ export function WigentDetail() {
 }
 
 // ── Helper Components ──
-
-function DemoImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
-  return (
-    <div className="my-4">
-      <img src={src} alt={alt} className="w-full rounded-lg border border-gray-200 shadow-sm" />
-      {caption && <p className="text-xs text-gray-500 mt-2 text-center">{caption}</p>}
-    </div>
-  );
-}
 
 function Section({ title, delay, children }: { title: string; delay: number; children: React.ReactNode }) {
   return (
