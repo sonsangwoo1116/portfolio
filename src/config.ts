@@ -247,8 +247,10 @@ export const careerData = {
       startDate: "2025-01",
       endDate: null,
       highlights: [
-        "AI 콜봇 대화 엔진, RAG 시스템, 음성인식 파이프라인 등 AI 서비스 전 과정 주도",
-        "팀원 LLM 개발 코칭 및 기술 리드",
+        "AI 콜봇 대화 엔진 설계 — 7노드 상태 머신 + 9개 LLM Tool Calling, 하이브리드 라우팅으로 LLM 호출 85% 절감",
+        "기업 문서 RAG 시스템 — LangGraph 듀얼 그래프 설계, 최대 50MB/100페이지 즉시 검색·요약",
+        "영어 교육용 음성인식 — 3-Worker 분리 아키텍처로 성공률 82% → 95%+, 분당 200건 안정 처리",
+        "음성 AI 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
   ] as Position[],
