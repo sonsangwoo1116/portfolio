@@ -22,7 +22,7 @@ export function EducationSection() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8">
             {education.map((edu, index) => {
-              const isFeatured = true;
+              const isFeatured = false;
 
               return (
                 <motion.div
