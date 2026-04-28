@@ -63,13 +63,6 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <div className="inline-block">
-                <div className="flex items-center gap-2 text-sm uppercase tracking-wider text-gray-500 mb-4">
-                  <div className="w-12 h-px bg-gradient-to-r from-blue-500 to-purple-500"></div>
-                  <span>{profile.title}</span>
-                </div>
-              </div>
-
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 {profile.name}
                 <span className="block text-xl sm:text-2xl lg:text-3xl font-light text-gray-600 mt-4">
@@ -88,20 +81,6 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="space-y-6"
             >
-              {/* Credentials */}
-              <div className="grid gap-4">
-                <div className="group">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-1 p-2 rounded-lg bg-gradient-to-br from-blue-50 to-purple-50 group-hover:from-blue-100 group-hover:to-purple-100 transition-colors">
-                      <Briefcase className="w-4 h-4 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-sm text-gray-500 mb-1">Current Position</div>
-                      <div className="font-medium text-gray-900">{profile.title}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </motion.div>
 
             {/* Contact Info */}

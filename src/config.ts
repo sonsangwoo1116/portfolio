@@ -252,7 +252,7 @@ export const careerData = {
   certifications: [] as Certification[],
 
   publications: [
-    { title: "WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating", journal: "ACL 2026 System Demonstrations", date: "2026", description: "Accepted (Rating 7.50) · 2nd Author" },
+    { title: "WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating", journal: "ACL 2026 System Demonstrations", date: "2026", description: "Accepted (Rating 7.50)" },
     { title: "Implementation of an IoT Cocktail Machine Using ChatGPT API and ConvAnalyser in the Metaverse", journal: "IEEE Metacom 2024", date: "2024.08", url: "https://ieeexplore.ieee.org/document/10740121/" },
     { title: "A metaverse Avatar Teleport System Using an AIoT Pose Estimation Device", journal: "IEEE Metacom 2023", date: "2023.06", url: "https://ieeexplore.ieee.org/document/10271892/" },
     { title: "IoT 웨어러블 디바이스의 생체 데이터를 활용한 트래블 로깅 시스템 구현", journal: "한국인터넷정보학회 추계학술대회", date: "2023.10" },
