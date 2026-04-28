@@ -24,7 +24,7 @@ export function WigentDetail() {
             <span className="px-3 py-1 rounded-md text-sm font-medium bg-yellow-100 text-yellow-700">Build with TRAE Hackathon 대상</span>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">WIGENT — AI Agent 실시간 토론 플랫폼</h1>
-          <p className="text-lg text-gray-600">Multi-Agent Orchestrator + 동적 Spawning/Retirement + 랜딩 페이지 자동 생성</p>
+          <p className="text-lg text-gray-600">Drop a topic, watch AI agents debate it live — then a landing page writes itself</p>
           <div className="mt-3">
             <a href="https://github.com/wigtn/wigent" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm">
@@ -36,7 +36,7 @@ export function WigentDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "Orchestrator 토론 흐름", "동적 Spawning / Retirement", "발언자 선택 알고리즘", "랜딩 페이지 생성", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "Contract-First 병렬 개발", "Multi-Agent Orchestrator", "동적 Spawning / Retirement", "랜딩 페이지 즉시 생성", "4번의 피벗", "8가지 에이전트 디자인 패턴", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`wg-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -48,143 +48,269 @@ export function WigentDetail() {
         <div id="wg-0">
           <Section title="1. Overview" delay={0.1}>
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 성과</h4>
-              <ul className="space-y-1">
-                <li className="text-sm text-gray-700">• Multi-Agent Orchestrator — GPT-4o 기반 토론 흐름 제어</li>
-                <li className="text-sm text-gray-700">• 동적 에이전트 Spawning/Retirement — 12턴·22턴 자동 교체</li>
-                <li className="text-sm text-gray-700">• 발언 횟수 기반 우선순위 선택 — 에이전트 독점 방지</li>
-                <li className="text-sm text-gray-700">• 토론 결론 → 구조화 JSON → HTML 랜딩 페이지 자동 생성</li>
-                <li className="text-sm text-gray-700">• Build with TRAE 해커톤 대상 수상</li>
-              </ul>
-            </div>
-            <p className="text-base text-gray-700 leading-relaxed mb-3">
-              주제를 던지면 PM + 도메인 전문가 AI 에이전트들이 자동으로 소환되어 실시간으로 토론하고,
-              결론으로 랜딩 페이지를 자동 생성하는 Multi-Agent 토론 플랫폼입니다.
-            </p>
-            <p className="text-base text-gray-700 leading-relaxed">
-              비즈니스 아이디어 검증에 다양한 관점의 피드백이 필요하지만 전문가를 모으기 어려운 문제를 해결합니다.
-              PM이 토론을 진행하고, 주제에 맞는 전문가(마케터, 기술 리드, UX 리서처 등)가 동적으로 참여합니다.
-            </p>
-          </Section>
-        </div>
-
-        {/* 2. Orchestrator 토론 흐름 */}
-        <div id="wg-1">
-          <Section title="2. Orchestrator 토론 흐름" delay={0.15}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              runDebate() 제너레이터가 전체 토론을 6단계로 오케스트레이션합니다.
-              SSE(Server-Sent Events)로 각 이벤트를 실시간 스트리밍하여 클라이언트에서 즉시 렌더링합니다.
-            </p>
-            <div className="bg-gray-50 rounded-lg p-4 mb-4">
-              <div className="space-y-3">
-                <Step num="1" title="에이전트 생성" desc="GPT-4o JSON Mode로 주제에 맞는 전문가 에이전트 동적 생성. PM Agent는 항상 상주(isFixed)" />
-                <Step num="2" title="자유 토론 루프" desc="MAX_TURNS(30턴)까지 반복. 턴마다 발언자 선택 → 프롬프트 생성 → 스트리밍 발언" />
-                <Step num="3" title="디자이너 합류" desc="턴 3에서 DESIGNER_AGENT 자동 합류 — UI/UX 관점 추가" />
-                <Step num="4" title="에이전트 교체" desc="턴 12·22에서 doRetireSpawn() 실행 — 기존 전문가 퇴장, 새 전문가 소환" />
-                <Step num="5" title="토론 요약 + 최종 결과" desc="summarizeDebatePrompt → finalResultPrompt로 구조화된 FinalIdea 생성" />
-                <Step num="6" title="랜딩 페이지 생성" desc="FinalIdea + 요약을 기반으로 GPT-4o가 완성된 HTML 스트리밍 생성" />
+              <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 지표</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <MetricCard label="개발 시간" value="3.5h" desc="12:30 - 16:00" />
+                <MetricCard label="프로토타입" value="55분" desc="E2E 작동까지" />
+                <MetricCard label="커밋" value="26개" desc="병합 충돌 0건" />
+                <MetricCard label="GPT-4o 호출" value="~35회" desc="세션당" />
               </div>
             </div>
-            <div className="grid md:grid-cols-4 gap-3">
-              <MetricCard label="최대 턴" value="30" desc="자유 토론" />
-              <MetricCard label="모델" value="GPT-4o" desc="temp 0.9" />
-              <MetricCard label="타임아웃" value="30s" desc="발언당" />
-              <MetricCard label="재시도" value="1회" desc="자동" />
+            <p className="text-base text-gray-700 leading-relaxed mb-3">
+              주제를 던지면 PM + 도메인 전문가 AI 에이전트들이 Slack 스타일 채팅 UI에서 실시간으로 토론하고,
+              합의에 도달하면 랜딩 페이지가 자동 생성되는 Multi-Agent 토론 플랫폼입니다.
+            </p>
+            <p className="text-base text-gray-700 leading-relaxed mb-3">
+              개인 브레인스토밍은 편견이 있고, 팀 토론은 시간이 걸리고, 기존 AI 채팅은 단일 관점만 제공합니다.
+              WIGENT는 여러 전문가 에이전트가 서로 다른 관점에서 실시간으로 논쟁하여 이 문제를 해결합니다.
+            </p>
+            <p className="text-base text-gray-700 leading-relaxed">
+              Build with TRAE Seoul (ByteDance) 해커톤에서 3인 엔지니어 팀으로 3.5시간 만에 개발하여 <strong>대상(Grand Prize)</strong>을 수상했습니다.
+            </p>
+          </Section>
+        </div>
+
+        {/* 2. Contract-First 병렬 개발 */}
+        <div id="wg-1">
+          <Section title="2. Contract-First 병렬 개발" delay={0.15}>
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
+              13:43에 281줄의 <code className="text-xs bg-gray-100 px-1 rounded">types.ts</code>를 커밋하여
+              모든 인터페이스(Agent, AgentMessage, SSEEvent, FinalIdea 등)를 먼저 확정했습니다.
+              이 계약서를 기반으로 3개 스트림이 동시에 병렬 개발을 시작, <strong>13:51에 0건의 충돌로 병합 완료</strong>했습니다.
+            </p>
+            <div className="overflow-x-auto mb-4">
+              <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">스트림</th>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">담당</th>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">첫 커밋</th>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">결과물</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-2 text-sm font-medium text-gray-700">P1: 백엔드</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">hwcho</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">13:48</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">orchestrator.ts, prompts.ts, SSE API 라우트</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-2 text-sm font-medium text-gray-700">P2: Slack UI</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">swson</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">13:49</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">10개 채팅 컴포넌트 (다크 테마, 타이핑 표시, 입퇴장 메시지)</td>
+                  </tr>
+                  <tr className="border-b border-gray-100">
+                    <td className="px-4 py-2 text-sm font-medium text-gray-700">P3: Hooks + I/O</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">hskim</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">13:49</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">useDebate (441줄), TopicInput, LandingPageView</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-sm text-gray-600">
+              5분의 타입 정의 투자로 3.5시간 해커톤에서 병합 충돌 0건을 달성.
+              Claude Code를 활용한 병렬 생성으로 개별 출력을 곱셈할 수 있었습니다.
+            </p>
+          </Section>
+        </div>
+
+        {/* 3. Multi-Agent Orchestrator */}
+        <div id="wg-2">
+          <Section title="3. Multi-Agent Orchestrator" delay={0.2}>
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
+              AsyncGenerator 기반 토론 엔진이 typed SSE event를 yield하며 전체 토론을 오케스트레이션합니다.
+              13개 SSE 이벤트 타입으로 에이전트 생성, 발언, 퇴장, 스포닝, 결과, 랜딩 페이지까지 실시간 스트리밍합니다.
+            </p>
+            <div className="bg-gray-50 rounded-lg p-4 mb-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-3">토론 파이프라인</h4>
+              <div className="space-y-3">
+                <Step num="1" title="에이전트 생성" desc="GPT-4o JSON Mode로 주제에 맞는 전문가 동적 생성. PM은 항상 상주(isFixed)" />
+                <Step num="2" title="30턴 자유 토론" desc="턴마다 발언 횟수 기반 발언자 선택 → 프롬프트 → 스트리밍 발언. 800-2500ms 랜덤 딜레이" />
+                <Step num="3" title="디자이너 합류 (턴 3)" desc="UI/UX 관점 추가 — '3초 안에 이해 못하면 실패' 같은 구체적 발화 습관 설정" />
+                <Step num="4" title="에이전트 교체 (턴 12, 22)" desc="기존 전문가 퇴장 + 인수인계 메시지 → 새 전문가 소환 (신선한 관점)" />
+                <Step num="5" title="강제 수렴 (턴 25+)" desc="시스템 프롬프트 변경으로 자연스러운 합의 유도" />
+                <Step num="6" title="요약 → 결과 → 랜딩 페이지" desc="토론 요약 → 투자자 피치 수준 구조화 → HTML 스트리밍 생성" />
+              </div>
+            </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-2">발언자 선택 알고리즘</h4>
+              <div className="space-y-1">
+                <p className="text-xs text-gray-600">1. status === "online" 에이전트만 필터링</p>
+                <p className="text-xs text-gray-600">2. 직전 발언자 제외 — 연속 발언 방지</p>
+                <p className="text-xs text-gray-600">3. 발언 횟수 오름차순 정렬 — 가장 적게 말한 에이전트 우선</p>
+                <p className="text-xs text-gray-600 mt-1 italic">단순 로테이션이 아닌 균형 있는 참여를 보장</p>
+              </div>
             </div>
           </Section>
         </div>
 
-        {/* 3. 동적 Spawning / Retirement */}
-        <div id="wg-2">
-          <Section title="3. 동적 Spawning / Retirement" delay={0.2}>
+        {/* 4. 동적 Spawning / Retirement */}
+        <div id="wg-3">
+          <Section title="4. 동적 Spawning / Retirement" delay={0.25}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              토론이 진행되면서 주제가 변화하면 기존 전문가를 퇴장시키고 새로운 전문가를 소환합니다.
-              GPT-4o가 현재 토론 맥락을 분석하여 퇴장 메시지와 새 에이전트의 역할/성격을 결정합니다.
+              토론 주제가 변화하면 기존 전문가를 퇴장시키고 맥락에 맞는 새 전문가를 소환합니다.
+              GPT-4o가 현재 토론 흐름을 분석하여 퇴장 메시지와 새 에이전트의 역할/성격/발화 습관을 결정합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">퇴장 (Retire)</h4>
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Retirement</h4>
                 <ul className="space-y-1.5">
                   <li className="text-xs text-gray-600">• 턴 12, 턴 22에서 자동 트리거</li>
-                  <li className="text-xs text-gray-600">• isFixed가 아닌 온라인 에이전트 중 가장 오래된 에이전트 선택</li>
-                  <li className="text-xs text-gray-600">• GPT-4o가 인수인계 메시지 생성</li>
-                  <li className="text-xs text-gray-600">• status: "online" → "offline"</li>
+                  <li className="text-xs text-gray-600">• isFixed가 아닌 가장 오래된 온라인 에이전트 선택</li>
+                  <li className="text-xs text-gray-600">• 자연스러운 인수인계 메시지 생성</li>
+                  <li className="text-xs text-gray-600">• agent_retire SSE 이벤트 → UI에서 퇴장 애니메이션</li>
                 </ul>
               </div>
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">소환 (Spawn)</h4>
+                <h4 className="text-sm font-semibold text-gray-800 mb-2">Spawning</h4>
                 <ul className="space-y-1.5">
-                  <li className="text-xs text-gray-600">• retireSpawnPrompt로 교체 이유 + 새 에이전트 정보 생성</li>
+                  <li className="text-xs text-gray-600">• retireSpawnPrompt로 교체 이유 + 새 에이전트 생성</li>
                   <li className="text-xs text-gray-600">• name, role, personality, color, emoji 동적 결정</li>
-                  <li className="text-xs text-gray-600">• allAgents에 push 후 즉시 토론 참여</li>
+                  <li className="text-xs text-gray-600">• 구체적 발화 습관 설정 (페르소나 엔지니어링)</li>
                   <li className="text-xs text-gray-600">• spawn_trigger → agent_spawned SSE 이벤트</li>
                 </ul>
               </div>
             </div>
-            <p className="text-sm text-gray-600">
-              반려(Reject) 시에는 continueDebate()로 8턴 추가 토론을 진행합니다.
-              PM이 반려 사실을 언급하며 토론을 재개하고, 동일한 요약→결과→랜딩 파이프라인을 실행합니다.
-            </p>
-          </Section>
-        </div>
-
-        {/* 4. 발언자 선택 알고리즘 */}
-        <div id="wg-3">
-          <Section title="4. 발언자 선택 알고리즘" delay={0.25}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              단순 로테이션이 아닌 발언 횟수 기반 우선순위 선택으로
-              특정 에이전트가 토론을 독점하지 않도록 설계했습니다.
-            </p>
-            <div className="bg-gray-50 rounded-lg p-4 mb-4">
-              <div className="space-y-3">
-                <Step num="1" title="온라인 필터링" desc="status === 'online'인 에이전트만 후보" />
-                <Step num="2" title="마지막 발언자 제외" desc="직전 발언자는 후보에서 제외하여 연속 발언 방지" />
-                <Step num="3" title="발언 횟수 집계" desc="allMessages에서 에이전트별 발언 횟수를 Map으로 관리" />
-                <Step num="4" title="최소 발언자 선택" desc="발언 횟수가 가장 적은 에이전트를 다음 발언자로 선택" />
-              </div>
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-2">Human-in-the-Loop</h4>
+              <p className="text-xs text-gray-600">
+                사용자가 결과를 거절하면 PM이 거절 사실을 알리고 <code className="text-xs bg-gray-100 px-1 rounded">continueDebate()</code>로
+                8턴 추가 토론을 진행합니다. 후반 토론(수렴 단계) 프롬프트를 적용하여 빠르게 새 결론에 도달합니다.
+              </p>
             </div>
-            <p className="text-sm text-gray-600">
-              에이전트 간 랜덤 딜레이(800-2500ms)를 추가하여 실제 토론처럼 자연스러운 타이밍을 구현합니다.
-            </p>
           </Section>
         </div>
 
-        {/* 5. 랜딩 페이지 생성 */}
+        {/* 5. 랜딩 페이지 즉시 생성 */}
         <div id="wg-4">
-          <Section title="5. 랜딩 페이지 생성" delay={0.3}>
+          <Section title="5. 랜딩 페이지 즉시 생성" delay={0.3}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              토론이 완료되면 결론을 구조화된 FinalIdea JSON으로 합성하고,
-              GPT-4o가 완성된 HTML 랜딩 페이지를 스트리밍 생성합니다.
+              토론 결론을 구조화된 FinalIdea JSON으로 합성하고,
+              9가지 디자인 템플릿(Glassmorphism, Neobrutalism, Editorial 등) 중 하나를 즉시 적용합니다.
+              백그라운드에서 GPT-4o가 16,000 토큰까지 HTML을 스트리밍 생성합니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
-                <Step num="1" title="토론 요약" desc="summarizeDebatePrompt — 전체 토론 내용을 구조화된 요약으로 압축" />
-                <Step num="2" title="FinalIdea 생성" desc="finalResultPrompt — title, oneLiner, target 등 구조화된 JSON 추출" />
-                <Step num="3" title="HTML 스트리밍" desc="landingPagePrompt → GPT-4o stream, max_tokens 16,000. 실시간 청크 전송" />
-                <Step num="4" title="Fallback" desc="GPT 거부 시 FALLBACK_HTML 템플릿 사용. markdown 코드 펜스 자동 제거" />
+                <Step num="1" title="토론 요약" desc="summarizeDebatePrompt — 전체 토론을 구조화된 요약으로 압축" />
+                <Step num="2" title="FinalIdea 생성" desc="title, oneLiner, target 등 투자자 피치 수준으로 구조화" />
+                <Step num="3" title="템플릿 즉시 적용" desc="9가지 디자인 템플릿 중 선택, 60초 대기 없이 즉시 렌더링" />
+                <Step num="4" title="HTML 스트리밍" desc="GPT-4o stream, max_tokens 16,000. Sandbox iframe에서 렌더링" />
+                <Step num="5" title="Fallback" desc="GPT 거부 시 FALLBACK_HTML 템플릿 사용. markdown 코드 펜스 자동 제거" />
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-3">
-              <MetricCard label="생성 타임아웃" value="180s" desc="LANDING_TIMEOUT" />
-              <MetricCard label="max_tokens" value="16,000" desc="HTML 생성" />
-              <MetricCard label="temperature" value="0.7" desc="창의적 생성" />
+            <p className="text-sm text-gray-600">
+              채팅 UI에서 랜딩 페이지로 Framer Motion 애니메이션 전환 — 토론 결과가 실제 제품으로 변환되는 "와우 모멘트"를 구현했습니다.
+            </p>
+          </Section>
+        </div>
+
+        {/* 6. 4번의 피벗 */}
+        <div id="wg-5">
+          <Section title="6. 3.5시간 안의 4번의 피벗" delay={0.35}>
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
+              3.5시간 해커톤 동안 4번의 대담한 피벗을 실행했고, 각각 30분 이내에 구현을 완료했습니다.
+            </p>
+            <div className="space-y-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-bold text-blue-600">38분</span>
+                  <h4 className="text-sm font-semibold text-gray-800">Pivot 1: Slack UI + 전체 페이지 전환</h4>
+                </div>
+                <p className="text-xs text-gray-600">채팅 UI가 랜딩 페이지로 변환되는 "와우 모멘트" 컨셉 확정. 심사 기준을 역설계하여 아키텍처 설계</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-bold text-blue-600">109분</span>
+                  <h4 className="text-sm font-semibold text-gray-800">Pivot 2: 3라운드 고정 → 30턴 자유 토론</h4>
+                </div>
+                <p className="text-xs text-gray-600">3개 고정 라운드에서 30턴 자유 토론으로 변경. GPT 호출 10→~35회 증가했지만 자연스러움 대폭 향상</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-bold text-blue-600">157분</span>
+                  <h4 className="text-sm font-semibold text-gray-800">Pivot 3: 템플릿 기반 즉시 렌더링</h4>
+                </div>
+                <p className="text-xs text-gray-600">"60초 대기" 제거. 9가지 디자인 템플릿을 즉시 적용하고 백그라운드에서 GPT가 생성</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-bold text-blue-600">174분</span>
+                  <h4 className="text-sm font-semibold text-gray-800">Pivot 4: 강제 수렴 프롬프트</h4>
+                </div>
+                <p className="text-xs text-gray-600">턴 25 이후 시스템 프롬프트를 변경하여 에이전트들의 자연스러운 합의 유도</p>
+              </div>
             </div>
           </Section>
         </div>
 
-        {/* 6. 역할 및 Tech Stack */}
-        <div id="wg-5">
-          <Section title="6. 역할 및 Tech Stack" delay={0.35}>
-            <h4 className="text-base font-semibold text-gray-800 mb-3">역할 (5인 크루 WIGTN)</h4>
+        {/* 7. 8가지 에이전트 디자인 패턴 */}
+        <div id="wg-6">
+          <Section title="7. 8가지 에이전트 디자인 패턴" delay={0.4}>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">패턴</th>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">구현</th>
+                    <th className="px-4 py-2 text-left text-xs font-semibold text-gray-700 border-b">목적</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Orchestrator", "orchestrator.ts AsyncGenerator", "중앙 조율, 6단계 파이프라인"],
+                    ["Specialist Agent", "토픽별 도메인 전문가 동적 생성", "주제 맞춤 전문성"],
+                    ["Persistent Agent", "PM & Designer (isFixed: true)", "스코프 크립 방지"],
+                    ["Agent Spawning", "턴 12, 22에서 새 에이전트 생성", "신선한 관점 추가"],
+                    ["Agent Retirement", "인수인계 메시지 + 퇴장 애니메이션", "우아한 전환"],
+                    ["Multi-turn Debate", "4개 자동 페이즈의 30턴 토론", "깊이 있는 탐색"],
+                    ["Result Synthesis", "FinalIdea JSON → HTML 랜딩 페이지", "실행 가능한 아웃풋"],
+                    ["Human-in-the-Loop", "거절 → 8턴 추가 → 새 결과", "사용자 제어권"],
+                  ].map(([pattern, impl, purpose], i) => (
+                    <tr key={i} className="border-b border-gray-100">
+                      <td className="px-4 py-2 text-xs font-medium text-gray-700">{pattern}</td>
+                      <td className="px-4 py-2 text-xs text-gray-500">{impl}</td>
+                      <td className="px-4 py-2 text-xs text-gray-500">{purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Section>
+        </div>
+
+        {/* 8. 역할 및 Tech Stack */}
+        <div id="wg-7">
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">역할 (3인 팀, WIGTN 크루)</h4>
             <ul className="space-y-2 mb-6">
-              <BulletItem text="아이디어 제안 및 Multi-Agent Orchestrator 설계·구현" />
-              <BulletItem text="동적 Spawning/Retirement 메커니즘 — 에이전트 교체 로직 및 인수인계 플로우" />
-              <BulletItem text="발언 횟수 기반 발언자 선택 알고리즘 설계" />
-              <BulletItem text="토론 요약 → FinalIdea → 랜딩 페이지 생성 파이프라인" />
+              <BulletItem text="아이디어 제안 및 프로젝트 컨셉 설계" />
+              <BulletItem text="P2: Slack 스타일 채팅 UI 전체 구현 — 10개 컴포넌트 (다크 테마, 타이핑 표시, 에이전트 입퇴장 시스템 메시지, 온라인 상태 사이드바)" />
+              <BulletItem text="Framer Motion 기반 채팅 → 랜딩 페이지 전체 페이지 전환 애니메이션" />
             </ul>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">개발 타임라인</h4>
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <div className="space-y-2 text-xs text-gray-600">
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">12:59</span><span>PRD v1.0 작성</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">13:37</span><span>PRD v2.0 — Slack UI + 전체 페이지 전환 컨셉 확정</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">13:43</span><span>types.ts 계약서 커밋 (281줄)</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">13:48</span><span>P1 + P2 + P3 동시 커밋 → <strong>13:51 병합 완료 (충돌 0건)</strong></span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">13:54</span><span>E2E 프로토타입 작동 (55분)</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">14:09</span><span>디자이너 에이전트 추가</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">14:48</span><span>라운드 → 자유 토론 피벗</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">15:06</span><span>9개 디자인 템플릿 즉시 렌더링</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">15:07</span><span>거절 → 추가 토론 패턴</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">15:13</span><span>강제 수렴 프롬프트</span></div>
+                <div className="flex gap-3"><span className="font-mono font-medium text-gray-700 w-12">15:55</span><span>최종 커밋</span></div>
+              </div>
+            </div>
+
             <h4 className="text-base font-semibold text-gray-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
-              {["Next.js 16", "TypeScript", "GPT-4o", "Multi-Agent Orchestration", "SSE Streaming", "Framer Motion"].map((tag, i) => (
+              {["Next.js 16", "React 19", "TypeScript", "GPT-4o", "SSE Streaming", "AsyncGenerator", "Framer Motion", "Tailwind CSS v4", "useReducer (13 events)", "Sandbox iframe"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
