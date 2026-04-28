@@ -59,7 +59,7 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
 
         {/* Impact (한줄 성과) */}
         {item.impact && (
-          <p className="text-sm font-medium text-blue-600 mb-3">{item.impact}</p>
+          <p className="text-sm font-medium text-gray-600 mb-3">{item.impact}</p>
         )}
 
         {/* Tags */}

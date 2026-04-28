@@ -52,8 +52,8 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
           {/* Impact */}
           {project.impact && (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 mb-4">
-              <p className="text-base font-medium text-blue-700">{project.impact}</p>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
+              <p className="text-base font-medium text-gray-700">{project.impact}</p>
             </div>
           )}
 
