@@ -60,7 +60,6 @@ export function CallbotDetail() {
               보험 완전판매 여부를 확인합니다. 공통 9문항 + 상품별 추가질문(8개 카테고리) 스크립트 기반 질문을 자동 수행하고,
               불완전판매 징후를 실시간 탐지하여 상담사에게 이관합니다.
             </p>
-            <ImagePlaceholder label="콜봇 데모 화면 — 대화 진행 스크린샷" />
           </Section>
         </div>
 
@@ -113,6 +112,7 @@ export function CallbotDetail() {
               <MetricCard label="GPU 점유율" value="2.3%" desc="RTX 3090 1장" />
               <MetricCard label="RULE 경로 비율" value="85%" desc="LLM 완전 우회" />
             </div>
+            <ImagePlaceholder label="RULE 경로 vs HEAVY 경로 분기 동작 스크린샷" />
           </Section>
         </div>
 
@@ -144,6 +144,8 @@ export function CallbotDetail() {
               <GuardrailItem title="노드 재시도 제한" desc="유효하지 않은 라우트 연속 5회 → 상담사 이관 제안" />
               <GuardrailItem title="불완전판매 징후 실시간 탐지" desc='예: COM-009("설계사가 강요했나요?") 기대="no"인데 고객이 긍정 답변 → 즉시 flag_risk + AGENT_TRANSFER' />
             </div>
+            <ImagePlaceholder label="상태 머신 기반 대화 진행 화면 — 노드 전환 및 Tool Calling 동작" />
+            <ImagePlaceholder label="가드레일 동작 — off_topic 에스컬레이션 / 불완전판매 징후 탐지 화면" />
           </Section>
         </div>
 
@@ -166,6 +168,7 @@ export function CallbotDetail() {
             <p className="text-sm text-gray-600">
               6자리 ↔ 8자리(YYYYMMDD) 크로스 비교, 불일치 시 1회 재확인 후 상담사 이관
             </p>
+            <ImagePlaceholder label="본인확인 생년월일 파싱 동작 — 다양한 STT 인식 형태 처리 화면" />
           </Section>
         </div>
 
