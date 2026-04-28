@@ -23,9 +23,9 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            style={{ width: '90%' }}
+            style={{ width: '60%' }}
           >
-            <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0 lg:max-w-full">
+            <div className="relative aspect-[3/4] max-w-xs mx-auto lg:mx-0 lg:max-w-full">
               {/* Decorative elements */}
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-purple-200/40 to-pink-200/40 rounded-full blur-2xl"></div>
