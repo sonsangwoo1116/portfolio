@@ -55,10 +55,11 @@ export function RagDetail() {
               기업 데이터 플랫폼 상용화 데모로 개발한 실시간 문서 업로드 RAG 챗봇입니다.
               문서를 업로드하면 즉시 파싱 → 임베딩 → VectorDB 인덱싱이 완료되어 바로 검색과 질의응답이 가능합니다.
             </p>
-            <p className="text-base text-gray-700 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
               핵심 과제는 두 가지였습니다. 첫째, <strong>문서 처리(파싱→임베딩→인덱싱) 중 채팅이 블로킹</strong>되는 문제.
               둘째, <strong>PDF 텍스트 추출 시 표/제목/이미지 구조가 손실</strong>되어 RAG 청킹 품질이 떨어지는 문제.
             </p>
+            <DemoImage src="/portfolio/rag-demo-start.png" alt="DeepDoc Agent 초기 화면" caption="DeepDoc Agent 초기 화면 — PDF, DOCX, PPTX, HWP 등 지원, 50MB/100페이지 제한" />
           </Section>
         </div>
 
@@ -103,7 +104,7 @@ export function RagDetail() {
                 <p className="text-sm text-gray-600">routing_node → delete_vector_db_node → END</p>
               </div>
             </div>
-            <ImagePlaceholder label="문서 업로드 → 파싱 → 인덱싱 동작 스크린샷" />
+            <DemoImage src="/portfolio/rag-doc-processing.png" alt="문서 분석 중 모달" caption="문서 업로드 시 파싱 → 임베딩 → VectorDB 인덱싱 파이프라인 실행 (RUNNING 상태)" />
           </Section>
         </div>
 
@@ -135,12 +136,13 @@ export function RagDetail() {
                 </div>
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-3">
+            <DemoImage src="/portfolio/rag-summary-toggle.png" alt="문서 요약 모드 활성화 안내 — 먼저 업로드된 문서만 요약, 이후 추가 문서는 요약 대상에서 제외" caption="요약 토글 ON 시 안내 모달 — 업로드 시점 기준으로 요약 대상 문서를 확정" />
+            <div className="grid md:grid-cols-3 gap-3 mt-4">
               <MetricCard label="검색 결과" value="Top-3" desc="similarity_search k=3" />
               <MetricCard label="LLM 온도" value="0.0" desc="결정적 응답" />
               <MetricCard label="최대 토큰" value="2,048" desc="max_tokens" />
             </div>
-            <ImagePlaceholder label="RAG Q&A 동작 스크린샷 — 질의 → 검색 → 응답 생성" />
+            <DemoImage src="/portfolio/rag-qa-result.png" alt="RAG Q&A 결과 — '3페이지 내용 뭐야?' 질의에 대해 회원가입 절차를 구조화하여 응답, 원본 PDF의 표·이미지 구조 보존" caption="QA 결과 — 페이지 지정 질의 시 해당 페이지의 구조(목차, 표, 이미지)를 보존한 상태로 응답 생성" />
           </Section>
         </div>
 
@@ -206,7 +208,7 @@ export function RagDetail() {
               <MetricCard label="토큰 제한" value="2,048" desc="Reduce 단계 max_tokens" />
               <MetricCard label="최대 문서" value="50MB / 100페이지" desc="안정적 처리 확인" />
             </div>
-            <ImagePlaceholder label="Map-Reduce 요약 동작 — 대규모 문서 요약 결과 스크린샷" />
+            <DemoImage src="/portfolio/rag-summary-result.png" alt="Map-Reduce 요약 결과 — 건설품질 시스템(CSI) 문서를 법적 배경·운영 일정·사용 절차·관계기관 협조·시스템 체계도 5개 항목으로 구조화 요약" caption="50페이지+ 문서를 Map(페이지별 요약) → 토큰 기반 그룹핑 → Reduce(재귀적 축약)로 최종 요약" />
           </Section>
         </div>
 
@@ -236,7 +238,6 @@ export function RagDetail() {
               finally 블록에서 전체 응답과 검색 결과를 한 번에 로깅합니다.
               사용자는 즉시 토큰을 받고, 관리자는 완전한 로그를 수집할 수 있습니다.
             </p>
-            <ImagePlaceholder label="RAG Q&A 동작 — 검색 결과 + 응답 생성 스크린샷" />
           </Section>
         </div>
 
@@ -276,6 +277,15 @@ function Section({ title, delay, children }: { title: string; delay: number; chi
       <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
       {children}
     </motion.div>
+  );
+}
+
+function DemoImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <div className="my-4">
+      <img src={src} alt={alt} className="w-full rounded-lg border border-gray-200 shadow-sm" />
+      {caption && <p className="text-xs text-gray-500 mt-2 text-center">{caption}</p>}
+    </div>
   );
 }
 
