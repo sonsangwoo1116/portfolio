@@ -25,14 +25,10 @@ export const careerNavLinks = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "education", label: "Education" },
-  { id: "certifications", label: "Certifications" },
   { id: "publications", label: "Publications" },
   { id: "awards", label: "Awards" },
   { id: "academic", label: "Academic" },
-  { id: "teaching", label: "Teaching" },
   { id: "parttime", label: "Part-time" },
-  { id: "groups", label: "Groups" },
-  { id: "mentoring", label: "Mentoring" },
 ];
 
 interface NavigationBarProps {
