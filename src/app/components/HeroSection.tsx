@@ -4,7 +4,7 @@ import { profile } from "../../config";
 
 // profile.png 또는 profile.svg 중 존재하는 파일 사용
 // 본인 사진으로 교체하려면 public/profile.png를 덮어쓰세요
-const profileImage = import.meta.env.BASE_URL + "profile.svg";
+const profileImage = import.meta.env.BASE_URL + "profile.png";
 
 export function HeroSection() {
   return (

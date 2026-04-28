@@ -9,12 +9,6 @@ export function AboutSection() {
       role: "팀장 / AX",
       description: "AI Agent 개발 및 LLM 기반 서비스 구축, 음성 AI 모델 개발 및 프로덕션 배포, 팀원 LLM 개발 코칭"
     },
-    {
-      period: "2023.01 - 2024.07",
-      title: "디지털새싹",
-      role: "보조강사",
-      description: "AI·데이터 분석 강의 보조, 초·중·고 블록 코딩/딥러닝 교육 멘토링"
-    },
   ];
 
   const expertise = [

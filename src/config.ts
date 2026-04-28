@@ -8,7 +8,7 @@ export const profile = {
   email: "xhxh9539@gmail.com",
   github: "https://github.com/sonsangwoo1116",
   linkedin: "https://linkedin.com/in/sangwooson",
-  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.",
+  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.\n\n석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고, 졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.\n\n사운드마인드에서 AI 콜봇 대화 엔진 설계부터 기업 고객용 RAG 시스템, 대규모 음성인식 파이프라인까지, AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지 전 과정을 주도하고 있습니다.",
   protectedPassword: "1234",
 };
 
@@ -141,7 +141,7 @@ export const projects: Project[] = [
     id: "7",
     title: "시니어 케어 챗봇",
     description: "LLM 기반 고령자 일일 건강체크 AI 챗봇 설계·개발",
-    domain: "AI Agent",
+    domain: "LLM/RAG",
     tags: ["Ollama", "Gemma3-27B", "Streamlit", "LangChain", "WhisperX", "KADI TTS"],
     links: {},
     protected: false,
