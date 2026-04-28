@@ -9,6 +9,7 @@ import { RagDetail } from "./pages/projects/RagDetail";
 import { SymphonyDetail } from "./pages/projects/SymphonyDetail";
 import { KeywordSpottingDetail } from "./pages/projects/KeywordSpottingDetail";
 import { VoiceNoteDetail } from "./pages/projects/VoiceNoteDetail";
+import { SeniorCareDetail } from "./pages/projects/SeniorCareDetail";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
@@ -59,6 +60,7 @@ export default function App() {
     if (activeProjectId === "4") return <RagDetail />;
     if (activeProjectId === "5") return <KeywordSpottingDetail />;
     if (activeProjectId === "6") return <VoiceNoteDetail />;
+    if (activeProjectId === "7") return <SeniorCareDetail />;
     const project = projects.find(p => p.id === activeProjectId);
     if (project) return <ProjectDetailPage project={project} />;
   }
