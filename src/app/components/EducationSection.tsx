@@ -20,7 +20,7 @@ export function EducationSection() {
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {education.map((edu, index) => {
               const isFeatured = false;
 
@@ -32,7 +32,7 @@ export function EducationSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <div className={`rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-3`}>
+                  <div className={`rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-3 h-full`}>
                     <div className={`relative rounded-lg p-2 ${isFeatured ? "bg-gradient-to-br from-blue-50 to-purple-50" : ""}`}>
                       <div className="flex items-start gap-4">
                         <div className={`inline-flex p-3 rounded-full shrink-0 ${isFeatured ? "bg-gradient-to-br from-blue-100 to-purple-100" : "bg-gray-100"}`}>
@@ -55,7 +55,7 @@ export function EducationSection() {
                                   const text = line.replace(`(${url})`, "").trim();
                                   return (
                                     <p key={idx}>
-                                      {text} <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">링크</a>
+                                      {text} <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">View Detail</a>
                                     </p>
                                   );
                                 }
