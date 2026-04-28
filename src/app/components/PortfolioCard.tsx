@@ -62,20 +62,6 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
           <p className="text-sm font-medium text-gray-600 mb-3">{item.impact}</p>
         )}
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {item.tags.slice(0, 5).map((tag, i) => (
-            <span key={i} className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">
-              {tag}
-            </span>
-          ))}
-          {item.tags.length > 5 && (
-            <span className="px-2 py-0.5 bg-gray-100 text-gray-400 rounded text-xs">
-              +{item.tags.length - 5}
-            </span>
-          )}
-        </div>
-
         {/* Spacer */}
         <div className="flex-grow"></div>
 
