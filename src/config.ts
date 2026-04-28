@@ -53,23 +53,6 @@ export const projects: Project[] = [
     impact: "LLM 호출 85% 절감, GPU 점유율 2.3% | RTX 3090 1장 기준 ~30채널 피크 보장",
   },
   {
-    id: "2",
-    title: "다국어 동시통역 및 음성 분석 시스템",
-    description: "고객 요구사항에 맞춰 다국어 동시통역, 교정시설 위험 발화 탐지, 콜센터 상담 어시스트 세 가지 AI 솔루션을 설계·구축했습니다. 각각 다른 제약이 있었습니다 — 위험 탐지는 sub-ms 지연이 필수였고, 통역은 단일 GPU에서 3개 모델을 동시에 서빙해야 했습니다.",
-    domain: "AI/Voice",
-    tags: ["Python", "Qwen3-ASR", "Qwen3-TTS", "TranslateGemma", "Aho-Corasick", "Kiwi", "Gemini API"],
-    links: {},
-    protected: false,
-    date: "2026.02 ~ 진행중",
-    problemStatement: "통역은 단일 GPU에서 3개 모델 동시 서빙, 위험 탐지는 sub-ms 지연이라는 서로 다른 제약을 해결해야 했습니다.",
-    technicalDetails: [
-      "다국어 통역: RTX 3090 24GB 단일 GPU에서 ASR(Qwen3-ASR-0.6B, 30%) + 번역(TranslateGemma-12B GGUF Q4_K_M, 30%) + TTS(Qwen3-TTS-1.7B, 40%)로 VRAM 분배를 설계하여 3개 모델 동시 서빙, 13개 언어 지원",
-      "위험 발화 탐지: LLM은 지연과 비용 문제로 부적합하여 7단계 규칙 기반 NLP 파이프라인(Aho-Corasick → 형태소 분석 → 어간 재매칭 → 안전 문맥 필터 → N-gram 공모 탐지 → 위험도 계산 → 시계열 추적)으로 sub-ms 처리 구현. 안전 문맥 필터링으로 오탐 억제",
-      "콜센터 상담 어시스트: 3개 AI 에이전트(의도 추출/체크리스트/대응 제안)를 병렬 실행하여 응답 시간 ~1/3 단축",
-    ],
-    impact: "단일 GPU에서 3개 모델 동시 서빙, 13개 언어 | 위험 탐지 sub-ms | 상담 어시스트 응답 1/3 단축",
-  },
-  {
     id: "3",
     title: "영어 교육용 음성인식 시스템",
     description: "Triton + Faster Whisper 기반 대규모 배치 STT 파이프라인입니다. 영어/한국어 혼합 음성을 동시에 대량 처리해야 하는 환경에서 안정적으로 동작하는 시스템을 구축했습니다.",
@@ -248,7 +231,6 @@ export const careerData = {
       endDate: null,
       highlights: [
         "[AI Agent 기반 콜봇 시스템 | 2026.02 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 양방향 음성 콜봇 대화 엔진 설계 (아웃바운드 + 인바운드) — 7노드 상태 머신 + 9개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 5단계 하이브리드 라우팅으로 단순 의도 LLM 우회, LLM 호출 85% 절감, GPU 점유율 2.3% — 다층 가드레일: off_topic 3단계 에스컬레이션, 명확화·재시도 제한, 불완전판매 징후 실시간 탐지 — 음성 AI 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
-        "[다국어 동시통역 및 음성 분석 시스템 | 2026.02 ~ 진행중] 고객사별 요구사항에 맞춘 3가지 AI 솔루션 설계·구축 — 다국어 통역: 단일 GPU에서 ASR+번역+TTS 3개 모델 VRAM 분배 설계, 13개 언어 동시 서빙 — 위험 발화 탐지: 7단계 규칙 기반 NLP 파이프라인으로 sub-ms 처리, 안전 문맥 필터링으로 오탐 억제 — 상담 어시스트: 3개 AI 에이전트 병렬 실행으로 응답 시간 ~1/3 단축",
         "[영어 교육용 음성인식 시스템 | 2025.11 - 2026.03] Temporal + Triton + Faster Whisper 기반 대규모 배치 STT 파이프라인 설계·구현 — 3-Worker 분리 아키텍처로 성공률 82% → 95%+ 개선, RTX 3090 2장에서 분당 200건 안정 처리 — 2-Pass Bilingual STT 설계로 영어/한국어 혼합 음성 처리 — Silero VAD + 24-29초 Smart Chunking, 작업 유형별 재시도 정책 차등 설계",
         "[기업 문서 RAG 질의응답 시스템 | 2025.06 - 2025.07] 문서 업로드 즉시 VectorDB 인덱싱 + RAG 기반 Q&A 및 요약 챗봇 개발 — LangGraph 듀얼 그래프(DocumentManagement/ChatBot) 설계로 문서 처리·채팅 블로킹 해결 — Upstage Document Parse + 토크나이저 기반 동적 Map-Reduce 요약, 최대 50MB/100페이지 즉시 처리 — 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거, 멀티 유저 데이터 격리",
         "[커스텀 음성 키워드 인식 시스템 | 2025.03 - 2025.07] KWT-3 Transformer 기반 한국어 키워드 인식 모델 개발 — Dual-Threshold 검출 설계로 오탐률 2.04% → 0.0% 달성 (43만+ 윈도우 FA 테스트), 인식률 96.81% — 배경소음 RMS 정규화 + SNR 20dB 노이즈 혼합으로 모델 일반화 성능 개선 — TFLite INT8 양자화로 모델 75% 경량화 → 엣지 디바이스 배포",
@@ -259,7 +241,7 @@ export const careerData = {
   ] as Position[],
 
   education: [
-    { school: "한신대학교", degree: "석사", field: "IT영상데이터융합(협)", startYear: 2023, endYear: 2025, notes: "학점 4.5/4.5 | 졸업 논문: 메타버스에서 텍스트 및 음성 데이터를 활용한 우울증 분류 시스템" },
+    { school: "한신대학교", degree: "석사", field: "IT영상데이터융합(협)", startYear: 2023, endYear: 2025, notes: "학점 4.5/4.5\n졸업 논문: 메타버스에서 텍스트 및 음성 데이터를 활용한 우울증 분류 시스템 (https://dl.nanet.go.kr/detail/KDMT12025000059160)" },
     { school: "한신대학교", degree: "학사", field: "IT콘텐츠학과", startYear: 2018, endYear: 2023, notes: "학점 3.77/4.5" },
   ] as Education[],
 

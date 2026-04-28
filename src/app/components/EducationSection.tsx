@@ -47,7 +47,21 @@ export function EducationSection() {
                             <span>{edu.startYear} - {edu.endYear}</span>
                           </div>
                           {edu.notes && (
-                            <p className="text-xs text-gray-500 bg-white/60 rounded-lg px-3 py-2">{edu.notes}</p>
+                            <div className="text-xs text-gray-500 bg-white/60 rounded-lg px-3 py-2 space-y-1">
+                              {edu.notes.split("\n").map((line, idx) => {
+                                const linkMatch = line.match(/\((https?:\/\/[^\)]+)\)/);
+                                if (linkMatch) {
+                                  const url = linkMatch[1];
+                                  const text = line.replace(`(${url})`, "").trim();
+                                  return (
+                                    <p key={idx}>
+                                      {text} <a href={url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">링크</a>
+                                    </p>
+                                  );
+                                }
+                                return <p key={idx}>{line}</p>;
+                              })}
+                            </div>
                           )}
                         </div>
                       </div>
