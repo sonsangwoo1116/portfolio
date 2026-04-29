@@ -68,7 +68,6 @@ export function SymphonyDetail() {
               Client(Spring Boot) → Gateway(FastAPI) → Temporal Server → Worker Container → Triton(GPU) 구조로,
               API Key 인증, Rate Limiting, SSRF 2-Pass 방어, WebSocket 스트리밍을 포함합니다.
             </p>
-            <ImagePlaceholder label="시스템 아키텍처 — Client → Gateway → Temporal → 3-Worker(Workflow/STT/Callback) → Triton GPU" />
             <div className="mt-4 grid md:grid-cols-4 gap-3">
               <MetricCard label="STT 엔진" value="Faster Whisper" desc="Large-v3-turbo, Triton Backend" />
               <MetricCard label="VAD" value="Silero VAD" desc="ONNX, CPU, thread-local" />
@@ -86,7 +85,6 @@ export function SymphonyDetail() {
               STT 슬롯이 모두 차면 WorkflowTask가 뒤에 대기하여 워크플로우 진행이 멈추고,
               5분 타임아웃이 발생했습니다(성공률 82-85%).
             </p>
-            <ImagePlaceholder label="Before/After — 단일 Worker vs 3-Worker 분리 구조 비교" />
             <div className="grid md:grid-cols-3 gap-4 my-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">Workflow Worker</h4>
@@ -126,7 +124,6 @@ export function SymphonyDetail() {
               "영어 위주 + 간간이 한국어"라는 환경 특성에 맞춰 2-Pass 아키텍처를 설계했습니다.
               Triton 백엔드(faster-whisper) 내부에서 2-Pass 처리하므로 Worker에서는 오디오를 전송하고 결과만 받습니다.
             </p>
-            <ImagePlaceholder label="2-Pass Bilingual STT 플로우 — Pass 1(EN) → 한국어 감지 → Pass 2(Auto)" />
             <div className="bg-gray-50 rounded-lg p-4 my-4">
               <div className="space-y-3">
                 <Step num="1" title="Pass 1 — English 모드" desc="빠른 baseline 추론" />
@@ -148,7 +145,6 @@ export function SymphonyDetail() {
               Whisper에 긴 오디오를 통으로 넣으면 할루시네이션이 심합니다.
               Silero VAD ONNX로 CPU에서 음성 구간을 검출하고, 24-29초 범위의 Smart Chunking으로 분할합니다.
             </p>
-            <ImagePlaceholder label="VAD + Smart Chunking 동작 — 음성 구간 검출 → 24-29초 분할 → Triton 추론" />
             <div className="grid md:grid-cols-2 gap-4 my-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">Silero VAD</h4>
@@ -269,8 +265,7 @@ export function SymphonyDetail() {
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               Prometheus + Grafana + DCGM Exporter로 요청 처리량, GPU 메트릭, Temporal 실행 이력을 실시간 모니터링합니다.
             </p>
-            <ImagePlaceholder label="Grafana 대시보드 — 요청 처리량 + GPU 메트릭 + Temporal 실행 이력" />
-            <h4 className="text-base font-semibold text-gray-800 mb-3 mt-4">Tech Stack</h4>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
               {["Python", "FastAPI", "Temporal", "Triton Inference Server", "Faster Whisper Large-v3-turbo", "Silero VAD (ONNX)", "Docker Compose", "Prometheus", "Grafana", "DCGM Exporter", "gRPC", "MinIO"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
@@ -293,18 +288,6 @@ function Section({ title, delay, children }: { title: string; delay: number; chi
       <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
       {children}
     </motion.div>
-  );
-}
-
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[200px] my-4">
-      <div className="text-center">
-        <div className="text-gray-400 text-4xl mb-2">🖼️</div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-xs text-gray-400 mt-1">이미지 준비 중</p>
-      </div>
-    </div>
   );
 }
 
