@@ -134,7 +134,6 @@ export const projects: Project[] = [
     date: "2025.02 - 2025.05",
     problemStatement: "고령자의 비정형 답변에서 건강 상태를 파악하고 5개 영역(식사/약 복용/수면/운동/건강)을 효율적으로 순차 체크하는 것이 핵심 과제였습니다.",
     technicalDetails: [
-      "초기 온디바이스(HyperCLOVAX 1.5B) 시도 → 엔티티 추출 정확도 부족 → 서버 기반 Gemma3-27B(Q4 양자화)로 전환 판단",
       "2단계 상태 머신(메인 5상태 + 16개 서브 상태, 40+ 조건부 전이) 설계. 30+ 엔티티 키 정의, 상호 배타적 쌍은 코드에서 강제하여 LLM 할루시네이션 방지",
       "10+ YAML 프롬프트 템플릿으로 고령자 맞춤 대화 설계. 같은 질문 2회 이상 반복 방지 카운터 관리",
     ],
@@ -177,23 +176,6 @@ export const projects: Project[] = [
     ],
     impact: "147통 에코 0건, 557ms 레이턴시, $0.27/분 | ACL 2026 System Demonstrations Accept (Rating 7.50)",
   },
-  {
-    id: "10",
-    title: "WIGVU — YouTube AI 분석 서비스",
-    description: "YouTube 영상의 자막을 추출하고 번역, 요약, 키워드, 하이라이트를 AI로 분석하는 서비스입니다. 3-tier 마이크로서비스 아키텍처(Next.js + NestJS + FastAPI)로 설계하고, Circuit Breaker 패턴으로 AI 서비스 장애에 대비했습니다. FastAPI AI 서비스 전체, 모든 프롬프트, WhisperX STT + VAD 담당.",
-    domain: "Side Project",
-    tags: ["Next.js 16", "React 19", "NestJS 10", "FastAPI", "GPT-4o-mini", "WhisperX", "Docker", "Supabase"],
-    links: { github: "https://github.com/wigtn/wigvu" },
-    protected: false,
-    date: "2026.01",
-    problemStatement: "사용자 레벨에 맞지 않는 분석이 학습을 방해하는 문제. 초급자에게 고급 표현 15개를 보여주면 압도당하고, 고급자에게 기초 문법을 설명하면 지루합니다.",
-    technicalDetails: [
-      "GPT-4o-mini JSON Mode로 영상 분석(3문장 요약, 시청 점수, 키워드, 하이라이트, CEFR 난이도), WhisperX로 자막 추출, 배치 번역(10세그먼트+2컨텍스트, 3배치 병렬, 12개 언어 쌍)",
-      "4개 언어별 정량적 난이도 분석(CEFR/TOPIK/JLPT/HSK 별도 가중치) + CEFR/TOPIK/JLPT/HSK 레벨별 적응 프롬프트로 분석 깊이 자동 조절",
-      "NestJS API Gateway에 Circuit Breaker 구현. 5회 연속 실패 시 요청 차단(OPEN), 30초 후 테스트 요청 허용(HALF_OPEN), 성공 시 정상 복귀(CLOSED)",
-    ],
-    impact: "4개 언어 난이도 분석 + 레벨별 적응 프롬프트 | Circuit Breaker 패턴",
-  },
 ];
 
 export const sections = {
@@ -235,7 +217,7 @@ export const careerData = {
         "[기업 문서 RAG 질의응답 시스템 | 2025.06 - 2025.07] 문서 업로드 즉시 VectorDB 인덱싱 + RAG 기반 Q&A 및 요약 챗봇 개발 — LangGraph 듀얼 그래프(DocumentManagement/ChatBot) 설계로 문서 처리·채팅 블로킹 해결 — Upstage Document Parse + 토크나이저 기반 동적 Map-Reduce 요약, 최대 50MB/100페이지 즉시 처리 — 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거, 멀티 유저 데이터 격리",
         "[커스텀 음성 키워드 인식 시스템 | 2025.03 - 2025.07] KWT-3 Transformer 기반 한국어 키워드 인식 모델 개발 — Dual-Threshold 검출 설계로 오탐률 2.04% → 0.0% 달성 (43만+ 윈도우 FA 테스트), 인식률 96.81% — 배경소음 RMS 정규화 + SNR 20dB 노이즈 혼합으로 모델 일반화 성능 개선 — TFLite INT8 양자화로 모델 75% 경량화 → 엣지 디바이스 배포",
         "[회의록 분석 플랫폼 - VoiceNote | 2025.02 - 2025.05] Whisper STT + pyannote 화자분리 + LLM 요약 통합 5개 마이크로서비스 설계·구현 — 화자-텍스트 정렬 알고리즘 직접 구현 (겹침 구간 시간 가중치 + 3단계 폴백) — Whisper 30초 제한에 맞춘 VAD 기반 청크 분할 처리로 할루시네이션 해결, OpenVINO NPU 가속 추론",
-        "[시니어 케어 챗봇 | 2025.02 - 2025.05] LLM 기반 고령자 일일 건강체크 AI 챗봇 설계·개발 — 2단계 상태 머신 (16개 서브 상태, 40+ 조건부 전이) + 30+ 엔티티 키 기반 대화 자동 분기 — SLM→LLM 전환 판단 (HyperCLOVAX 1.5B → Gemma3-27B), 10+ YAML 프롬프트 설계",
+        "[시니어 케어 챗봇 | 2025.02 - 2025.05] LLM 기반 고령자 일일 건강체크 AI 챗봇 설계·개발 — 2단계 상태 머신 (16개 서브 상태, 40+ 조건부 전이) + 30+ 엔티티 키 기반 대화 자동 분기, 10+ YAML 프롬프트 설계",
       ],
     },
   ] as Position[],
