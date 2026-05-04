@@ -73,6 +73,12 @@ export function HeroSection() {
               <p className="text-lg text-gray-600 leading-relaxed max-w-xl tracking-tight">
                 {profile.heroDescription}
               </p>
+              {profile.heroEducation && (
+                <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+                  <GraduationCap className="w-4 h-4 text-gray-400" />
+                  <span>{profile.heroEducation}</span>
+                </div>
+              )}
             </motion.div>
 
             <motion.div
