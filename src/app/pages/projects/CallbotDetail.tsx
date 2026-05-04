@@ -31,7 +31,7 @@ export function CallbotDetail() {
         {/* ── 목차 ── */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "채널 용량 분석", "주요 동작 화면", "역할 및 협업", "Tech Stack"].map((item, i) => (
+            {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "주요 동작 화면", "역할 및 협업", "Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -170,57 +170,9 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 6. 채널 용량 ── */}
+        {/* ── 6. 주요 동작 화면 ── */}
         <div id="callbot-5">
-          <Section title="6. 채널 용량 분석" delay={0.35}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              RTX 3090 실측 데이터 기반으로 채널 용량을 분석하고, 상위 GPU 확장 시 이론 추정치를 산출했습니다.
-            </p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">GPU 구성</th>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">처리량</th>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">권장 동시 채널</th>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">근거</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-t border-gray-200 bg-blue-50">
-                    <td className="px-4 py-3 font-medium">RTX 3090 ×1 (현재)</td>
-                    <td className="px-4 py-3">~18 req/s</td>
-                    <td className="px-4 py-3 font-bold text-blue-700">5채널</td>
-                    <td className="px-4 py-3 text-gray-600">실측 — P50: 1ch 45ms / 5ch 154ms</td>
-                  </tr>
-                  <tr className="border-t border-gray-200">
-                    <td className="px-4 py-3">RTX 3090 ×2 (TP=2)</td>
-                    <td className="px-4 py-3">-</td>
-                    <td className="px-4 py-3 font-bold">~100채널</td>
-                    <td className="px-4 py-3 text-gray-600">이론 추정</td>
-                  </tr>
-                  <tr className="border-t border-gray-200">
-                    <td className="px-4 py-3">A100 80GB ×1</td>
-                    <td className="px-4 py-3">-</td>
-                    <td className="px-4 py-3 font-bold">~300채널</td>
-                    <td className="px-4 py-3 text-gray-600">이론 추정</td>
-                  </tr>
-                  <tr className="border-t border-gray-200">
-                    <td className="px-4 py-3">H100 80GB ×1</td>
-                    <td className="px-4 py-3">-</td>
-                    <td className="px-4 py-3 font-bold">~600채널</td>
-                    <td className="px-4 py-3 text-gray-600">이론 추정</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">* RTX 3090 외 GPU 수치는 모델 추론 시간 기반 자체 산출치, 미실측</p>
-          </Section>
-        </div>
-
-        {/* ── 7. 주요 동작 화면 ── */}
-        <div id="callbot-6">
-          <Section title="7. 주요 동작 화면" delay={0.4}>
+          <Section title="6. 주요 동작 화면" delay={0.35}>
             <h4 className="text-base font-semibold text-gray-800 mb-3">욕설 자동 감지 + 차단</h4>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
               <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 → 경고 안내 → 2/2 반복 시 상담사 강제 이관" />
@@ -237,8 +189,8 @@ export function CallbotDetail() {
         </div>
 
         {/* ── 8. 역할 및 협업 ── */}
-        <div id="callbot-7">
-          <Section title="8. 역할 및 협업" delay={0.45}>
+        <div id="callbot-6">
+          <Section title="7. 역할 및 협업" delay={0.4}>
             <ul className="space-y-3">
               <BulletItem text="음성 AI 전체(STT/VAD/상태 머신) 설계·구현을 주도" />
               <BulletItem text="팀원의 LLM Tool Calling 개발을 코칭하며 병행 진행" />
@@ -248,8 +200,8 @@ export function CallbotDetail() {
         </div>
 
         {/* ── 9. Tech Stack ── */}
-        <div id="callbot-8">
-          <Section title="9. Tech Stack" delay={0.5}>
+        <div id="callbot-7">
+          <Section title="8. Tech Stack" delay={0.45}>
             <div className="flex flex-wrap gap-2">
               {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "EXAONE 1.2B (Q4_K_M)", "EXAONE 32B AWQ", "Qwen3-ASR", "Silero VAD", "ko-sroberta", "YAML Prompts"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
