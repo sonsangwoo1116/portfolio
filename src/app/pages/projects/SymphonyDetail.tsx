@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { DemoImage } from "../../components/DemoImage";
 
 export function SymphonyDetail() {
   return (
@@ -58,6 +59,7 @@ export function SymphonyDetail() {
               초기 단일 Worker 구조에서 <strong>GPU 포화 시 콜백 전달이 수 분 지연</strong>되는 문제(성공률 82-85%)가 있었고,
               이를 3-계층 분리 아키텍처로 해결하여 성공률 95%+를 달성했습니다.
             </p>
+            <DemoImage src="/portfolio/symphony-demo.png" alt="Symphony STT Demo" caption="Symphony STT Demo — 음성 파일 업로드 → Gateway → Temporal → Worker → Triton 파이프라인 전체 ✅ 완료. 영어/한국어 혼합 변환 결과" />
           </Section>
         </div>
 
@@ -68,6 +70,7 @@ export function SymphonyDetail() {
               Client(Spring Boot) → Gateway(FastAPI) → Temporal Server → Worker Container → Triton(GPU) 구조로,
               API Key 인증, Rate Limiting, SSRF 2-Pass 방어, WebSocket 스트리밍을 포함합니다.
             </p>
+            <DemoImage src="/portfolio/symphony-architecture.png" alt="System Architecture" caption="전체 시스템 아키텍처 — Client → Gateway → Temporal → 3-Worker → Triton GPU" />
             <div className="mt-4 grid md:grid-cols-4 gap-3">
               <MetricCard label="STT 엔진" value="Faster Whisper" desc="Large-v3-turbo, Triton Backend" />
               <MetricCard label="VAD" value="Silero VAD" desc="ONNX, CPU, thread-local" />
@@ -85,6 +88,7 @@ export function SymphonyDetail() {
               STT 슬롯이 모두 차면 WorkflowTask가 뒤에 대기하여 워크플로우 진행이 멈추고,
               5분 타임아웃이 발생했습니다(성공률 82-85%).
             </p>
+            <DemoImage src="/portfolio/symphony-worker.png" alt="STT 파이프라인 아키텍처" caption="Audio Input → VAD → Smart Chunking → Triton GPU 추론 → Callback 전체 STT 파이프라인" />
             <div className="grid md:grid-cols-3 gap-4 my-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">Workflow Worker</h4>
