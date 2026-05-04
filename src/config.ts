@@ -43,7 +43,7 @@ export const projects: Project[] = [
     tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 1.2B", "Qwen3-ASR", "Silero VAD"],
     links: {},
     protected: false,
-    date: "2026.02 ~ 진행중",
+    date: "2026.03 ~ 진행중",
     problemStatement: "고객이 말을 끊거나, 우회적으로 답하거나, 갑자기 민원을 제기하는 비정형 대화에서 의도를 정확히 분류하면서도 GPU 비용을 통제해야 하는 것이 핵심 과제였습니다.",
     technicalDetails: [
       "7노드 상태 머신(ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / COMPLETED) + 9개 LLM Tool(Function Calling) 기반 AI Agent 대화 흐름 설계",
@@ -213,7 +213,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.02 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 음성 콜봇 대화 엔진 설계 (아웃바운드) — 7노드 상태 머신 + 9개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 5단계 하이브리드 라우팅으로 단순 의도 LLM 우회, LLM 호출 85% 절감 — 다층 가드레일: off_topic 3단계 에스컬레이션, 명확화·재시도 제한, 불완전판매 징후 실시간 탐지, 욕설 탐지 — 음성 AI 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 음성 콜봇 대화 엔진 설계 (아웃바운드) — 7노드 상태 머신 + 9개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 5단계 하이브리드 라우팅으로 단순 의도 LLM 우회, LLM 호출 85% 절감 — 다층 가드레일: off_topic 3단계 에스컬레이션, 명확화·재시도 제한, 불완전판매 징후 실시간 탐지, 욕설 탐지 — 음성 AI 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
