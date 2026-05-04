@@ -93,13 +93,13 @@ export function WigentDetail() {
                 <tbody>
                   <tr className="border-b border-gray-100">
                     <td className="px-4 py-2 text-sm font-medium text-gray-700">P1: 백엔드</td>
-                    <td className="px-4 py-2 text-xs text-gray-500">hwcho</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">swson</td>
                     <td className="px-4 py-2 text-xs text-gray-500">13:48</td>
                     <td className="px-4 py-2 text-xs text-gray-500">orchestrator.ts, prompts.ts, SSE API 라우트</td>
                   </tr>
                   <tr className="border-b border-gray-100">
                     <td className="px-4 py-2 text-sm font-medium text-gray-700">P2: Slack UI</td>
-                    <td className="px-4 py-2 text-xs text-gray-500">swson</td>
+                    <td className="px-4 py-2 text-xs text-gray-500">hwcho</td>
                     <td className="px-4 py-2 text-xs text-gray-500">13:49</td>
                     <td className="px-4 py-2 text-xs text-gray-500">10개 채팅 컴포넌트 (다크 테마, 타이핑 표시, 입퇴장 메시지)</td>
                   </tr>
