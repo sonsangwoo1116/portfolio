@@ -91,7 +91,7 @@ export function RagDetail() {
             </p>
             <DemoImage src="/portfolio/rag-doc-graph.png" alt="DocumentManagement Graph" caption="RoutingNode → Add 경로(CreateHistory → DocumentParse → MakeDocuments → Chunking → AddVectorDB) / Delete 경로(DeleteVectorDB)" />
             <div className="bg-gray-50 rounded-lg p-4 my-4">
-              <h4 className="text-sm font-semibold text-gray-800 mb-3">Add 경로 — 7개 노드</h4>
+              <h4 className="text-sm font-semibold text-gray-800 mb-3">Add 경로 — 6개 노드</h4>
               <div className="space-y-3">
                 <Step num="1" title="routing_node" desc="RoutingNodeLogic — Add / Delete 분기" />
                 <Step num="2" title="create_history_node" desc="사용자별 이력 디렉토리 생성 (history/{date}_{uuid}/)" />
