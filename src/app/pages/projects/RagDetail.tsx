@@ -72,7 +72,7 @@ export function RagDetail() {
               문서 처리(동기, 무거움)와 채팅(비동기, 가벼움)의 실행 패턴이 달라 단일 그래프로 합치면
               문서 처리 중 채팅이 블로킹되는 문제가 발생하여 분리했습니다.
             </p>
-            <ImagePlaceholder label="시스템 아키텍처 — DocumentManagement Graph + ChatBot Graph + Chroma VectorDB + vLLM(Qwen3-14B-AWQ) + Ollama(BGE-M3)" />
+            <DemoImage src="/portfolio/rag-architecture.png" alt="RAG 시스템 아키텍처" caption="User → FastAPI(5 endpoints) → RAG Core(DocumentManagement + ChatBot Graph) → Upstage / Ollama BGE-M3 / vLLM Qwen3-14B / Chroma VectorDB" />
             <div className="mt-4 grid md:grid-cols-4 gap-3">
               <MetricCard label="LLM" value="Qwen3-14B-AWQ" desc="vLLM 서빙, port 8000" />
               <MetricCard label="Embedding" value="BGE-M3" desc="로컬 Ollama" />
@@ -89,7 +89,7 @@ export function RagDetail() {
               문서 추가(Add)와 삭제(Delete)를 처리하는 그래프입니다. RoutingNodeLogic이 operation에 따라 분기하고,
               Add 경로에서는 7단계 파이프라인을 거쳐 VectorDB에 인덱싱됩니다.
             </p>
-            <ImagePlaceholder label="DocumentManagement Graph 플로우 다이어그램" />
+            <DemoImage src="/portfolio/rag-doc-graph.png" alt="DocumentManagement Graph" caption="RoutingNode → Add 경로(CreateHistory → DocumentParse → MakeDocuments → Chunking → AddVectorDB) / Delete 경로(DeleteVectorDB)" />
             <div className="bg-gray-50 rounded-lg p-4 my-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-3">Add 경로 — 7개 노드</h4>
               <div className="space-y-3">
@@ -116,7 +116,7 @@ export function RagDetail() {
               사용자 질의를 처리하는 그래프입니다. TaskRoutingNodeLogic이 task(QA/Summary)에 따라 분기하고,
               QA 경로에서는 VectorDB 존재 여부를 먼저 확인합니다.
             </p>
-            <ImagePlaceholder label="ChatBot Graph 플로우 다이어그램" />
+            <DemoImage src="/portfolio/rag-chat-graph.png" alt="ChatBot Graph" caption="TaskRouting → QA 경로(VectorCheck → Retrieval → Answer) / Summary 경로(DocumentSummary → Map → Reduce)" />
             <div className="grid md:grid-cols-2 gap-4 my-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">QA 경로</h4>
@@ -183,7 +183,6 @@ export function RagDetail() {
               Summary에서는 <code className="text-xs bg-gray-100 px-1 rounded">_get_pages()</code>에서
               figure/chart 카테고리를 자동 필터링하여 텍스트 요약에 이미지 설명이 섞이지 않도록 합니다.
             </p>
-            <ImagePlaceholder label="문서 파싱 결과 비교 — 일반 텍스트 vs Upstage Markdown 변환" />
           </Section>
         </div>
 
@@ -278,18 +277,6 @@ function Section({ title, delay, children }: { title: string; delay: number; chi
       <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
       {children}
     </motion.div>
-  );
-}
-
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[200px] my-4">
-      <div className="text-center">
-        <div className="text-gray-400 text-4xl mb-2">🖼️</div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-xs text-gray-400 mt-1">이미지 준비 중</p>
-      </div>
-    </div>
   );
 }
 
