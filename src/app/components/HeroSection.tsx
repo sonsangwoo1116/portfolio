@@ -74,9 +74,13 @@ export function HeroSection() {
                 {profile.heroDescription}
               </p>
               {profile.heroEducation && (
-                <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
-                  <GraduationCap className="w-4 h-4 text-gray-400" />
-                  <span>{profile.heroEducation}</span>
+                <div className="flex items-start gap-2 mt-2 text-sm text-gray-500">
+                  <GraduationCap className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+                  <div className="space-y-0.5">
+                    {profile.heroEducation.split("\n").map((line, i) => (
+                      <div key={i}>{line}</div>
+                    ))}
+                  </div>
                 </div>
               )}
             </motion.div>
