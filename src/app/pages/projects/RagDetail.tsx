@@ -74,10 +74,10 @@ export function RagDetail() {
             </p>
             <DemoImage src="/portfolio/rag-architecture.png" alt="RAG 시스템 아키텍처" caption="User → FastAPI(5 endpoints) → RAG Core(DocumentManagement + ChatBot Graph) → Upstage / Ollama BGE-M3 / vLLM Qwen3-14B / Chroma VectorDB" />
             <div className="mt-4 grid md:grid-cols-4 gap-3">
-              <MetricCard label="LLM" value="Qwen3-14B-AWQ" desc="vLLM 서빙, port 8000" />
+              <MetricCard label="LLM" value="Qwen3-14B-AWQ" desc="vLLM 서빙" />
               <MetricCard label="Embedding" value="BGE-M3" desc="로컬 Ollama" />
               <MetricCard label="VectorDB" value="Chroma" desc="유저별 persist" />
-              <MetricCard label="API" value="FastAPI" desc="port 10101" />
+              <MetricCard label="API" value="FastAPI" desc="REST + SSE 스트리밍" />
             </div>
           </Section>
         </div>
@@ -248,7 +248,7 @@ export function RagDetail() {
             <ul className="space-y-2 mb-6">
               <BulletItem text="전체 RAG 파이프라인(파싱 → 임베딩 → 검색 → 응답 → 요약) 설계부터 구현까지 단독 수행" />
               <BulletItem text="LangGraph 듀얼 그래프 아키텍처, 토큰 기반 그룹핑, 멀티유저 격리 등 세부 설계 전부 직접" />
-              <BulletItem text="Streamlit 데모 UI + FastAPI 백엔드(port 10101) + vLLM 서빙(port 8000) 구성" />
+              <BulletItem text="Streamlit 데모 UI + FastAPI 백엔드 + vLLM 서빙 구성" />
             </ul>
             <h4 className="text-base font-semibold text-gray-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
