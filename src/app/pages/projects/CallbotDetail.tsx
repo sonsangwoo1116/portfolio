@@ -182,7 +182,7 @@ export function CallbotDetail() {
             <DemoImage src="/portfolio/callbot-8.png" alt="불완전판매 감지 이관" caption="모바일 — 보험 가입 확인 중 불완전판매 징후 감지 → 전문 상담원 자동 연결" />
             <DemoImage src="/portfolio/callbot-10.png" alt="상담사 이관 상세" caption="관리자 알림 센터 — 상담사 이관 시 AI 브리핑 (대화 분석 요약) + 모니터링 항목 체크리스트 자동 생성" />
             <div className="grid md:grid-cols-2 gap-4">
-              <DemoImage src="/portfolio/callbot-9.png" alt="고객 관리" caption="관리자 고객 관리 — 37명 고객 카드 목록, 시뮬/수정/삭제, 상품별 계약 정보" />
+              <DemoImage src="/portfolio/callbot-9.png" alt="고객 관리" caption="관리자 고객 관리 — 고객 카드 목록, 시뮬/수정/삭제, 상품별 계약 정보" />
               <DemoImage src="/portfolio/callbot-5.png" alt="실시간 대화 이관 브리핑" caption="관리자 고객 상세 — 이관 브리핑 + 실시간 대화 + 대화 이력 조회" />
             </div>
           </Section>
