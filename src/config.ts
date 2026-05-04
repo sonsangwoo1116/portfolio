@@ -174,7 +174,7 @@ export const projects: Project[] = [
       "Anti-Hallucination 3중 방어: 응답 기대 체크, 번역 속도 검증(100자/초 초과 시 드롭), STT 환각 차단",
       "Google Cloud Run 프로덕션 배포. 전문 통역 대비 9-11배 저렴한 $0.27/min 비용 달성",
     ],
-    impact: "147통 에코 0건, 557ms 레이턴시, $0.27/분 | ACL 2026 System Demonstrations Accept (Rating 7.50)",
+    impact: "148통 에코 0건, 555ms 레이턴시, $0.18/분 | ACL 2026 System Demonstrations Accept (Rating 7.50)",
   },
 ];
 
