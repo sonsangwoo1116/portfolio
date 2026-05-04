@@ -36,7 +36,6 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
             )}
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500">{item.date}</span>
             {item.links.github && (
               <a
                 href={item.links.github}
