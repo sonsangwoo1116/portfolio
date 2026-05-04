@@ -28,10 +28,10 @@ export function CallbotDetail() {
           <p className="text-lg text-gray-600">보험 완전판매 모니터링 자동화를 위한 양방향 음성 콜봇 대화 엔진</p>
         </motion.div>
 
-        {/* ── 목차 ── */}
+        {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "주요 동작 화면", "역할 및 협업", "Tech Stack"].map((item, i) => (
+            {["Overview", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "불완전판매 감지 + 상담사 이관", "욕설 감지 + 차단", "역할 및 협업", "Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -39,7 +39,7 @@ export function CallbotDetail() {
           </nav>
         </Section>
 
-        {/* ── 1. Overview ── */}
+        {/* 1. Overview */}
         <div id="callbot-0">
           <Section title="1. Overview" delay={0.1}>
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
@@ -47,7 +47,6 @@ export function CallbotDetail() {
               <ul className="space-y-1">
                 <li className="text-sm text-gray-700">• LLM 호출 85% 절감, GPU 점유율 2.3%</li>
                 <li className="text-sm text-gray-700">• 7노드 상태 머신 + 9개 LLM Tool Calling</li>
-                <li className="text-sm text-gray-700">• RTX 3090 1장 기준 5채널 실측, ~30채널 이론 보장</li>
                 <li className="text-sm text-gray-700">• 다층 가드레일로 비정형 대화 안정 처리</li>
               </ul>
             </div>
@@ -65,23 +64,9 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 2. System Architecture ── */}
+        {/* 2. 하이브리드 라우팅 */}
         <div id="callbot-1">
-          <Section title="2. System Architecture" delay={0.15}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              브라우저 클라이언트 ↔ STT/LLM/TTS 백엔드 구조로, PSTN 게이트웨이 미연동 상태의 WebSocket 기반 양방향 시스템입니다.
-            </p>
-            <div className="mt-4 grid md:grid-cols-3 gap-3">
-              <MetricCard label="듀얼 SLM" value="0.8GB VRAM" desc="EXAONE 1.2B + 32B 동일 GPU 공존" />
-              <MetricCard label="의도 분류" value="10-class" desc="SLM + semantic-router 앙상블" />
-              <MetricCard label="STT" value="Qwen3-ASR" desc="Silero VAD 기반 음성 구간 감지" />
-            </div>
-          </Section>
-        </div>
-
-        {/* ── 3. 하이브리드 라우팅 ── */}
-        <div id="callbot-2">
-          <Section title="3. 하이브리드 라우팅 — LLM 호출 85% 절감" delay={0.2}>
+          <Section title="2. 하이브리드 라우팅 — LLM 호출 85% 절감" delay={0.15}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당이 안 되는 문제가 있었습니다.
               5단계 파이프라인으로 단순 의도와 복잡 의도를 분리 처리하여 해결했습니다.
@@ -115,9 +100,9 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 4. 대화 상태 머신 ── */}
-        <div id="callbot-3">
-          <Section title="4. 대화 상태 머신 + 다층 가드레일" delay={0.25}>
+        {/* 3. 대화 상태 머신 */}
+        <div id="callbot-2">
+          <Section title="3. 대화 상태 머신 + 다층 가드레일" delay={0.2}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               7노드 상태 머신으로 대화 흐름을 제어하고, 9개 LLM Tool(Function Calling)로 각 단계의 작업을 자동화했습니다.
               각 노드에서 기대 답변과 실제 답변을 교차 비교하여 불완전판매 징후를 실시간 탐지합니다.
@@ -142,53 +127,65 @@ export function CallbotDetail() {
               <GuardrailItem title="노드 재시도 제한" desc="유효하지 않은 라우트 연속 5회 → 상담사 이관 제안" />
               <GuardrailItem title="불완전판매 징후 실시간 탐지" desc='예: COM-009("설계사가 강요했나요?") 기대="no"인데 고객이 긍정 답변 → 즉시 flag_risk + AGENT_TRANSFER' />
             </div>
-            <DemoImage src="/portfolio/callbot-5.png" alt="불완전판매 위험 감지" caption="불완전판매 감지 시 모바일 — '확인이 필요한 사항이 있어 전문 상담원에게 연결해 드리겠습니다' 자동 이관" />
-            <DemoImage src="/portfolio/callbot-3.png" alt="관리자 알림 센터" caption="관리자 알림 센터 — 위험 감지 알림, 모니터링 항목 체크리스트 (확인/부정/미확인), AI 브리핑 자동 생성" />
           </Section>
         </div>
 
-        {/* ── 5. 본인확인 ── */}
-        <div id="callbot-4">
-          <Section title="5. 본인확인 — 한국어 생년월일 5단계 파싱" delay={0.3}>
+        {/* 4. 본인확인 */}
+        <div id="callbot-3">
+          <Section title="4. 본인확인 — 한국어 생년월일 5단계 파싱" delay={0.25}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               STT 특성상 숫자가 다양한 형태로 인식됩니다. "공공년 칠월 육일", "영영년 7월 6일", "00 76" 등을
               모두 처리할 수 있는 5단계 파싱을 구현했습니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
-                <Step num="1" title="한국어 년/월/일 구조 매칭" />
-                <Step num="2" title="한국어 → 숫자 변환" />
-                <Step num="3" title="숫자 그룹 분리" />
-                <Step num="4" title="2그룹 스마트 해석" />
-                <Step num="5" title="순수 숫자 추출 폴백" />
+                <Step num="1" title="한국어 년/월/일 구조 매칭" desc='"공공년 칠월 육일" → 패턴 감지하여 년/월/일 단위 분리' />
+                <Step num="2" title="한국어 → 숫자 변환" desc='"공" → 0, "칠" → 7, "육" → 6. 한글 숫자 사전 기반 치환' />
+                <Step num="3" title="숫자 그룹 분리" desc='"007 06" → [007, 06]. 공백/구두점 기준 그룹핑' />
+                <Step num="4" title="2그룹 스마트 해석" desc="[00, 76] → YYMMDD로 해석 시도. 월(1-12)·일(1-31) 범위 검증" />
+                <Step num="5" title="순수 숫자 추출 폴백" desc="위 단계 실패 시 전체 텍스트에서 숫자만 추출하여 6자리 조합" />
               </div>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mb-4">
               6자리 ↔ 8자리(YYYYMMDD) 크로스 비교, 불일치 시 1회 재확인 후 상담사 이관
             </p>
             <DemoImage src="/portfolio/callbot-2.png" alt="본인확인 통화 화면" caption="모바일 통화 + 채팅 UI — 주민등록번호 앞 6자리 본인확인 후 보험 계약 확인 모니터링 자동 진행" />
           </Section>
         </div>
 
-        {/* ── 6. 주요 동작 화면 ── */}
-        <div id="callbot-5">
-          <Section title="6. 주요 동작 화면" delay={0.35}>
-            <h4 className="text-base font-semibold text-gray-800 mb-3">욕설 자동 감지 + 차단</h4>
-            <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 → 경고 안내 → 2/2 반복 시 상담사 강제 이관" />
-              <DemoImage src="/portfolio/callbot-7.png" alt="욕설 탐지 관리자" caption="관리자 모니터링 결과 — profanity 감지 상세 (리스크: 욕설, 결과: 이관 처리)" />
+        {/* 5. 불완전판매 감지 + 상담사 이관 */}
+        <div id="callbot-4">
+          <Section title="5. 불완전판매 감지 + 상담사 이관" delay={0.3}>
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
+              모니터링 질문에 대한 고객 답변을 LLM이 분석하여 불완전판매 징후를 실시간 감지합니다.
+              위험이 감지되면 고객에게 안내 후 전문 상담원에게 자동 이관하고,
+              관리자에게는 AI 브리핑(대화 분석 요약)과 모니터링 체크리스트를 자동 생성합니다.
+            </p>
+            <div className="grid md:grid-cols-2 gap-4 mb-4">
+              <DemoImage src="/portfolio/callbot-8.png" alt="불완전판매 감지 → 상담원 연결" caption="모바일 — 보험 가입 확인 중 불완전판매 징후 감지 시 전문 상담원 자동 연결" />
+              <DemoImage src="/portfolio/callbot-5.png" alt="실시간 대화 + 이관 브리핑" caption="관리자 — 이관 브리핑 + 실시간 대화 + 대화 이력 조회" />
             </div>
-            <h4 className="text-base font-semibold text-gray-800 mb-3">자동 응대 + 실시간 상담사 이관</h4>
-            <DemoImage src="/portfolio/callbot-8.png" alt="불완전판매 감지 이관" caption="모바일 — 보험 가입 확인 중 불완전판매 징후 감지 → 전문 상담원 자동 연결" />
-            <DemoImage src="/portfolio/callbot-10.png" alt="상담사 이관 상세" caption="관리자 알림 센터 — 상담사 이관 시 AI 브리핑 (대화 분석 요약) + 모니터링 항목 체크리스트 자동 생성" />
+            <DemoImage src="/portfolio/callbot-3.png" alt="관리자 알림 센터" caption="관리자 알림 센터 — 위험 감지 알림, 모니터링 항목 체크리스트 (확인/부정/미확인), AI 브리핑 자동 생성" />
+            <DemoImage src="/portfolio/callbot-10.png" alt="상담사 이관 상세" caption="관리자 알림 센터 상세 — AI가 대화 맥락을 분석하여 상담사에게 전달할 브리핑 자동 생성" />
+          </Section>
+        </div>
+
+        {/* 6. 욕설 감지 + 차단 */}
+        <div id="callbot-5">
+          <Section title="6. 욕설 감지 + 차단" delay={0.35}>
+            <p className="text-base text-gray-700 leading-relaxed mb-4">
+              고객이 욕설을 사용하면 2단계로 대응합니다.
+              1회차에 경고 안내 멘트를 출력하고, 2회차 반복 시 상담사에게 강제 이관합니다.
+              모니터링 결과에 profanity 리스크로 기록되어 관리자가 조회할 수 있습니다.
+            </p>
             <div className="grid md:grid-cols-2 gap-4">
-              <DemoImage src="/portfolio/callbot-9.png" alt="고객 관리" caption="관리자 고객 관리 — 고객 카드 목록, 시뮬/수정/삭제, 상품별 계약 정보" />
-              <DemoImage src="/portfolio/callbot-5.png" alt="실시간 대화 이관 브리핑" caption="관리자 고객 상세 — 이관 브리핑 + 실시간 대화 + 대화 이력 조회" />
+              <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 경고 → 2/2 반복 시 상담사 강제 이관" />
+              <DemoImage src="/portfolio/callbot-7.png" alt="욕설 탐지 관리자" caption="관리자 모니터링 결과 — profanity 감지 상세 (리스크: 욕설, 결과: 이관 처리)" />
             </div>
           </Section>
         </div>
 
-        {/* ── 8. 역할 및 협업 ── */}
+        {/* 7. 역할 및 협업 */}
         <div id="callbot-6">
           <Section title="7. 역할 및 협업" delay={0.4}>
             <ul className="space-y-3">
@@ -199,7 +196,7 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 9. Tech Stack ── */}
+        {/* 8. Tech Stack */}
         <div id="callbot-7">
           <Section title="8. Tech Stack" delay={0.45}>
             <div className="flex flex-wrap gap-2">
