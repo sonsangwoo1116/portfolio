@@ -45,10 +45,6 @@ export function ExperienceSection() {
 
                   <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-6">
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
-                      <span className="text-base font-semibold text-blue-600">
-                        {formatPeriod(pos.startDate, pos.endDate)}
-                      </span>
-                      <span className="text-gray-300">|</span>
                       <span className="text-lg font-bold text-gray-900">{pos.company}</span>
                       <span className="text-gray-300">|</span>
                       <span className="text-base text-gray-700">{pos.title}</span>

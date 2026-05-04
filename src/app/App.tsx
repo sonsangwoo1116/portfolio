@@ -74,6 +74,11 @@ export default function App() {
       <NavigationBar showNavLinks={true} />
       <HeroSection />
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {sections.experience && <ExperienceSection />}
+        {sections.publications && <PublicationsSection />}
+      </div>
+
       <section id="projects" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -103,9 +108,6 @@ export default function App() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {sections.experience && <ExperienceSection />}
-        {sections.education && <EducationSection />}
-        {sections.publications && <PublicationsSection />}
         {sections.awards && <AwardsSection />}
         {sections.academicProjects && <AcademicProjectsSection />}
         {sections.partTimeJob && <PartTimeJobSection />}
