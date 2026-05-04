@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { DemoImage } from "../../components/DemoImage";
 
 export function CallbotDetail() {
   return (
@@ -30,7 +31,7 @@ export function CallbotDetail() {
         {/* ── 목차 ── */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "채널 용량 분석", "역할 및 협업", "Tech Stack"].map((item, i) => (
+            {["Overview", "System Architecture", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "채널 용량 분석", "주요 동작 화면", "역할 및 협업", "Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -60,6 +61,7 @@ export function CallbotDetail() {
               보험 완전판매 여부를 확인합니다. 공통 9문항 + 상품별 추가질문(8개 카테고리) 스크립트 기반 질문을 자동 수행하고,
               불완전판매 징후를 실시간 탐지하여 상담사에게 이관합니다.
             </p>
+            <DemoImage src="/portfolio/callbot-1.png" alt="4가지 핵심 기능" caption="01 본인확인 + 자동 모니터링 / 02 불완전판매 위험 자동 감지 / 03 욕설 자동 감지 + 차단 / 04 자동 응대 + 실시간 상담사 이관" />
           </Section>
         </div>
 
@@ -69,7 +71,6 @@ export function CallbotDetail() {
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               브라우저 클라이언트 ↔ STT/LLM/TTS 백엔드 구조로, PSTN 게이트웨이 미연동 상태의 WebSocket 기반 양방향 시스템입니다.
             </p>
-            <ImagePlaceholder label="시스템 아키텍처 다이어그램 — Client ↔ WebSocket ↔ STT → 라우팅 → LLM/템플릿 → TTS" />
             <div className="mt-4 grid md:grid-cols-3 gap-3">
               <MetricCard label="듀얼 SLM" value="0.8GB VRAM" desc="EXAONE 1.2B + 32B 동일 GPU 공존" />
               <MetricCard label="의도 분류" value="10-class" desc="SLM + semantic-router 앙상블" />
@@ -85,7 +86,6 @@ export function CallbotDetail() {
               모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당이 안 되는 문제가 있었습니다.
               5단계 파이프라인으로 단순 의도와 복잡 의도를 분리 처리하여 해결했습니다.
             </p>
-            <ImagePlaceholder label="5단계 하이브리드 라우팅 플로우차트" />
             <div className="bg-gray-50 rounded-lg p-4 my-4">
               <div className="space-y-3">
                 <Step num="1" title="regex 위험 키워드 즉시 검출" desc="정규식 기반 위험 패턴 매칭으로 즉시 분기" />
@@ -112,7 +112,6 @@ export function CallbotDetail() {
               <MetricCard label="GPU 점유율" value="2.3%" desc="RTX 3090 1장" />
               <MetricCard label="RULE 경로 비율" value="85%" desc="LLM 완전 우회" />
             </div>
-            <ImagePlaceholder label="RULE 경로 vs HEAVY 경로 분기 동작 스크린샷" />
           </Section>
         </div>
 
@@ -123,7 +122,6 @@ export function CallbotDetail() {
               7노드 상태 머신으로 대화 흐름을 제어하고, 9개 LLM Tool(Function Calling)로 각 단계의 작업을 자동화했습니다.
               각 노드에서 기대 답변과 실제 답변을 교차 비교하여 불완전판매 징후를 실시간 탐지합니다.
             </p>
-            <ImagePlaceholder label="7노드 상태 머신 다이어그램" />
             <div className="bg-gray-50 rounded-lg p-4 my-4">
               <p className="text-sm font-mono text-gray-600 text-center">
                 ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED
@@ -144,8 +142,8 @@ export function CallbotDetail() {
               <GuardrailItem title="노드 재시도 제한" desc="유효하지 않은 라우트 연속 5회 → 상담사 이관 제안" />
               <GuardrailItem title="불완전판매 징후 실시간 탐지" desc='예: COM-009("설계사가 강요했나요?") 기대="no"인데 고객이 긍정 답변 → 즉시 flag_risk + AGENT_TRANSFER' />
             </div>
-            <ImagePlaceholder label="상태 머신 기반 대화 진행 화면 — 노드 전환 및 Tool Calling 동작" />
-            <ImagePlaceholder label="가드레일 동작 — off_topic 에스컬레이션 / 불완전판매 징후 탐지 화면" />
+            <DemoImage src="/portfolio/callbot-5.png" alt="불완전판매 위험 감지" caption="불완전판매 감지 시 모바일 — '확인이 필요한 사항이 있어 전문 상담원에게 연결해 드리겠습니다' 자동 이관" />
+            <DemoImage src="/portfolio/callbot-3.png" alt="관리자 알림 센터" caption="관리자 알림 센터 — 위험 감지 알림, 모니터링 항목 체크리스트 (확인/부정/미확인), AI 브리핑 자동 생성" />
           </Section>
         </div>
 
@@ -168,7 +166,7 @@ export function CallbotDetail() {
             <p className="text-sm text-gray-600">
               6자리 ↔ 8자리(YYYYMMDD) 크로스 비교, 불일치 시 1회 재확인 후 상담사 이관
             </p>
-            <ImagePlaceholder label="본인확인 생년월일 파싱 동작 — 다양한 STT 인식 형태 처리 화면" />
+            <DemoImage src="/portfolio/callbot-2.png" alt="본인확인 통화 화면" caption="모바일 통화 + 채팅 UI — 주민등록번호 앞 6자리 본인확인 후 보험 계약 확인 모니터링 자동 진행" />
           </Section>
         </div>
 
@@ -220,9 +218,27 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 7. 역할 및 협업 ── */}
+        {/* ── 7. 주요 동작 화면 ── */}
         <div id="callbot-6">
-          <Section title="7. 역할 및 협업" delay={0.4}>
+          <Section title="7. 주요 동작 화면" delay={0.4}>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">욕설 자동 감지 + 차단</h4>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 → 경고 안내 → 2/2 반복 시 상담사 강제 이관" />
+              <DemoImage src="/portfolio/callbot-7.png" alt="욕설 탐지 관리자" caption="관리자 모니터링 결과 — profanity 감지 상세 (리스크: 욕설, 결과: 이관 처리)" />
+            </div>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">자동 응대 + 실시간 상담사 이관</h4>
+            <DemoImage src="/portfolio/callbot-8.png" alt="불완전판매 감지 이관" caption="모바일 — 보험 가입 확인 중 불완전판매 징후 감지 → 전문 상담원 자동 연결" />
+            <DemoImage src="/portfolio/callbot-10.png" alt="상담사 이관 상세" caption="관리자 알림 센터 — 상담사 이관 시 AI 브리핑 (대화 분석 요약) + 모니터링 항목 체크리스트 자동 생성" />
+            <div className="grid md:grid-cols-2 gap-4">
+              <DemoImage src="/portfolio/callbot-9.png" alt="고객 관리" caption="관리자 고객 관리 — 37명 고객 카드 목록, 시뮬/수정/삭제, 상품별 계약 정보" />
+              <DemoImage src="/portfolio/callbot-5.png" alt="실시간 대화 이관 브리핑" caption="관리자 고객 상세 — 이관 브리핑 + 실시간 대화 + 대화 이력 조회" />
+            </div>
+          </Section>
+        </div>
+
+        {/* ── 8. 역할 및 협업 ── */}
+        <div id="callbot-7">
+          <Section title="8. 역할 및 협업" delay={0.45}>
             <ul className="space-y-3">
               <BulletItem text="음성 AI 전체(STT/VAD/상태 머신) 설계·구현을 주도" />
               <BulletItem text="팀원의 LLM Tool Calling 개발을 코칭하며 병행 진행" />
@@ -231,9 +247,9 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* ── 8. Tech Stack ── */}
-        <div id="callbot-7">
-          <Section title="8. Tech Stack" delay={0.45}>
+        {/* ── 9. Tech Stack ── */}
+        <div id="callbot-8">
+          <Section title="9. Tech Stack" delay={0.5}>
             <div className="flex flex-wrap gap-2">
               {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "EXAONE 1.2B (Q4_K_M)", "EXAONE 32B AWQ", "Qwen3-ASR", "Silero VAD", "ko-sroberta", "YAML Prompts"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
@@ -260,18 +276,6 @@ function Section({ title, delay, children }: { title: string; delay: number; chi
       <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
       {children}
     </motion.div>
-  );
-}
-
-function ImagePlaceholder({ label }: { label: string }) {
-  return (
-    <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-8 flex items-center justify-center min-h-[200px] my-4">
-      <div className="text-center">
-        <div className="text-gray-400 text-4xl mb-2">🖼️</div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-xs text-gray-400 mt-1">이미지 준비 중</p>
-      </div>
-    </div>
   );
 }
 
