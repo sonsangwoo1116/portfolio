@@ -30,7 +30,7 @@ export function SymphonyDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "3-Worker 분리 아키텍처", "2-Pass Bilingual STT", "Silero VAD + Smart Chunking", "재시도 정책 차등 설계", "보안 (SSRF 2중 방어)", "모니터링 + Tech Stack"].map((item, i) => (
+            {["Overview", "System Architecture", "3-Worker 분리 아키텍처", "2-Pass Bilingual STT", "Silero VAD + Smart Chunking", "재시도 + 보안 + 모니터링", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`sym-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -70,7 +70,8 @@ export function SymphonyDetail() {
               Client(Spring Boot) → Gateway(FastAPI) → Temporal Server → Worker Container → Triton(GPU) 구조로,
               API Key 인증, Rate Limiting, SSRF 2-Pass 방어, WebSocket 스트리밍을 포함합니다.
             </p>
-            <DemoImage src="/portfolio/symphony-architecture.png" alt="System Architecture" caption="전체 시스템 아키텍처 — Client → Gateway → Temporal → 3-Worker → Triton GPU" />
+            <DemoImage src="/portfolio/symphony-architecture.png" alt="System Architecture" caption="전체 시스템 아키텍처 — Client → Gateway → Temporal → 3-Worker(Workflow/STT/Callback) × 2 GPU → Triton + Monitoring" />
+            <DemoImage src="/portfolio/symphony-worker.png" alt="STT Pipeline" caption="STT 파이프라인 6단계 — Audio Input → Download → VAD → Smart Chunking → Triton 2-Pass Inference → Callback" />
             <div className="mt-4 grid md:grid-cols-4 gap-3">
               <MetricCard label="STT 엔진" value="Faster Whisper" desc="Large-v3-turbo, Triton Backend" />
               <MetricCard label="VAD" value="Silero VAD" desc="ONNX, CPU, thread-local" />
@@ -88,7 +89,6 @@ export function SymphonyDetail() {
               STT 슬롯이 모두 차면 WorkflowTask가 뒤에 대기하여 워크플로우 진행이 멈추고,
               5분 타임아웃이 발생했습니다(성공률 82-85%).
             </p>
-            <DemoImage src="/portfolio/symphony-worker.png" alt="STT 파이프라인 아키텍처" caption="Audio Input → VAD → Smart Chunking → Triton GPU 추론 → Callback 전체 STT 파이프라인" />
             <div className="grid md:grid-cols-3 gap-4 my-4">
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                 <h4 className="text-sm font-semibold text-gray-800 mb-2">Workflow Worker</h4>
@@ -110,12 +110,12 @@ export function SymphonyDetail() {
               <MetricCard label="Before" value="82-85%" desc="단일 Worker, 5분 타임아웃 발생" />
               <MetricCard label="After" value="95%+" desc="하드웨어 추가 없이 개선" />
             </div>
-            <h4 className="text-base font-semibold text-gray-800 mb-3">버전별 개선 이력</h4>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">개선 이력</h4>
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="space-y-3">
-                <Step num="v2.2.5" title="Temporal Payload 크기 제한 해결" desc="Activity 간 bytes 대신 파일 경로(str) 전달 → 최대 100MB 파일 지원" />
-                <Step num="v3.1" title="Activity 통합 (download + transcribe)" desc="Worker 분산 문제 해결 + 파일 I/O 제거로 성능 개선" />
-                <Step num="v3.2" title="Callback Queue 분리" desc="STT 워커 포화 시에도 콜백 처리 보장 (task_queue=CALLBACK_TASK_QUEUE)" />
+                <Step num="1" title="Temporal Payload 크기 제한 해결" desc="Activity 간 bytes 대신 파일 경로(str) 전달 → 최대 100MB 파일 지원" />
+                <Step num="2" title="Activity 통합 (download + transcribe)" desc="Worker 분산 문제 해결 + 파일 I/O 제거로 성능 개선" />
+                <Step num="3" title="Callback Queue 분리" desc="STT 워커 포화 시에도 콜백 처리 보장 (task_queue=CALLBACK_TASK_QUEUE)" />
               </div>
             </div>
           </Section>
@@ -179,14 +179,11 @@ export function SymphonyDetail() {
           </Section>
         </div>
 
-        {/* 6. 재시도 정책 */}
+        {/* 6. 안정성 — 재시도 + 보안 + 모니터링 */}
         <div id="sym-5">
-          <Section title="6. 재시도 정책 차등 설계" delay={0.35}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              모든 작업에 동일한 재시도를 적용하면 GPU 큐 대기 낭비가 발생합니다.
-              작업 특성에 따라 재시도 정책을 차등 설계하고, 재시도 불가능한 에러를 명시적으로 분리했습니다.
-            </p>
-            <div className="overflow-x-auto">
+          <Section title="6. 재시도 + 보안 + 모니터링" delay={0.35}>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">재시도 정책 차등 설계</h4>
+            <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
                 <thead>
                   <tr className="bg-gray-100">
@@ -222,53 +219,50 @@ export function SymphonyDetail() {
                 </tbody>
               </table>
             </div>
-            <p className="text-sm text-gray-600 mt-3">
+            <p className="text-sm text-gray-600 mb-6">
               GPU 작업은 큐가 밀려서 실패했으면 재시도해도 또 대기만 하므로 1회로 제한.
-              CUDA OOM은 재시도해도 동일 결과이므로 non_retryable로 명시.
-              콜백은 결과 전달이 중요하므로 backoff 3배로 4회 재시도.
+              CUDA OOM은 non_retryable로 명시. 콜백은 결과 전달이 중요하므로 backoff 3배로 4회.
             </p>
-          </Section>
-        </div>
 
-        {/* 7. 보안 */}
-        <div id="sym-6">
-          <Section title="7. 보안 — SSRF 2중 방어" delay={0.4}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              Gateway가 콜백 URL을 받아서 Worker가 요청을 보내는 구조이므로, 공격자가 내부 네트워크에 접근할 수 있는
-              SSRF(Server-Side Request Forgery) 위험이 있었습니다. 2중 방어를 구현했습니다.
+            <h4 className="text-base font-semibold text-gray-800 mb-3">SSRF 2중 방어</h4>
+            <p className="text-sm text-gray-600 mb-3">
+              Gateway가 콜백 URL을 받아서 Worker가 요청을 보내는 구조이므로 SSRF 위험이 있었습니다.
+              1차(Gateway): 호스트 블랙리스트 + 내부 도메인 차단 + 위험 포트 차단 + Private IP 검증.
+              2차(Worker): DNS 해석 후 실제 IP가 Private 대역인지 재검증하여 DNS Rebinding 방어.
             </p>
-            <div className="grid md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">1차 방어 (Gateway)</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• 호스트 블랙리스트 (localhost, 127.0.0.1 등)</li>
-                  <li className="text-xs text-gray-600">• 내부 도메인 패턴 차단 (.local, .internal, .svc)</li>
-                  <li className="text-xs text-gray-600">• 위험 포트 차단 (22, 23, 25, 3389)</li>
-                  <li className="text-xs text-gray-600">• IP 직접 검증 (Private/Loopback/Reserved)</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-gray-800 mb-2">2차 방어 (Worker)</h4>
-                <ul className="space-y-1">
-                  <li className="text-xs text-gray-600">• DNS 해석 후 실제 IP가 Private 대역인지 재검증</li>
-                  <li className="text-xs text-gray-600">• DNS Rebinding 공격 방어</li>
-                  <li className="text-xs text-gray-600">• 화이트리스트 호스트는 검증 건너뜀</li>
-                </ul>
-              </div>
-            </div>
+            <p className="text-sm text-gray-600 mb-6">
+              추가로 Graceful Shutdown, RFC 7807 에러 표준, Timing Attack 방어, Path Traversal 검증 적용.
+            </p>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">모니터링</h4>
             <p className="text-sm text-gray-600">
-              추가로 Graceful Shutdown(RequestTrackingMiddleware로 활성 요청 추적, shutdown_timeout 동안 완료 대기),
-              RFC 7807 Problem Details 에러 표준, hmac.compare_digest(Timing Attack 방어), Path Traversal 검증을 적용했습니다.
+              Prometheus + Grafana + DCGM Exporter로 요청 처리량, GPU 메트릭, Temporal 실행 이력을 실시간 모니터링.
             </p>
           </Section>
         </div>
 
-        {/* 8. 모니터링 + Tech Stack */}
-        <div id="sym-7">
-          <Section title="8. 모니터링 + Tech Stack" delay={0.45}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              Prometheus + Grafana + DCGM Exporter로 요청 처리량, GPU 메트릭, Temporal 실행 이력을 실시간 모니터링합니다.
-            </p>
+        {/* 7. 역할 및 Tech Stack */}
+        <div id="sym-6">
+          <Section title="7. 역할 및 Tech Stack" delay={0.4}>
+            <h4 className="text-base font-semibold text-gray-800 mb-3">역할 (단독 설계·구현)</h4>
+            <ul className="space-y-2 mb-6">
+              <li className="text-base text-gray-700 flex items-start gap-2">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                <span>전체 아키텍처 설계 — Gateway → Temporal → 3-Worker → Triton 구조, Worker 분리 및 큐 설계</span>
+              </li>
+              <li className="text-base text-gray-700 flex items-start gap-2">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                <span>2-Pass Bilingual STT + Silero VAD Smart Chunking 파이프라인 구현</span>
+              </li>
+              <li className="text-base text-gray-700 flex items-start gap-2">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                <span>재시도 정책 차등 설계, SSRF 2중 방어, Graceful Shutdown 등 프로덕션 안정성 확보</span>
+              </li>
+              <li className="text-base text-gray-700 flex items-start gap-2">
+                <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0" />
+                <span>Prometheus + Grafana 모니터링 구축, 성공률 82% → 95%+ 개선</span>
+              </li>
+            </ul>
             <h4 className="text-base font-semibold text-gray-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
               {["Python", "FastAPI", "Temporal", "Triton Inference Server", "Faster Whisper Large-v3-turbo", "Silero VAD (ONNX)", "Docker Compose", "Prometheus", "Grafana", "DCGM Exporter", "gRPC", "MinIO"].map((tag, i) => (
