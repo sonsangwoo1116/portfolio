@@ -45,7 +45,7 @@ export function CallbotDetail() {
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-gray-700">• LLM 호출 85% 절감, GPU 점유율 2.3%</li>
+                <li className="text-sm text-gray-700">• LLM 호출 85% 절감</li>
                 <li className="text-sm text-gray-700">• 7노드 상태 머신 + 9개 LLM Tool Calling</li>
                 <li className="text-sm text-gray-700">• 다층 가드레일로 비정형 대화 안정 처리</li>
               </ul>
@@ -94,7 +94,6 @@ export function CallbotDetail() {
             </div>
             <div className="grid md:grid-cols-3 gap-3">
               <MetricCard label="1통화당 LLM 호출" value="평균 2회" desc="13턴 / 4분 기준" />
-              <MetricCard label="GPU 점유율" value="2.3%" desc="RTX 3090 1장" />
               <MetricCard label="RULE 경로 비율" value="85%" desc="LLM 완전 우회" />
             </div>
           </Section>
