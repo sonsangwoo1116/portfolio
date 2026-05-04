@@ -1,4 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
+import { motion } from "motion/react";
+import { ChevronDown } from "lucide-react";
 import { NavigationBar } from "./components/NavigationBar";
 import { HeroSection } from "./components/HeroSection";
 import { FilterBar } from "./components/FilterBar";
@@ -20,10 +22,13 @@ import { AcademicProjectsSection } from "./components/AcademicProjectsSection";
 import { PartTimeJobSection } from "./components/PartTimeJobSection";
 import { projects, sections } from "../config";
 
+const FEATURED_IDS = ["1", "9"]; // 콜봇, WIGVO
+
 export default function App() {
   const [activeDomain, setActiveDomain] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+  const [showAllProjects, setShowAllProjects] = useState(false);
 
   // Hash-based routing for project detail pages
   useEffect(() => {
@@ -81,29 +86,69 @@ export default function App() {
 
       <section id="projects" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Projects</h2>
-            <div className="w-20 h-1 bg-blue-500 mx-auto mb-6" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Projects</h2>
+            <div className="w-20 h-1 bg-blue-500 mx-auto" />
+          </motion.div>
+
+          {/* Featured Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {projects
+              .filter((p) => FEATURED_IDS.includes(p.id))
+              .sort((a, b) => FEATURED_IDS.indexOf(a.id) - FEATURED_IDS.indexOf(b.id))
+              .map((item, index) => (
+                <PortfolioCard key={item.id} item={item} index={index} />
+              ))}
           </div>
-          <FilterBar
-            activeDomain={activeDomain}
-            onDomainChange={setActiveDomain}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-          />
-          <div className="mt-8">
-            {filteredItems.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-                {filteredItems.map((item, index) => (
-                  <PortfolioCard key={item.id} item={item} index={index} />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20">
-                <p className="text-gray-500 text-lg">검색 결과가 없습니다.</p>
-              </div>
-            )}
+
+          {/* Show More Toggle */}
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => setShowAllProjects((prev) => !prev)}
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            >
+              <span>{showAllProjects ? "접기" : `다른 프로젝트 보기 (${projects.length - FEATURED_IDS.length})`}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${showAllProjects ? "rotate-180" : ""}`} />
+            </button>
           </div>
+
+          {/* Other Projects */}
+          {showAllProjects && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              transition={{ duration: 0.3 }}
+              className="mt-6"
+            >
+              <FilterBar
+                activeDomain={activeDomain}
+                onDomainChange={setActiveDomain}
+                searchQuery={searchQuery}
+                onSearchChange={setSearchQuery}
+              />
+              <div className="mt-6">
+                {filteredItems.filter((p) => !FEATURED_IDS.includes(p.id)).length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                    {filteredItems
+                      .filter((p) => !FEATURED_IDS.includes(p.id))
+                      .map((item, index) => (
+                        <PortfolioCard key={item.id} item={item} index={index} />
+                      ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-12">
+                    <p className="text-gray-500">검색 결과가 없습니다.</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
         </div>
       </section>
 
