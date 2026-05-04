@@ -292,8 +292,8 @@ export function WigentDetail() {
             <h4 className="text-base font-semibold text-gray-800 mb-3">역할 (3인 팀, WIGTN 크루)</h4>
             <ul className="space-y-2 mb-6">
               <BulletItem text="아이디어 제안 및 프로젝트 컨셉 설계" />
-              <BulletItem text="P2: Slack 스타일 채팅 UI 전체 구현 — 10개 컴포넌트 (다크 테마, 타이핑 표시, 에이전트 입퇴장 시스템 메시지, 온라인 상태 사이드바)" />
-              <BulletItem text="Framer Motion 기반 채팅 → 랜딩 페이지 전체 페이지 전환 애니메이션" />
+              <BulletItem text="P1: 백엔드 전체 구현 — orchestrator.ts, prompts.ts, SSE API 라우트" />
+              <BulletItem text="Multi-Agent Orchestrator 설계 및 GPT-4o 기반 에이전트 동적 Spawning/Retirement 로직 구현" />
             </ul>
 
             <h4 className="text-base font-semibold text-gray-800 mb-3">개발 타임라인</h4>
