@@ -51,7 +51,7 @@ export const projects: Project[] = [
       "불완전판매 3중 안전망: LLM risk_suspected 1차 → 키워드 fallback 2차 → STEP 일관성 검증(step1_verb/step2_match/step3_unrelated 모순 교정). expected=no 정답 차단으로 오탐 방지",
       "음성 및 대화 엔진 전체(STT/VAD/상태 머신/코드 가드 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
     ],
-    impact: "엣지 52/52 PASS, TTFT P50 45ms, 입력 토큰 47% 감축 | 9노드 + 10 Tool Calling",
+    impact: "엣지 52/52 PASS, 5채널 P50 154ms / P99 < 300ms, 입력 토큰 47% 감축 | 9노드 + 10 Tool Calling",
   },
   {
     id: "3",
