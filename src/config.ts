@@ -47,11 +47,11 @@ export const projects: Project[] = [
     problemStatement: "9B급 한국어 LLM의 동사 의미 구분·감탄사 분류·답변 번복 인지 한계를 코드 레벨 가드로 보완하면서, GPU 비용을 통제해야 하는 것이 핵심 과제였습니다.",
     technicalDetails: [
       "9노드 상태 머신(ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED + RECONNECT) + 10개 LLM Tool 기반 AI Agent 대화 흐름 설계",
-      "9B LLM + 5단계 코드 가드 하이브리드 라우팅 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. 가드 체인이 곧 라우터 역할, LLM 호출 85% 절감",
+      "9B LLM + 5단계 코드 가드 하이브리드 라우팅 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. TTFT P50 45ms(1채널), P99 < 300ms(5채널), 포화 ~18 req/s. 비동기 히스토리 요약으로 입력 토큰 47% 감축(3735→1985)",
       "불완전판매 3중 안전망: LLM risk_suspected 1차 → 키워드 fallback 2차 → STEP 일관성 검증(step1_verb/step2_match/step3_unrelated 모순 교정). expected=no 정답 차단으로 오탐 방지",
       "음성 및 대화 엔진 전체(STT/VAD/상태 머신/코드 가드 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
     ],
-    impact: "LLM 호출 85% 절감 | 9노드 상태 머신 + 10개 LLM Tool Calling",
+    impact: "엣지 52/52 PASS, TTFT P50 45ms, 입력 토큰 47% 감축 | 9노드 + 10 Tool Calling",
   },
   {
     id: "3",
@@ -213,7 +213,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 음성 콜봇 대화 엔진 설계 (아웃바운드) — 9노드 상태 머신 + 10개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 9B LLM + 5단계 코드 가드 하이브리드 라우팅으로 LLM 호출 85% 절감 — 불완전판매 3중 안전망: LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증, 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 음성 콜봇 대화 엔진 설계 (아웃바운드) — 9노드 상태 머신 + 10개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 9B LLM + 5단계 코드 가드 하이브리드 라우팅, 엣지 52/52 PASS, TTFT P50 45ms, 입력 토큰 47% 감축 — 불완전판매 3중 안전망: LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증, 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {

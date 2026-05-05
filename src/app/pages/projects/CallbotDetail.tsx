@@ -45,9 +45,10 @@ export function CallbotDetail() {
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-gray-700">• 9B LLM + 5단계 코드 가드 하이브리드로 LLM 호출 85% 절감</li>
-                <li className="text-sm text-gray-700">• 9노드 상태 머신 + 10개 LLM Tool Calling</li>
-                <li className="text-sm text-gray-700">• LLM 1차 판단 + 키워드 fallback 2차 + STEP 일관성 검증 3중 안전망</li>
+                <li className="text-sm text-gray-700">• 엣지 테스트 52/52 PASS (E1~E12 분류 정확도 100%)</li>
+                <li className="text-sm text-gray-700">• TTFT P50 45ms (1채널) / P99 &lt; 300ms (5채널 동시 통화)</li>
+                <li className="text-sm text-gray-700">• 비동기 히스토리 요약으로 입력 토큰 47% 감축 (3735 → 1985)</li>
+                <li className="text-sm text-gray-700">• 9노드 상태 머신 + 10개 LLM Tool Calling + 3중 안전망</li>
               </ul>
             </div>
             <p className="text-base text-gray-700 leading-relaxed mb-3">
@@ -112,9 +113,20 @@ export function CallbotDetail() {
               </div>
             </div>
 
+            <h4 className="text-base font-semibold text-gray-800 mb-3">성능 지표 (RTX 3090, 9B BF16)</h4>
+            <div className="grid md:grid-cols-3 gap-3">
+              <MetricCard label="TTFT P50 (1채널)" value="45ms" desc="RTX 3090 단일 GPU" />
+              <MetricCard label="TTFT P50 (5채널)" value="154ms" desc="5채널 동시 통화" />
+              <MetricCard label="P99 TTFT (5채널)" value="< 300ms" desc="권장 동시 채널 기준" />
+              <MetricCard label="TPOT" value="21~29ms" desc="토큰당 출력 시간" />
+              <MetricCard label="포화 처리량" value="~18 req/s" desc="최대 동시 처리" />
+              <MetricCard label="엣지 테스트" value="52/52 PASS" desc="E1~E12 분류 정확도 100%" />
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mt-6 mb-3">토큰 최적화</h4>
             <div className="grid md:grid-cols-2 gap-3">
-              <MetricCard label="1통화당 LLM 호출" value="평균 2회" desc="13턴 / 4분 기준" />
-              <MetricCard label="코드 가드 처리 비율" value="85%" desc="LLM 완전 우회" />
+              <MetricCard label="입력 토큰 감축" value="47%" desc="비동기 히스토리 요약 (3735 → 1985 토큰)" />
+              <MetricCard label="시스템 프롬프트 절감" value="약 600 토큰" desc="네이티브 tool calling 전환" />
             </div>
           </Section>
         </div>
