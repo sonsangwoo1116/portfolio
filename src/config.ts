@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "AI Agent 기반 콜봇 시스템",
-    description: "WebSocket 기반 양방향 음성 콜봇의 대화 엔진을 설계했습니다. 관리자 발신 트리거 후 AI Agent가 먼저 인사하며 보험 완전판매 여부를 확인합니다. 대화 흐름을 상태 머신으로 제어하고, 10개 Tool Calling으로 질문·답변 검증·위험 탐지·상담사 이관까지 자동화했습니다.",
+    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 단순 의도는 약 15ms 템플릿 응답으로, 복잡 의도만 LLM Tool Calling으로 흘려보내는 5단계 코드 가드 하이브리드 라우팅을 9노드 상태 머신과 10개 Tool Calling 위에 직접 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
     domain: "AI Agent",
     tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
@@ -213,7 +213,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 보험 완전판매 모니터링 자동화를 위한 음성 콜봇 대화 엔진 설계 (아웃바운드) — 9노드 상태 머신 + 10개 LLM Tool Calling 기반 AI Agent 대화 흐름 설계 — 9B LLM + 5단계 코드 가드 하이브리드 라우팅, 엣지 52/52 PASS, TTFT P50 45ms, 입력 토큰 47% 감축 — 불완전판매 3중 안전망: LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증, 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 5단계 코드 가드 하이브리드 라우팅을 9노드 상태 머신 + 10개 Tool Calling 위에 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망(LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증), 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
