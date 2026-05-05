@@ -31,7 +31,7 @@ export function CallbotDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "하이브리드 라우팅", "대화 상태 머신 + 가드레일", "본인확인 파싱", "불완전판매 감지 + 상담사 이관", "욕설 감지 + 차단", "역할 및 협업", "Tech Stack"].map((item, i) => (
+            {["Overview", "9B + 코드 가드 하이브리드 라우팅", "대화 상태 머신 + sub-room", "본인확인 파싱", "불완전판매 감지 + 상담사 이관", "욕설 감지 + 차단", "역할 및 협업", "Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -45,9 +45,9 @@ export function CallbotDetail() {
             <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-gray-700">• LLM 호출 85% 절감</li>
-                <li className="text-sm text-gray-700">• 7노드 상태 머신 + 9개 LLM Tool Calling</li>
-                <li className="text-sm text-gray-700">• 다층 가드레일로 비정형 대화 안정 처리</li>
+                <li className="text-sm text-gray-700">• 9B LLM + 5단계 코드 가드 하이브리드로 LLM 호출 85% 절감</li>
+                <li className="text-sm text-gray-700">• 9노드 상태 머신 + 10개 LLM Tool Calling</li>
+                <li className="text-sm text-gray-700">• LLM 1차 판단 + 키워드 fallback 2차 + STEP 일관성 검증 3중 안전망</li>
               </ul>
             </div>
             <p className="text-base text-gray-700 leading-relaxed mb-3">
@@ -55,10 +55,16 @@ export function CallbotDetail() {
               AI 콜봇으로 자동화하되, <strong>고객이 말을 끊거나, 우회적으로 답하거나, 갑자기 민원을 제기하는 등
               비정형 대화 상황에서 의도를 정확히 분류하면서도 GPU 자원을 효율적으로 사용하는 것</strong>이 핵심 과제였습니다.
             </p>
-            <p className="text-base text-gray-700 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed mb-3">
               WebSocket 기반 양방향 음성 콜봇의 대화 엔진을 설계했습니다. 관리자 발신 트리거 후 AI Agent가 먼저 인사하며
               보험 완전판매 여부를 확인합니다. 공통 9문항 + 상품별 추가질문(8개 카테고리) 스크립트 기반 질문을 자동 수행하고,
               불완전판매 징후를 실시간 탐지하여 상담사에게 이관합니다.
+            </p>
+            <p className="text-sm text-gray-500 leading-relaxed mb-4">
+              아키텍처는 4단계에 걸쳐 진화했습니다. 초기 SLM 분류 기반 2-tier 라우팅에서 시작하여,
+              위험 발화 누락 보완을 위한 조건부 강제 escalation을 추가했고,
+              모델 성능이 충분해지자 단일 LLM 구조로 단순화했으나 9B급 모델의 한국어 의미 구분 한계가 드러나
+              현재의 LLM + 코드 가드 하이브리드 구조로 최종 정착했습니다.
             </p>
             <DemoImage src="/portfolio/callbot-1.png" alt="4가지 핵심 기능" caption="01 본인확인 + 자동 모니터링 / 02 불완전판매 위험 자동 감지 / 03 욕설 자동 감지 + 차단 / 04 자동 응대 + 실시간 상담사 이관" />
           </Section>
@@ -66,87 +72,119 @@ export function CallbotDetail() {
 
         {/* 2. 하이브리드 라우팅 */}
         <div id="callbot-1">
-          <Section title="2. 하이브리드 라우팅 — LLM 호출 85% 절감" delay={0.15}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당이 안 되는 문제가 있었습니다.
-              5단계 파이프라인으로 단순 의도와 복잡 의도를 분리 처리하여 해결했습니다.
+          <Section title="2. 9B + 코드 가드 하이브리드 라우팅" delay={0.15}>
+            <p className="text-base text-gray-700 leading-relaxed mb-3">
+              9B급 한국어 LLM은 동사 의미 구분("받았지" vs "들이받았지"), 감탄사 분류, 답변 번복 인지에서 한계가 명확했습니다.
+              LLM은 그대로 두고, 모델이 못 잡는 케이스를 코드 레벨 가드 5단계로 보완하는 구조입니다.
+            </p>
+            <p className="text-sm text-gray-500 mb-4">
+              별도 라우터 모듈 없이, 가드 체인 자체가 라우터 역할을 합니다. 발화가 어떤 처리 경로로 갈지 순차적으로 결정합니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 my-4">
               <div className="space-y-3">
-                <Step num="1" title="regex 위험 키워드 즉시 검출" desc="정규식 기반 위험 패턴 매칭으로 즉시 분기" />
-                <Step num="2" title="STT 오인식 가드레일" desc='"좋습니다"/"감사합니다" 등 배경소음 오인식 필터링' />
-                <Step num="3" title="SLM 의도 분류" desc="EXAONE 1.2B (Q4_K_M) 10-class 분류 또는 ko-sroberta semantic-router" />
-                <Step num="4" title="문맥 기반 라우트 교정" desc="현재 노드 상태와 이전 대화 맥락을 고려한 보정" />
-                <Step num="5" title="현재 노드 유효성 검사" desc="라우팅 결과가 현재 상태 머신 노드에서 유효한지 검증" />
+                <Step num="1" title="욕설 키워드 검출" desc="STT 출력 특성에 맞춘 정규식 패턴 — 1회 경고, 2회 이관. LLM 호출 없이 즉시 처리" />
+                <Step num="2" title="STT 오인식 가드" desc="비어있거나 무의미한 STT 출력 필터링 — 직전 봇 응답을 그대로 재발화하여 자연스럽게 재응답 유도" />
+                <Step num="3" title="대기 요청 가드" desc={'"잠시만요" 등 대기 표현 감지 — 침묵 타이머 연장 + 안내 멘트'} />
+                <Step num="4" title="답변 번복 감지" desc={'"아까 못 들었어요", "다시 생각해보니" 등 번복 패턴 — 9B 모델이 번복을 잘 잡지 못해 regex가 더 안정적'} />
+                <Step num="5" title="Fast path" desc={'"네/예/응" 등 단순 긍정 → LLM 호출 생략. 단, expected="no" 질문("강요받으신 적 있나요?")에서는 "네"가 위험 응답이므로 스킵'} />
               </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-4 mb-4">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <div className="text-sm font-semibold text-gray-800 mb-1">RULE 경로 (85%)</div>
-                <div className="text-2xl font-bold text-gray-900 mb-1">~15ms</div>
-                <div className="text-xs text-gray-600">인사·동의·긍정답변·콜백요청 등 8개 단순 의도 → 템플릿 응답 (LLM 미사용)</div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+              <p className="text-sm text-blue-800">
+                <strong>위 5단계 모두 미해당 시</strong> → LLM Tool Calling (9B)으로 위임.
+                LLM이 채운 분류 결과는 다시 STEP 일관성 검증(step1_verb / step2_match / step3_unrelated)을 거쳐 코드가 최종 교정합니다.
+              </p>
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">왜 이렇게 쌓았나</h4>
+            <div className="space-y-2 mb-4">
+              <div className="text-sm text-gray-700">
+                <strong>Fast path:</strong> 모니터링 질문의 압도적 다수 응답이 "네"이므로 LLM 호출 비용 낭비.
+                단, expected="no" 질문에서는 "네"가 위험 응답이라 fast path를 스킵합니다.
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                <div className="text-sm font-semibold text-gray-800 mb-1">HEAVY 경로 (15%)</div>
-                <div className="text-2xl font-bold text-gray-900 mb-1">LLM Tool Calling</div>
-                <div className="text-xs text-gray-600">불만·위험징후·모호응답 등 10개 복잡 의도 → EXAONE 32B AWQ</div>
+              <div className="text-sm text-gray-700">
+                <strong>답변 번복 별도 가드:</strong> 9B 모델이 revise_answer tool을 잘못 트리거하거나 무시하는 케이스가 반복되어,
+                regex가 더 안정적이라 판단하고 코드로 가져왔습니다.
+              </div>
+              <div className="text-sm text-gray-700">
+                <strong>위험 감지 LLM 위임:</strong> 처음에는 위험 감지도 keyword regex였으나,
+                LLM이 risk_suspected 필드로 직접 판단하도록 옮기고 regex는 fallback(LLM 누락 안전망)으로 강등했습니다.
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-3">
+
+            <div className="grid md:grid-cols-2 gap-3">
               <MetricCard label="1통화당 LLM 호출" value="평균 2회" desc="13턴 / 4분 기준" />
-              <MetricCard label="RULE 경로 비율" value="85%" desc="LLM 완전 우회" />
+              <MetricCard label="코드 가드 처리 비율" value="85%" desc="LLM 완전 우회" />
             </div>
           </Section>
         </div>
 
         {/* 3. 대화 상태 머신 */}
         <div id="callbot-2">
-          <Section title="3. 대화 상태 머신 + 다층 가드레일" delay={0.2}>
+          <Section title="3. 대화 상태 머신 + sub-room" delay={0.2}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              7노드 상태 머신으로 대화 흐름을 제어하고, 9개 LLM Tool(Function Calling)로 각 단계의 작업을 자동화했습니다.
-              각 노드에서 기대 답변과 실제 답변을 교차 비교하여 불완전판매 징후를 실시간 탐지합니다.
+              9노드 상태 머신으로 대화 흐름을 제어하고, 10개 LLM Tool(Function Calling)로 각 단계의 작업을 자동화했습니다.
+              각 노드는 별도 핸들러로 분리되어 있고, 엔진의 process 함수는 노드 라우터 역할만 합니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 my-4">
-              <p className="text-sm font-mono text-gray-600 text-center">
-                ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED
+              <p className="text-sm font-mono text-gray-600 text-center leading-relaxed">
+                ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA
+                <br />→ AGENT_TRANSFER | PAYMENT_REMINDER → COMPLETED
+                <br /><span className="text-gray-400">[+ RECONNECT: 재발신 시 동의 대기]</span>
               </p>
             </div>
 
-            <h4 className="text-base font-semibold text-gray-800 mb-3">9개 LLM Tool</h4>
-            <div className="grid grid-cols-3 gap-2 mb-6">
-              {["get_monitoring_script", "verify_identity", "record_answer", "revise_answer", "flag_risk", "transfer_to_agent", "schedule_callback", "end_monitoring", "search_law"].map((tool, i) => (
-                <span key={i} className="px-3 py-2 bg-gray-50 text-gray-700 rounded-lg text-xs font-mono text-center border border-gray-200">{tool}</span>
-              ))}
+            <h4 className="text-base font-semibold text-gray-800 mb-3">sub-room 메커니즘</h4>
+            <p className="text-sm text-gray-700 mb-3">
+              LLM이 분류한 답변(positive/negative/unclear/skipped)에 따라 메인 노드를 떠나지 않고 자식 방으로 잠깐 우회합니다.
+            </p>
+            <div className="space-y-2 mb-6">
+              <GuardrailItem title="clarify" desc="답변이 모호할 때 진입. 1회차는 LLM이 상세 설명 생성, 2회차부터는 고정 텍스트로 전환 — LLM이 추가 설명을 제대로 참조하지 못하는 한계를 코드가 보완" />
+              <GuardrailItem title="redirect" desc="무관한 답변(off-topic) 시 고정 안내 멘트로 질문 복귀 유도" />
+              <GuardrailItem title="supplement" desc="부정 답변 시 보완 모니터링(SUPPLEMENT_QA) 흐름으로 전환" />
             </div>
 
-            <h4 className="text-base font-semibold text-gray-800 mb-3">다층 가드레일</h4>
-            <div className="space-y-3">
-              <GuardrailItem title="off_topic 3단계 에스컬레이션" desc="1회 부드러운 안내 → 2회 강한 경고 → 3회 상담사 이관. off_topic을 절대 부정 답변으로 처리하지 않는 규칙 적용" />
-              <GuardrailItem title="명확화 요청 제한" desc="ask_reason/ask_explanation 누적 5회 초과 시 상담사 이관" />
-              <GuardrailItem title="노드 재시도 제한" desc="유효하지 않은 라우트 연속 5회 → 상담사 이관 제안" />
-              <GuardrailItem title="불완전판매 징후 실시간 탐지" desc='예: COM-009("설계사가 강요했나요?") 기대="no"인데 고객이 긍정 답변 → 즉시 flag_risk + AGENT_TRANSFER' />
+            <h4 className="text-base font-semibold text-gray-800 mb-3">카운터 기반 강제 이관</h4>
+            <p className="text-sm text-gray-700 mb-3">
+              질문 ID별로 3종 카운터(모호 답변, 부정 답변, 전체 합산)를 추적하여 무한 루프를 방지합니다.
+            </p>
+            <div className="space-y-2 mb-6">
+              <GuardrailItem title="개별 카운터 3회" desc="같은 질문에 모호 또는 부정 답변 3회 반복 시 상담사 이관" />
+              <GuardrailItem title="합산 카운터 5회" desc="같은 질문에 총 5회 응답 실패 시 강제 이관" />
+              <GuardrailItem title="소프트 안내" desc="개별 2회 또는 합산 4회 도달 시 '답변이 어려우시면 상담원에게 연결해 드릴 수 있습니다' 문구 강제 삽입" />
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">10개 LLM Tool</h4>
+            <div className="grid grid-cols-3 gap-2">
+              {["get_monitoring_script", "verify_identity", "record_answer", "revise_answer", "request_revision_confirmation", "flag_risk", "transfer_to_agent", "schedule_callback", "end_monitoring", "search_law"].map((tool, i) => (
+                <span key={i} className="px-3 py-2 bg-gray-50 text-gray-700 rounded-lg text-xs font-mono text-center border border-gray-200">{tool}</span>
+              ))}
             </div>
           </Section>
         </div>
 
         {/* 4. 본인확인 */}
         <div id="callbot-3">
-          <Section title="4. 본인확인 — 한국어 생년월일 5단계 파싱" delay={0.25}>
-            <p className="text-base text-gray-700 leading-relaxed mb-4">
-              STT 특성상 숫자가 다양한 형태로 인식됩니다. "공공년 칠월 육일", "영영년 7월 6일", "00 76" 등을
-              모두 처리할 수 있는 5단계 파싱을 구현했습니다.
+          <Section title="4. 본인확인 — 한국어 생년월일 파싱" delay={0.25}>
+            <p className="text-base text-gray-700 leading-relaxed mb-3">
+              STT 특성상 숫자가 다양한 형태로 인식됩니다. "공공년 칠월 육일", "팔칠년 일월 이일", "00 76" 등을
+              모두 처리할 수 있는 다단계 파싱을 구현했습니다.
+            </p>
+            <p className="text-sm text-gray-500 mb-4">
+              생년월일 파싱은 입력 패턴이 다양하지만 결정론적이고 숫자 비교가 핵심이라,
+              LLM보다 정규식 다단계 fallback이 더 정확하고 빠릅니다.
             </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
-                <Step num="1" title="한국어 년/월/일 구조 매칭" desc='"공공년 칠월 육일" → 패턴 감지하여 년/월/일 단위 분리' />
-                <Step num="2" title="한국어 → 숫자 변환" desc='"공" → 0, "칠" → 7, "육" → 6. 한글 숫자 사전 기반 치환' />
-                <Step num="3" title="숫자 그룹 분리" desc='"007 06" → [007, 06]. 공백/구두점 기준 그룹핑' />
-                <Step num="4" title="2그룹 스마트 해석" desc="[00, 76] → YYMMDD로 해석 시도. 월(1-12)·일(1-31) 범위 검증" />
-                <Step num="5" title="순수 숫자 추출 폴백" desc="위 단계 실패 시 전체 텍스트에서 숫자만 추출하여 6자리 조합" />
+                <Step num="0" title="어미 제거 + 합성수 선처리" desc={'"이천년 칠월 6일이요" → 어미(이요/입니다 등) 제거, "이십삼" → 23 변환'} />
+                <Step num="1" title="년/월/일 구조 매칭" desc={'"공공년 칠월 6일" → 한국어 숫자 허용 정규식으로 년/월/일 분리'} />
+                <Step num="2a" title="한글 → 아라비아 변환 후 재시도" desc={'"팔칠년 일월 이일" → "87년 1월 2일"로 치환 후 다시 매칭'} />
+                <Step num="2b" title="숫자 그룹 분리" desc={'"00 76" → 숫자 덩어리 분리, 3개면 (Y,M,D), 2개면 길이별 분해'} />
+                <Step num="2c" title="순수 숫자 추출 (최종 fallback)" desc="위 단계 실패 시 모든 숫자만 추출하여 6자리 조합" />
               </div>
             </div>
             <p className="text-sm text-gray-600 mb-4">
-              6자리 ↔ 8자리(YYYYMMDD) 크로스 비교, 불일치 시 1회 재확인 후 상담사 이관
+              DB 저장 형식이 YYMMDD일 수도 YYYYMMDD일 수도 있어 4가지 조합으로 크로스 비교. 5회 실패 시 자동 이관.
             </p>
             <DemoImage src="/portfolio/callbot-2.png" alt="본인확인 통화 화면" caption="모바일 통화 + 채팅 UI — 주민등록번호 앞 6자리 본인확인 후 보험 계약 확인 모니터링 자동 진행" />
           </Section>
@@ -156,9 +194,44 @@ export function CallbotDetail() {
         <div id="callbot-4">
           <Section title="5. 불완전판매 감지 + 상담사 이관" delay={0.3}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              모니터링 질문에 대한 고객 답변을 LLM이 분석하여 불완전판매 징후를 실시간 감지합니다.
-              위험이 감지되면 고객에게 안내 후 전문 상담원에게 자동 이관하고,
-              관리자에게는 AI 브리핑(대화 분석 요약)과 모니터링 체크리스트를 자동 생성합니다.
+              LLM 1차 판단 + 키워드 fallback 2차 안전망 + expected=no 정답 차단의 3중 구조로
+              불완전판매 징후를 빠짐없이 탐지합니다.
+            </p>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">3중 안전망</h4>
+            <div className="space-y-3 mb-4">
+              <GuardrailItem title="1차: LLM risk_suspected 필드" desc="record_answer tool 호출 시 risk_suspected(bool), risk_type(5종: 설계사 대리, 설명 미이행, 계약 미인지, 민원, 사기), risk_evidence(근거)를 함께 채우게 하여 답변 분류와 위험 판단을 한 번의 호출로 통합" />
+              <GuardrailItem title="2차: 키워드 fallback" desc="LLM이 risk_suspected=false로 보냈어도 명백한 위험 키워드가 있으면 강제 escalate — 9B의 위험 누락을 보완하는 안전망" />
+              <GuardrailItem title="expected=no 정답 차단" desc={'"강요받으신 적 있나요?"에 "아니요"는 정답이지 위험이 아님. LLM이 부정 답변을 위험으로 잡아도 expected=no 질문이면 무시'} />
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">STEP 일관성 검증</h4>
+            <p className="text-sm text-gray-700 mb-3">
+              LLM이 채운 step1_verb(동사 존재) / step2_match(질문-답변 매칭) / step3_unrelated(무관 여부) 필드 간
+              모순을 코드가 검증하여 최종 분류를 교정합니다.
+            </p>
+            <div className="overflow-x-auto mb-4">
+              <table className="w-full text-xs border border-gray-200 rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-gray-50">
+                    <th className="px-3 py-2 text-left font-semibold text-gray-700 border-b">모순 패턴</th>
+                    <th className="px-3 py-2 text-left font-semibold text-gray-700 border-b">교정</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-gray-100"><td className="px-3 py-2 text-gray-600">무관 명사 + positive/negative</td><td className="px-3 py-2 text-gray-600">→ skipped</td></tr>
+                  <tr className="border-b border-gray-100"><td className="px-3 py-2 text-gray-600">동사 없음 + positive</td><td className="px-3 py-2 text-gray-600">→ skipped (감탄사)</td></tr>
+                  <tr className="border-b border-gray-100"><td className="px-3 py-2 text-gray-600">매칭 안 됨 + 부정 키워드</td><td className="px-3 py-2 text-gray-600">→ negative</td></tr>
+                  <tr className="border-b border-gray-100"><td className="px-3 py-2 text-gray-600">expected=no + 명백한 부정어 + positive</td><td className="px-3 py-2 text-gray-600">→ negative (정반대 분류 교정)</td></tr>
+                  <tr><td className="px-3 py-2 text-gray-600">명확한 부정 패턴 + unclear/skipped</td><td className="px-3 py-2 text-gray-600">→ negative</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">이관 흐름</h4>
+            <p className="text-sm text-gray-700 mb-4">
+              위험 감지 시 고정 멘트로 안내 후 상담사에게 이관합니다. 이관 멘트는 LLM이 생성하지 않고 고정 문구를 사용하며,
+              비동기로 LLM에게 이관 브리핑(대화 맥락 요약)을 생성시켜 관리자에게 전달합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4 mb-4">
               <DemoImage src="/portfolio/callbot-8.png" alt="불완전판매 감지 → 상담원 연결" caption="모바일 — 보험 가입 확인 중 불완전판매 징후 감지 시 전문 상담원 자동 연결" />
@@ -173,9 +246,19 @@ export function CallbotDetail() {
         <div id="callbot-5">
           <Section title="6. 욕설 감지 + 차단" delay={0.35}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
-              고객이 욕설을 사용하면 2단계로 대응합니다.
-              1회차에 경고 안내 멘트를 출력하고, 2회차 반복 시 상담사에게 강제 이관합니다.
-              모니터링 결과에 profanity 리스크로 기록되어 관리자가 조회할 수 있습니다.
+              키워드 1차 + LLM 보조 2차, 두 경로가 같은 카운터를 공유하여 회피 시도를 차단합니다.
+            </p>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">듀얼 감지 경로</h4>
+            <div className="space-y-2 mb-4">
+              <GuardrailItem title="1차: 키워드 매칭" desc="음성 입력 특성에 맞춰 STT 변형까지 커버하는 정규식 패턴. 초성 변형(ㅅㅂ)이나 영문 욕설은 STT에서 나오지 않으므로 제외하고, 띄어쓰기 변형만 허용" />
+              <GuardrailItem title="2차: LLM 보조" desc="record_answer tool에 profanity_suspected 필드 추가. 키워드에 안 잡힌 변형 욕설(새 비속어, 풍자성 표현)을 LLM이 보조 판단. 단순 거절·놀람은 false 처리" />
+            </div>
+
+            <h4 className="text-base font-semibold text-gray-800 mb-3">1회 경고 / 2회 이관</h4>
+            <p className="text-sm text-gray-700 mb-4">
+              두 경로 모두 같은 카운터를 증가시킵니다. 1차에서 1회, 2차에서 1회 잡혀도 합쳐서 2회가 되면 즉시 이관.
+              이관 시 risk_flags에 기록하고 관리자에게 실시간 알림을 전송합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 경고 → 2/2 반복 시 상담사 강제 이관" />
@@ -188,7 +271,7 @@ export function CallbotDetail() {
         <div id="callbot-6">
           <Section title="7. 역할 및 협업" delay={0.4}>
             <ul className="space-y-3">
-              <BulletItem text="음성 AI 전체(STT/VAD/상태 머신) 설계·구현을 주도" />
+              <BulletItem text="음성 및 대화 엔진 전체(STT/VAD/상태 머신/코드 가드 체인/Tool 스키마) 설계·구현을 주도" />
               <BulletItem text="팀원의 LLM Tool Calling 개발을 코칭하며 병행 진행" />
               <BulletItem text="음성 파이프라인과 대화 로직의 인터페이스를 정의하여 각자 독립 개발이 가능한 구조 설계" />
             </ul>
@@ -199,7 +282,7 @@ export function CallbotDetail() {
         <div id="callbot-7">
           <Section title="8. Tech Stack" delay={0.45}>
             <div className="flex flex-wrap gap-2">
-              {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "EXAONE 1.2B (Q4_K_M)", "EXAONE 32B AWQ", "Qwen3-ASR", "Silero VAD", "ko-sroberta", "YAML Prompts"].map((tag, i) => (
+              {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD", "YAML Prompts"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
