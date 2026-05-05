@@ -8,7 +8,7 @@ export const profile = {
   email: "xhxh9539@gmail.com",
   github: "https://github.com/sonsangwoo1116",
   linkedin: "https://linkedin.com/in/sangwooson",
-  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.\n\n석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고, 졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.\n\n사운드마인드에서 AI 콜봇 대화 엔진 설계부터 기업 고객용 RAG 시스템, 대규모 음성인식 파이프라인까지, AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지 전 과정을 주도하고 있습니다.",
+  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.\n\n석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고, 졸업 후 음성 및 언어 AI 솔루션 기반 회사인 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.\n\nAI 콜봇 대화 엔진 설계부터 기업 고객용 RAG 시스템, 대규모 음성인식 파이프라인까지, AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지 전 과정을 주도하고 있습니다.",
   heroEducation: "한신대학교 IT영상데이터융합(협) 석사 (4.5/4.5, 2023-2025)\n한신대학교 IT콘텐츠학과 학사 (3.77/4.5, 2018-2023)",
   protectedPassword: "1234",
 };
