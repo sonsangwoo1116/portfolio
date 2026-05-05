@@ -46,7 +46,7 @@ export function CallbotDetail() {
               <h4 className="text-sm font-semibold text-gray-800 mb-2">핵심 성과</h4>
               <ul className="space-y-1">
                 <li className="text-sm text-gray-700">• 엣지 테스트 52/52 PASS (E1~E12 분류 정확도 100%)</li>
-                <li className="text-sm text-gray-700">• TTFT P50 45ms (1채널) / P99 &lt; 300ms (5채널 동시 통화)</li>
+                <li className="text-sm text-gray-700">• 5채널 동시 통화 P50 154ms / P99 300ms 미만 (RTX 3090 단일 GPU, 9B)</li>
                 <li className="text-sm text-gray-700">• 비동기 히스토리 요약으로 입력 토큰 47% 감축 (3735 → 1985)</li>
                 <li className="text-sm text-gray-700">• 9노드 상태 머신 + 10개 LLM Tool Calling + 3중 안전망</li>
               </ul>
