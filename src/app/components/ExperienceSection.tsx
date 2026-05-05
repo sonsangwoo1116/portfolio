@@ -24,7 +24,7 @@ export function ExperienceSection() {
           <div className="w-20 h-1 bg-blue-500 mx-auto" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div>
           <div className="space-y-3">
             {positions.map((pos, index) => {
               const hasHighlights = pos.highlights && pos.highlights.length > 0;

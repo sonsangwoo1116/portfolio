@@ -19,7 +19,7 @@ export function AcademicProjectsSection() {
           <div className="w-20 h-1 bg-blue-500 mx-auto" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div>
           {items.map((project, index) => (
             <motion.div
               key={index}

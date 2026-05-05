@@ -19,7 +19,7 @@ export function PublicationsSection() {
           <div className="w-20 h-1 bg-blue-500 mx-auto" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div>
           {publications.map((pub, index) => (
             <motion.div
               key={index}

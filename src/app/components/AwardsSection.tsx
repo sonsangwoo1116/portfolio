@@ -18,7 +18,7 @@ export function AwardsSection() {
           <div className="w-20 h-1 bg-blue-500 mx-auto" />
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div>
           {awards.map((award, index) => (
             <motion.div
               key={index}
