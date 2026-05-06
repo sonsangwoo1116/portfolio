@@ -17,13 +17,13 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   const domainInfo = project.domain ? domainConfig[project.domain] : null;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 py-4">
           <button
             onClick={() => { window.location.hash = ""; }}
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Projects</span>
@@ -45,15 +45,15 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                 {domainInfo.label}
               </span>
             )}
-            <span className="text-sm text-gray-500">{project.date}</span>
+            <span className="text-sm text-slate-500">{project.date}</span>
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{project.title}</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-4">{project.title}</h1>
 
           {/* Impact */}
           {project.impact && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 mb-4">
-              <p className="text-base font-medium text-gray-700">{project.impact}</p>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
+              <p className="text-base font-medium text-slate-700">{project.impact}</p>
             </div>
           )}
 
@@ -61,7 +61,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           <div className="flex items-center gap-3">
             {project.links.github && (
               <a href={project.links.github} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-sm">
+                className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm">
                 <Github className="w-4 h-4" /> GitHub
               </a>
             )}
@@ -73,7 +73,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             )}
             {project.links.external && (
               <a href={project.links.external} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors text-sm">
+                className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 text-slate-700 rounded-lg hover:bg-slate-300 transition-colors text-sm">
                 <ExternalLink className="w-4 h-4" /> External
               </a>
             )}
@@ -85,10 +85,10 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-white rounded-xl border border-gray-200 p-6 mb-6"
+          className="bg-white rounded-xl border border-slate-200 p-6 mb-6"
         >
-          <h2 className="text-xl font-bold text-gray-900 mb-3">Overview</h2>
-          <p className="text-base text-gray-700 leading-relaxed">{project.description}</p>
+          <h2 className="text-xl font-bold text-slate-900 mb-3">Overview</h2>
+          <p className="text-base text-slate-700 leading-relaxed">{project.description}</p>
         </motion.div>
 
         {/* Problem Statement */}
@@ -97,10 +97,10 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 mb-6"
+            className="bg-white rounded-xl border border-slate-200 p-6 mb-6"
           >
-            <h2 className="text-xl font-bold text-gray-900 mb-3">💡 Problem</h2>
-            <p className="text-base text-gray-700 leading-relaxed">{project.problemStatement}</p>
+            <h2 className="text-xl font-bold text-slate-900 mb-3">💡 Problem</h2>
+            <p className="text-base text-slate-700 leading-relaxed">{project.problemStatement}</p>
           </motion.div>
         )}
 
@@ -110,12 +110,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 mb-6"
+            className="bg-white rounded-xl border border-slate-200 p-6 mb-6"
           >
-            <h2 className="text-xl font-bold text-gray-900 mb-4">🔧 Technical Details</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">🔧 Technical Details</h2>
             <ul className="space-y-3">
               {project.technicalDetails.map((detail, i) => (
-                <li key={i} className="text-base text-gray-700 leading-relaxed flex items-start gap-3">
+                <li key={i} className="text-base text-slate-700 leading-relaxed flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 rounded-full bg-blue-400 shrink-0" />
                   <span>{detail}</span>
                 </li>
@@ -130,12 +130,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white rounded-xl border border-gray-200 p-6 mb-6"
+            className="bg-white rounded-xl border border-slate-200 p-6 mb-6"
           >
-            <h2 className="text-xl font-bold text-gray-900 mb-4">🚀 Future Plans</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-4">🚀 Future Plans</h2>
             <ul className="space-y-3">
               {project.futureImprovements.map((item, i) => (
-                <li key={i} className="text-base text-gray-700 leading-relaxed flex items-start gap-3">
+                <li key={i} className="text-base text-slate-700 leading-relaxed flex items-start gap-3">
                   <span className="mt-2 w-2 h-2 rounded-full bg-green-400 shrink-0" />
                   <span>{item}</span>
                 </li>
@@ -149,12 +149,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="bg-white rounded-xl border border-gray-200 p-6"
+          className="bg-white rounded-xl border border-slate-200 p-6"
         >
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Tech Stack</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-4">Tech Stack</h2>
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag, i) => (
-              <span key={i} className="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium">
+              <span key={i} className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium">
                 {tag}
               </span>
             ))}

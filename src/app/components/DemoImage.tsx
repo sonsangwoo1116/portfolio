@@ -12,8 +12,8 @@ export function DemoImage({ src, alt, caption }: DemoImageProps) {
   return (
     <>
       <div className="my-4 cursor-zoom-in" onClick={() => setOpen(true)}>
-        <img src={src} alt={alt} className="w-full rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow" />
-        {caption && <p className="text-xs text-gray-500 mt-2 text-center">{caption}</p>}
+        <img src={src} alt={alt} className="w-full rounded-lg border border-slate-200 shadow-sm hover:shadow-md transition-shadow" />
+        {caption && <p className="text-xs text-slate-500 mt-2 text-center">{caption}</p>}
       </div>
 
       {open && (

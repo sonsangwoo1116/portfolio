@@ -11,7 +11,7 @@ export function ExperienceSection() {
   };
 
   return (
-    <section id="experience" className="py-12 bg-gray-50">
+    <section id="experience" className="py-12 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ export function ExperienceSection() {
           transition={{ duration: 0.6 }}
           className="mb-6"
         >
-          <h2 className="text-2xl font-bold text-gray-900">Experience</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Experience</h2>
         </motion.div>
 
         <div>
@@ -38,19 +38,19 @@ export function ExperienceSection() {
                   className="relative pl-8 pb-4 last:pb-0"
                 >
                   {index < positions.length - 1 && (
-                    <div className="absolute left-[7px] top-6 bottom-0 w-0.5 bg-gray-200" />
+                    <div className="absolute left-[7px] top-6 bottom-0 w-0.5 bg-slate-200" />
                   )}
                   <div className="absolute left-0 top-2 w-4 h-4 rounded-full border-2 border-blue-500 bg-white" />
 
-                  <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-6">
+                  <div className="rounded-lg border border-slate-200 bg-white hover:shadow-md transition-shadow p-6">
                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
                       <span className="text-base font-semibold text-blue-600">
                         {formatPeriod(pos.startDate, pos.endDate)}
                       </span>
-                      <span className="text-gray-300">|</span>
-                      <span className="text-lg font-bold text-gray-900">{pos.company}</span>
-                      <span className="text-gray-300">|</span>
-                      <span className="text-base text-gray-700">{pos.title}</span>
+                      <span className="text-slate-300">|</span>
+                      <span className="text-lg font-bold text-slate-900">{pos.company}</span>
+                      <span className="text-slate-300">|</span>
+                      <span className="text-base text-slate-700">{pos.title}</span>
                     </div>
 
                     {hasHighlights && (
@@ -65,12 +65,12 @@ export function ExperienceSection() {
                           return (
                             <div key={i} className="border-l-2 border-blue-300 pl-4">
                               {title && (
-                                <div className="text-base font-semibold text-gray-800 mb-2">{title}</div>
+                                <div className="text-base font-semibold text-slate-800 mb-2">{title}</div>
                               )}
                               <ul className="space-y-1.5">
                                 {bullets.map((bullet, j) => (
-                                  <li key={j} className="text-sm text-gray-600 flex items-start gap-2">
-                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                                  <li key={j} className="text-sm text-slate-600 flex items-start gap-2">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
                                     <span>{bullet}</span>
                                   </li>
                                 ))}

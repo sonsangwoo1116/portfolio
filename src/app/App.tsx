@@ -75,7 +75,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <NavigationBar showNavLinks={true} />
       <HeroSection />
 
@@ -93,7 +93,7 @@ export default function App() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
+            <h2 className="text-2xl font-bold text-slate-900">Projects</h2>
           </motion.div>
 
           {/* Featured Projects */}
@@ -110,7 +110,7 @@ export default function App() {
           <div className="mt-8 text-center">
             <button
               onClick={() => setShowAllProjects((prev) => !prev)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
             >
               <span>{showAllProjects ? "접기" : `다른 프로젝트 보기 (${projects.length - FEATURED_IDS.length})`}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${showAllProjects ? "rotate-180" : ""}`} />
@@ -142,7 +142,7 @@ export default function App() {
                   </div>
                 ) : (
                   <div className="text-center py-12">
-                    <p className="text-gray-500">검색 결과가 없습니다.</p>
+                    <p className="text-slate-500">검색 결과가 없습니다.</p>
                   </div>
                 )}
               </div>
@@ -157,9 +157,9 @@ export default function App() {
         {sections.partTimeJob && <PartTimeJobSection />}
       </div>
 
-      <footer className="bg-white border-t border-gray-200 mt-20">
+      <footer className="bg-white border-t border-slate-200 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <p className="text-center text-gray-500 text-xs">
+          <p className="text-center text-slate-500 text-xs">
             Last Updated:{" "}
             {new Date().toLocaleDateString("ko-KR", {
               year: "numeric",

@@ -19,7 +19,7 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
 
   return (
     <motion.div
-      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 flex flex-col h-full cursor-pointer"
+      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 flex flex-col h-full cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -41,7 +41,7 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
                 href={item.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
+                className="p-1.5 text-slate-600 hover:bg-slate-100 rounded-md transition-colors"
                 title="GitHub"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -52,13 +52,13 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="font-semibold text-lg text-gray-900 mb-2">
+        <h3 className="font-semibold text-lg text-slate-900 mb-2">
           {item.title}
         </h3>
 
         {/* Impact (한줄 성과) */}
         {item.impact && (
-          <p className="text-sm font-medium text-gray-600 mb-3">{item.impact}</p>
+          <p className="text-sm font-medium text-slate-600 mb-3">{item.impact}</p>
         )}
 
         {/* Spacer */}
