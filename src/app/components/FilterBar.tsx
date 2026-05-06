@@ -10,7 +10,6 @@ interface FilterBarProps {
 
 const domains = [
   { id: "all", label: "전체" },
-  { id: "AI Agent", label: "AI Agent" },
   { id: "AI/Voice", label: "AI/Voice" },
   { id: "LLM/RAG", label: "LLM/RAG" },
   { id: "Side Project", label: "Side Project" },

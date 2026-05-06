@@ -31,7 +31,7 @@ export function CallbotDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "대화 흐름 설계", "9B LLM의 한계와 코드 가드", "위험 탐지 + 이관", "본인확인 + 대화 제어", "성과", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "System Overview", "대화 흐름 설계", "9B LLM의 한계와 5단계 사전 필터", "위험 탐지 + 이관", "본인확인 + 대화 제어", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -51,7 +51,7 @@ export function CallbotDetail() {
               아키텍처는 4단계에 걸쳐 진화했습니다. 초기 SLM 분류 기반 2-tier 라우팅에서 시작하여,
               위험 발화 누락 보완을 위한 조건부 강제 escalation을 추가했고,
               모델 성능이 충분해지자 단일 LLM 구조로 단순화했으나 9B급 모델의 한국어 의미 구분 한계가 드러나
-              현재의 LLM + 코드 가드 하이브리드 구조로 최종 정착했습니다.
+              현재의 LLM + 규칙 기반 5단계 사전 필터 구조로 최종 정착했습니다.
             </p>
           </Section>
         </div>
@@ -92,12 +92,12 @@ export function CallbotDetail() {
           </Section>
         </div>
 
-        {/* 4. 9B LLM의 한계와 코드 가드 */}
+        {/* 4. 9B LLM의 한계와 5단계 사전 필터 */}
         <div id="callbot-3">
-          <Section title="4. 9B LLM의 한계와 코드 가드" delay={0.25}>
+          <Section title="4. 9B LLM의 한계와 5단계 사전 필터" delay={0.25}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               9B급 한국어 LLM은 동사 의미 구분("받았지" vs "들이받았지"), 감탄사 분류, 답변 번복 인지에서 한계가 명확했습니다.
-              LLM은 그대로 두고, 모델이 못 잡는 케이스를 코드 레벨 가드 5단계로 보완하는 구조입니다.
+              LLM은 그대로 두고, 모델이 못 잡는 케이스를 LLM 호출 전 5단계 규칙 기반 필터로 먼저 걸러내는 구조입니다.
             </p>
             <p className="text-sm text-slate-500 mb-4">
               별도 라우터 모듈 없이, 가드 체인 자체가 라우터 역할을 합니다. 발화가 어떤 처리 경로로 갈지 순차적으로 결정합니다.
@@ -287,7 +287,7 @@ export function CallbotDetail() {
           <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할</h4>
             <ul className="space-y-3 mb-6">
-              <BulletItem text="음성 및 대화 엔진 전체(STT/VAD/상태 머신/코드 가드 체인/Tool 스키마) 설계·구현을 주도" />
+              <BulletItem text="음성 및 대화 엔진 전체(STT/VAD/상태 머신/사전 필터 체인/Tool 스키마) 설계·구현을 주도" />
               <BulletItem text="팀원의 LLM Tool Calling 개발을 코칭하며 병행 진행" />
               <BulletItem text="음성 파이프라인과 대화 로직의 인터페이스를 정의하여 각자 독립 개발이 가능한 구조 설계" />
             </ul>

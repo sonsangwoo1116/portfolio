@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "AI Agent 기반 콜봇 시스템",
-    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 단순 의도는 약 15ms 템플릿 응답으로, 복잡 의도만 LLM Tool Calling으로 흘려보내는 5단계 코드 가드 하이브리드 라우팅을 9노드 상태 머신과 10개 Tool Calling 위에 직접 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
+    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 단순 의도는 약 15ms 템플릿 응답으로, 복잡 의도만 LLM Tool Calling으로 흘려보내는 5단계 규칙 기반 사전 필터를 9노드 상태 머신과 10개 Tool Calling 위에 직접 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
     domain: "AI Agent",
     tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
@@ -47,9 +47,9 @@ export const projects: Project[] = [
     problemStatement: "9B급 한국어 LLM의 동사 의미 구분·감탄사 분류·답변 번복 인지 한계를 코드 레벨 가드로 보완하면서, GPU 비용을 통제해야 하는 것이 핵심 과제였습니다.",
     technicalDetails: [
       "9노드 상태 머신(ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED + RECONNECT) + 10개 LLM Tool 기반 AI Agent 대화 흐름 설계",
-      "9B LLM + 5단계 코드 가드 하이브리드 라우팅 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. TTFT P50 45ms(1채널), P99 < 300ms(5채널), 포화 ~18 req/s. 비동기 히스토리 요약으로 입력 토큰 47% 감축(3735→1985)",
+      "9B LLM + 5단계 규칙 기반 사전 필터 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. TTFT P50 45ms(1채널), P99 < 300ms(5채널), 포화 ~18 req/s. 비동기 히스토리 요약으로 입력 토큰 47% 감축(3735→1985)",
       "불완전판매 3중 안전망: LLM risk_suspected 1차 → 키워드 fallback 2차 → STEP 일관성 검증(step1_verb/step2_match/step3_unrelated 모순 교정). expected=no 정답 차단으로 오탐 방지",
-      "음성 및 대화 엔진 전체(STT/VAD/상태 머신/코드 가드 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
+      "음성 및 대화 엔진 전체(STT/VAD/상태 머신/사전 필터 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
     ],
     impact: "엣지 52/52 PASS, 5채널 P50 154ms / P99 < 300ms, 입력 토큰 47% 감축 | 9노드 + 10 Tool Calling",
   },
@@ -213,7 +213,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 5단계 코드 가드 하이브리드 라우팅을 9노드 상태 머신 + 10개 Tool Calling 위에 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망(LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증), 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 5단계 규칙 기반 사전 필터을 9노드 상태 머신 + 10개 Tool Calling 위에 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망(LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증), 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
@@ -230,6 +230,15 @@ export const careerData = {
         "[회의록 분석 플랫폼 - VoiceNote | 2025.02 - 2025.05] Whisper STT + pyannote 화자분리 + LLM 요약 통합 5개 마이크로서비스 설계·구현 — 화자-텍스트 정렬 알고리즘 직접 구현 (겹침 구간 시간 가중치 + 3단계 폴백) — Whisper 30초 제한에 맞춘 VAD 기반 청크 분할로 할루시네이션 해결, OpenVINO NPU 가속 추론",
         "[시니어 케어 챗봇 | 2025.02 - 2025.05] LLM 기반 고령자 일일 건강체크 AI 챗봇 설계·개발 — 2단계 상태 머신 (16개 서브 상태, 40+ 조건부 전이) + 30+ 엔티티 키 기반 대화 자동 분기 — 10+ YAML 프롬프트 설계",
       ],
+    },
+    {
+      company: "디지털새싹",
+      title: "AI 교육 멘토",
+      description: "AI·데이터 분석 강의, 초·중·고 블록 코딩/딥러닝 교육 멘토링",
+      location: "경기",
+      startDate: "2023-01",
+      endDate: "2024-07",
+      highlights: [],
     },
   ] as Position[],
 
@@ -265,9 +274,7 @@ export const careerData = {
 
   teaching: [] as TeachingExperience[],
 
-  partTimeJobs: [
-    { company: "디지털새싹", role: "보조강사", period: "2023.01 - 2024.07", description: "AI·데이터 분석 강의 보조, 초·중·고 블록 코딩/딥러닝 교육 멘토링" },
-  ] as PartTimeJob[],
+  partTimeJobs: [] as PartTimeJob[],
 
   groupActivities: [] as GroupActivity[],
   mentoring: [] as MentoringExperience[],

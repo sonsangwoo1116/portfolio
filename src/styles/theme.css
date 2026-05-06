@@ -120,6 +120,11 @@
 }
 
 @layer base {
+  ::selection {
+    background-color: rgba(147, 197, 253, 0.3);
+    color: inherit;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
