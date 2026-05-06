@@ -37,7 +37,7 @@ export function WigvoDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "듀얼 세션 아키텍처", "Stage 1 — Echo Gate (7단계 진화)", "Stage 2 — PSTN VAD 독립 아키텍처", "Stage 3 — Whisper 환각 필터", "Strategy 패턴 — 3가지 통신 파이프라인", "프로덕션 메트릭 (148통)", "역할 및 Tech Stack"].map((item, i) => (
+            {["Background", "System Overview", "Echo Gate (7단계 진화)", "PSTN VAD 독립 아키텍처", "Whisper 환각 필터", "Strategy 패턴 — 3가지 통신 파이프라인", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`wv-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -45,18 +45,9 @@ export function WigvoDetail() {
           </nav>
         </Section>
 
-        {/* 1. Overview */}
+        {/* 1. Background */}
         <div id="wv-0">
-          <Section title="1. Overview" delay={0.1}>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-slate-800 mb-2">프로덕션 지표 (148통 PSTN 통화)</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <MetricCard label="Session A 지연" value="555ms" desc="P50, P95: 1,169ms" />
-                <MetricCard label="에코 루프" value="0건" desc="프로토타입 80% → 0%" />
-                <MetricCard label="환각 차단" value="0.3%↓" desc="콜당 평균 0.7건" />
-                <MetricCard label="비용" value="$0.18/분" desc="최적화 후 33% 감소" />
-              </div>
-            </div>
+          <Section title="1. Background" delay={0.1}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               상대방은 앱 설치 없이 일반 전화만 받으면 됩니다.
               실제 전화망(PSTN)을 통한 양방향 LLM 기반 실시간 음성 통역 플랫폼입니다.
@@ -74,9 +65,9 @@ export function WigvoDetail() {
           </Section>
         </div>
 
-        {/* 2. 듀얼 세션 아키텍처 */}
+        {/* 2. System Overview */}
         <div id="wv-1">
-          <Section title="2. 듀얼 세션 아키텍처" delay={0.15}>
+          <Section title="2. System Overview" delay={0.15}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               에코 루프를 구조적으로 차단하기 위해 두 개의 독립적인 OpenAI Realtime API 세션으로 분리했습니다.
               단일 세션 양방향 방식은 프로덕션에서 에코 루프를 방지할 수 없어 폐기했습니다.
@@ -117,7 +108,7 @@ export function WigvoDetail() {
 
         {/* 3. Echo Gate */}
         <div id="wv-2">
-          <Section title="3. Stage 1 — Echo Gate (7단계 진화)" delay={0.2}>
+          <Section title="3. Echo Gate (7단계 진화)" delay={0.2}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               음성 지문(Pearson 상관)부터 시작하여 7단계를 거쳐 최종 Echo Gate를 완성했습니다.
               핵심 돌파구는 <strong>"Drop vs Replace"</strong>의 발견이었습니다.
@@ -184,7 +175,7 @@ export function WigvoDetail() {
 
         {/* 4. PSTN VAD */}
         <div id="wv-3">
-          <Section title="4. Stage 2 — PSTN VAD 독립 아키텍처" delay={0.25}>
+          <Section title="4. PSTN VAD 독립 아키텍처" delay={0.25}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               OpenAI Server VAD는 깨끗한 광대역 음성을 가정합니다.
               PSTN 배경 노이즈(RMS 50-200)를 "음성 진행 중"으로 인식하여 speech_stopped가 15-72초 지연되거나 미발동합니다.
@@ -221,7 +212,7 @@ export function WigvoDetail() {
 
         {/* 5. Whisper 환각 필터 */}
         <div id="wv-4">
-          <Section title="5. Stage 3 — Whisper 환각 필터" delay={0.3}>
+          <Section title="5. Whisper 환각 필터" delay={0.3}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               PSTN 노이즈가 Whisper-1에 진입하면 학습 데이터(YouTube, 방송)에서 학습한
               "그럴듯한" 텍스트를 생성합니다. "MBC 뉴스, 이덕영입니다", "시청해주셔서 감사합니다" 같은 환각이
@@ -294,9 +285,15 @@ export function WigvoDetail() {
           </Section>
         </div>
 
-        {/* 7. 프로덕션 메트릭 */}
+        {/* 7. 성과 */}
         <div id="wv-6">
-          <Section title="7. 프로덕션 메트릭 (148통)" delay={0.4}>
+          <Section title="7. 성과" delay={0.4}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              <MetricCard label="Session A 지연" value="555ms" desc="P50, P95: 1,169ms" />
+              <MetricCard label="에코 루프" value="0건" desc="프로토타입 80% → 0%" />
+              <MetricCard label="환각 차단" value="0.3%↓" desc="콜당 평균 0.7건" />
+              <MetricCard label="비용" value="$0.18/분" desc="최적화 후 33% 감소" />
+            </div>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
                 <thead className="bg-slate-50">

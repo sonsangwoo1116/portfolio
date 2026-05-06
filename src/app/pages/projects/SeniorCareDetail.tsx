@@ -30,7 +30,7 @@ export function SeniorCareDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "2단계 상태 머신", "LLM 엔티티 추출", "YAML 프롬프트 설계", "자동 건너뛰기 + 반복 방지", "종합 요약 생성", "역할 및 Tech Stack"].map((item, i) => (
+            {["Background", "System Design", "LLM 엔티티 추출", "YAML 프롬프트 설계", "자동 건너뛰기 + 반복 방지", "종합 요약 생성", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`sc-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -38,18 +38,9 @@ export function SeniorCareDetail() {
           </nav>
         </Section>
 
-        {/* 1. Overview */}
+        {/* 1. Background */}
         <div id="sc-0">
-          <Section title="1. Overview" delay={0.1}>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-slate-800 mb-2">핵심 성과</h4>
-              <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• 2단계 상태 머신 — 5개 메인 상태 + 16개 서브 상태, 40+ 조건부 전이</li>
-                <li className="text-sm text-slate-700">• 30+ 엔티티 키 기반 LLM 구조화 추출 + 상호 배타적 쌍 충돌 해소</li>
-                <li className="text-sm text-slate-700">• 10+ YAML 프롬프트 — 서브 상태별 맞춤 대화 생성</li>
-                <li className="text-sm text-slate-700">• 텍스트/음성 듀얼 입출력 (STT: WhisperX, TTS: KADI)</li>
-              </ul>
-            </div>
+          <Section title="1. Background" delay={0.1}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               고령자의 일일 건강 상태를 대화형으로 체크하는 AI 챗봇입니다.
               <strong>식사, 약 복용, 수면, 운동, 건강 상태</strong> 5가지 영역을 순차적으로 확인하고,
@@ -63,9 +54,9 @@ export function SeniorCareDetail() {
           </Section>
         </div>
 
-        {/* 2. 2단계 상태 머신 */}
+        {/* 2. System Design */}
         <div id="sc-1">
-          <Section title="2. 2단계 상태 머신" delay={0.15}>
+          <Section title="2. System Design" delay={0.15}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               메인 상태(state)와 서브 상태(sub_state)를 분리하여 대화 흐름을 제어합니다.
               메인 상태는 체크 영역(식사→약→수면→운동→건강→종합)을 결정하고,
@@ -318,9 +309,21 @@ HEALTH_GOOD=True`}
           </Section>
         </div>
 
-        {/* 7. 역할 및 Tech Stack */}
+        {/* 7. 성과 */}
         <div id="sc-6">
-          <Section title="7. 역할 및 Tech Stack" delay={0.4}>
+          <Section title="7. 성과" delay={0.4}>
+            <ul className="space-y-1">
+              <li className="text-sm text-slate-700">• 2단계 상태 머신 — 5개 메인 상태 + 16개 서브 상태, 40+ 조건부 전이</li>
+              <li className="text-sm text-slate-700">• 30+ 엔티티 키 기반 LLM 구조화 추출 + 상호 배타적 쌍 충돌 해소</li>
+              <li className="text-sm text-slate-700">• 10+ YAML 프롬프트 — 서브 상태별 맞춤 대화 생성</li>
+              <li className="text-sm text-slate-700">• 텍스트/음성 듀얼 입출력 (STT: WhisperX, TTS: KADI)</li>
+            </ul>
+          </Section>
+        </div>
+
+        {/* 8. 역할 및 Tech Stack */}
+        <div id="sc-7">
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할 (단독 개발)</h4>
             <ul className="space-y-2 mb-6">
               <BulletItem text="2단계 상태 머신 설계 — 5개 메인 상태 + 16개 서브 상태, 40+ 조건부 전이 로직" />

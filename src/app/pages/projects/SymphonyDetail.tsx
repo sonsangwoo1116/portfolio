@@ -30,7 +30,7 @@ export function SymphonyDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Architecture", "3-Worker 분리 아키텍처", "2-Pass Bilingual STT", "Silero VAD + Smart Chunking", "재시도 + 보안 + 모니터링", "역할 및 Tech Stack"].map((item, i) => (
+            {["Background", "System Overview", "3-Worker 분리 아키텍처", "2-Pass Bilingual STT", "Silero VAD + Smart Chunking", "재시도 + 보안 + 모니터링", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`sym-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -38,19 +38,9 @@ export function SymphonyDetail() {
           </nav>
         </Section>
 
-        {/* 1. Overview */}
+        {/* 1. Background */}
         <div id="sym-0">
-          <Section title="1. Overview" delay={0.1}>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-slate-800 mb-2">핵심 성과</h4>
-              <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• 3-Worker 분리로 성공률 82% → 95%+ 개선</li>
-                <li className="text-sm text-slate-700">• RTX 3090 2장에서 분당 200건 안정 처리</li>
-                <li className="text-sm text-slate-700">• 2-Pass Bilingual STT로 영어/한국어 혼합 음성 처리</li>
-                <li className="text-sm text-slate-700">• Temporal Payload 2MB 제한 → 100MB 파일 처리 가능</li>
-                <li className="text-sm text-slate-700">• SSRF 2중 방어 + Graceful Shutdown + RFC 7807 에러 표준</li>
-              </ul>
-            </div>
+          <Section title="1. Background" delay={0.1}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               영어/한국어 혼합 음성을 동시에 대량 처리해야 하는 환경에서 안정적으로 동작하는 배치 STT 시스템을 구축했습니다.
               학생들의 발음이 불명확하고 영어와 한국어가 섞여 나오며, 다수의 음성을 동시에 처리해야 하는 제약이 있었습니다.
@@ -63,9 +53,9 @@ export function SymphonyDetail() {
           </Section>
         </div>
 
-        {/* 2. System Architecture */}
+        {/* 2. System Overview */}
         <div id="sym-1">
-          <Section title="2. System Architecture" delay={0.15}>
+          <Section title="2. System Overview" delay={0.15}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               Client(Spring Boot) → Gateway(FastAPI) → Temporal Server → Worker Container → Triton(GPU) 구조로,
               API Key 인증, Rate Limiting, SSRF 2-Pass 방어, WebSocket 스트리밍을 포함합니다.
@@ -241,9 +231,22 @@ export function SymphonyDetail() {
           </Section>
         </div>
 
-        {/* 7. 역할 및 Tech Stack */}
+        {/* 7. 성과 */}
         <div id="sym-6">
-          <Section title="7. 역할 및 Tech Stack" delay={0.4}>
+          <Section title="7. 성과" delay={0.4}>
+            <ul className="space-y-1">
+              <li className="text-sm text-slate-700">• 3-Worker 분리로 성공률 82% → 95%+ 개선</li>
+              <li className="text-sm text-slate-700">• RTX 3090 2장에서 분당 200건 안정 처리</li>
+              <li className="text-sm text-slate-700">• 2-Pass Bilingual STT로 영어/한국어 혼합 음성 처리</li>
+              <li className="text-sm text-slate-700">• Temporal Payload 2MB 제한 → 100MB 파일 처리 가능</li>
+              <li className="text-sm text-slate-700">• SSRF 2중 방어 + Graceful Shutdown + RFC 7807 에러 표준</li>
+            </ul>
+          </Section>
+        </div>
+
+        {/* 8. 역할 및 Tech Stack */}
+        <div id="sym-7">
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할 (단독 설계·구현)</h4>
             <ul className="space-y-2 mb-6">
               <li className="text-base text-slate-700 flex items-start gap-2">

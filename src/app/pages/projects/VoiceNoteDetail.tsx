@@ -30,7 +30,7 @@ export function VoiceNoteDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "멀티 서비스 아키텍처", "STT + VAD 파이프라인", "화자분리 + 라벨 정렬", "LLM Map-Reduce 요약", "TaskManager 상태 관리", "역할 및 Tech Stack"].map((item, i) => (
+            {["Background", "System Overview", "STT + VAD 파이프라인", "화자분리 + 라벨 정렬", "LLM Map-Reduce 요약", "TaskManager 상태 관리", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`vn-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -38,18 +38,9 @@ export function VoiceNoteDetail() {
           </nav>
         </Section>
 
-        {/* 1. Overview */}
+        {/* 1. Background */}
         <div id="vn-0">
-          <Section title="1. Overview" delay={0.1}>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-slate-800 mb-2">핵심 성과</h4>
-              <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• STT + 화자분리 + LLM 요약 end-to-end 자동화 파이프라인</li>
-                <li className="text-sm text-slate-700">• 5개 마이크로서비스 분리 — 리소스 특성별 독립 스케일링</li>
-                <li className="text-sm text-slate-700">• Intel NPU(STT) / GPU(화자분리) / CPU(VAD) 하드웨어별 최적 배치</li>
-                <li className="text-sm text-slate-700">• FIFO 큐 기반 비동기 처리 + 장애 복구 자동화</li>
-              </ul>
-            </div>
+          <Section title="1. Background" delay={0.1}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               음성 녹음을 업로드하면 자동으로 텍스트 변환, 화자 분리, 요약까지 완료되는 회의록 분석 플랫폼입니다.
               2인 개발 팀에서 전체 파이프라인 설계와 핵심 모듈 구현을 담당했습니다.
@@ -61,9 +52,9 @@ export function VoiceNoteDetail() {
           </Section>
         </div>
 
-        {/* 2. 멀티 서비스 아키텍처 */}
+        {/* 2. System Overview */}
         <div id="vn-1">
-          <Section title="2. 멀티 서비스 아키텍처" delay={0.15}>
+          <Section title="2. System Overview" delay={0.15}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               리소스 특성이 다른 컴포넌트를 5개 독립 서비스로 분리하여 병렬 실행과 개별 스케일링이 가능하도록 설계했습니다.
             </p>
@@ -249,9 +240,21 @@ export function VoiceNoteDetail() {
           </Section>
         </div>
 
-        {/* 7. 역할 및 Tech Stack */}
+        {/* 7. 성과 */}
         <div id="vn-6">
-          <Section title="7. 역할 및 Tech Stack" delay={0.4}>
+          <Section title="7. 성과" delay={0.4}>
+            <ul className="space-y-1">
+              <li className="text-sm text-slate-700">• STT + 화자분리 + LLM 요약 end-to-end 자동화 파이프라인</li>
+              <li className="text-sm text-slate-700">• 5개 마이크로서비스 분리 — 리소스 특성별 독립 스케일링</li>
+              <li className="text-sm text-slate-700">• Intel NPU(STT) / GPU(화자분리) / CPU(VAD) 하드웨어별 최적 배치</li>
+              <li className="text-sm text-slate-700">• FIFO 큐 기반 비동기 처리 + 장애 복구 자동화</li>
+            </ul>
+          </Section>
+        </div>
+
+        {/* 8. 역할 및 Tech Stack */}
+        <div id="vn-7">
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할 (2인 팀, 메인 개발자)</h4>
             <ul className="space-y-2 mb-6">
               <BulletItem text="5개 마이크로서비스 아키텍처 설계 — 하드웨어별 리소스 분리 및 독립 배포 구조" />
