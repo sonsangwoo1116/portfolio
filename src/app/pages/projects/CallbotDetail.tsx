@@ -51,7 +51,7 @@ export function CallbotDetail() {
               아키텍처는 4단계에 걸쳐 진화했습니다. 초기 SLM 분류 기반 2-tier 라우팅에서 시작하여,
               위험 발화 누락 보완을 위한 조건부 강제 escalation을 추가했고,
               모델 성능이 충분해지자 단일 LLM 구조로 단순화했으나 9B급 모델의 한국어 의미 구분 한계가 드러나
-              현재의 LLM + 규칙 기반 5단계 사전 필터 구조로 최종 정착했습니다.
+              현재의 LLM + 5단계 규칙 기반 가드 구조로 최종 정착했습니다.
             </p>
           </Section>
         </div>
@@ -287,7 +287,7 @@ export function CallbotDetail() {
           <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할</h4>
             <ul className="space-y-3 mb-6">
-              <BulletItem text="음성 및 대화 엔진 전체(STT/VAD/상태 머신/사전 필터 체인/Tool 스키마) 설계·구현을 주도" />
+              <BulletItem text="음성 및 대화 엔진 전체(STT/VAD/상태 머신/가드 체인/Tool 스키마) 설계·구현을 주도" />
               <BulletItem text="팀원의 LLM Tool Calling 개발을 코칭하며 병행 진행" />
               <BulletItem text="음성 파이프라인과 대화 로직의 인터페이스를 정의하여 각자 독립 개발이 가능한 구조 설계" />
             </ul>

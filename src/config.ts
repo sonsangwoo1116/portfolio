@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "AI Agent 기반 콜봇 시스템",
-    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 단순 의도는 약 15ms 템플릿 응답으로, 복잡 의도만 LLM Tool Calling으로 흘려보내는 5단계 규칙 기반 사전 필터를 9노드 상태 머신과 10개 Tool Calling 위에 직접 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
+    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 단순 의도는 약 15ms 템플릿 응답으로, 복잡 의도만 LLM Tool Calling으로 흘려보내는 5단계 규칙 기반 가드를 9노드 상태 머신과 10개 Tool Calling 위에 직접 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
     domain: "AI Agent",
     tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
@@ -47,9 +47,9 @@ export const projects: Project[] = [
     problemStatement: "9B급 한국어 LLM의 동사 의미 구분·감탄사 분류·답변 번복 인지 한계를 코드 레벨 가드로 보완하면서, GPU 비용을 통제해야 하는 것이 핵심 과제였습니다.",
     technicalDetails: [
       "9노드 상태 머신(ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED + RECONNECT) + 10개 LLM Tool 기반 AI Agent 대화 흐름 설계",
-      "9B LLM + 5단계 규칙 기반 사전 필터 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. TTFT P50 45ms(1채널), P99 < 300ms(5채널), 포화 ~18 req/s. 비동기 히스토리 요약으로 입력 토큰 47% 감축(3735→1985)",
+      "9B LLM + 5단계 규칙 기반 가드 — 욕설 키워드 → STT 오인식 → 대기 요청 → 답변 번복 감지 → Fast path. TTFT P50 45ms(1채널), P99 < 300ms(5채널), 포화 ~18 req/s. 비동기 히스토리 요약으로 입력 토큰 47% 감축(3735→1985)",
       "불완전판매 3중 안전망: LLM risk_suspected 1차 → 키워드 fallback 2차 → STEP 일관성 검증(step1_verb/step2_match/step3_unrelated 모순 교정). expected=no 정답 차단으로 오탐 방지",
-      "음성 및 대화 엔진 전체(STT/VAD/상태 머신/사전 필터 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
+      "음성 및 대화 엔진 전체(STT/VAD/상태 머신/가드 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
     ],
     impact: "엣지 52/52 PASS, 5채널 P50 154ms / P99 < 300ms, 입력 토큰 47% 감축 | 9노드 + 10 Tool Calling",
   },
@@ -213,7 +213,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 5단계 규칙 기반 사전 필터을 9노드 상태 머신 + 10개 Tool Calling 위에 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망(LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증), 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 5단계 규칙 기반 가드를 9노드 상태 머신 + 10개 Tool Calling 위에 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망(LLM 1차 + 키워드 fallback 2차 + STEP 일관성 검증), 욕설 듀얼 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
