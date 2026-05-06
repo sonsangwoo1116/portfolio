@@ -27,6 +27,10 @@ export function HeroSection() {
               transition={{ duration: 0.6 }}
               className="space-y-5"
             >
+              <div className="inline-flex px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold tracking-wide">
+                Available for opportunities
+              </div>
+
               <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
                 {profile.name}
               </h1>
