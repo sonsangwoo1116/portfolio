@@ -84,9 +84,9 @@ export function CallbotDetail() {
             </div>
 
             <h4 className="text-base font-semibold text-slate-800 mb-3">10개 LLM Tool</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
               {["get_monitoring_script", "verify_identity", "record_answer", "revise_answer", "request_revision_confirmation", "flag_risk", "transfer_to_agent", "schedule_callback", "end_monitoring", "search_law"].map((tool, i) => (
-                <span key={i} className="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-xs font-mono text-center border border-blue-100">{tool}</span>
+                <span key={i} className="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-xs font-mono text-center border border-blue-100 break-all">{tool}</span>
               ))}
             </div>
           </Section>
