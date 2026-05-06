@@ -102,7 +102,7 @@ export default function App() {
               .filter((p) => FEATURED_IDS.includes(p.id))
               .sort((a, b) => FEATURED_IDS.indexOf(a.id) - FEATURED_IDS.indexOf(b.id))
               .map((item, index) => (
-                <PortfolioCard key={item.id} item={item} index={index} featured />
+                <PortfolioCard key={item.id} item={item} index={index} />
               ))}
           </div>
 
