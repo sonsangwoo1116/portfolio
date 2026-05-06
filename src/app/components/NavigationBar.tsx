@@ -88,7 +88,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
               className="text-xl font-semibold text-slate-800 cursor-pointer select-none"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              {profile.name}
+              Portfolio
             </h1>
           </motion.div>
 
@@ -160,7 +160,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                   </SheetTrigger>
                   <SheetContent side="right" className="w-72">
                     <SheetTitle className="text-lg font-semibold text-slate-800">
-                      {profile.name}
+                      Portfolio
                     </SheetTitle>
                     <nav className="flex flex-col gap-1 mt-6">
                       {navLinks.map((link) => (
