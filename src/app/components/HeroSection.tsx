@@ -17,8 +17,8 @@ export function HeroSection() {
       <div className="relative max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-16 sm:py-24">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
 
-          {/* Left: Info (3 cols) */}
-          <div className="lg:col-span-3 space-y-6 order-2 lg:order-1">
+          {/* Right: Info (3 cols) */}
+          <div className="lg:col-span-3 space-y-6 order-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -72,9 +72,9 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: Profile + Summary (2 cols) */}
+          {/* Left: Profile + Summary (2 cols) */}
           <motion.div
-            className="lg:col-span-2 order-1 lg:order-2"
+            className="lg:col-span-2 order-1"
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
