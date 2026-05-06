@@ -30,7 +30,7 @@ export function KeywordSpottingDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Background", "Model Architecture", "데이터 증강 전략", "Dual-Threshold 검출", "TFLite 양자화", "성과", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "Model Architecture", "데이터 증강 전략", "Dual-Threshold 검출", "TFLite 양자화", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`kws-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -38,9 +38,18 @@ export function KeywordSpottingDetail() {
           </nav>
         </Section>
 
-        {/* 1. Background */}
+        {/* 1. Overview */}
         <div id="kws-0">
-          <Section title="1. Background" delay={0.1}>
+          <Section title="1. Overview" delay={0.1}>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
+              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
+              <ul className="space-y-1">
+                <li className="text-sm text-slate-700">• 웨이크워드 인식률 96.81% (6,041 / 6,240 샘플)</li>
+                <li className="text-sm text-slate-700">• False Alarm Rate 0.0% — 12시간+ 연속 테스트, 431,991 윈도우</li>
+                <li className="text-sm text-slate-700">• TFLite INT8 양자화로 엣지 디바이스 배포</li>
+                <li className="text-sm text-slate-700">• 노이즈 환경(SNR 20dB) 인식률 86.60% — Clean 대비 +38.49%p</li>
+              </ul>
+            </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               사운드마인드의 음성 AI 서비스에서 사용자가 "깨비야"라고 호출하면 시스템이 활성화되는 웨이크워드 감지 기능을 단독 개발했습니다.
             </p>

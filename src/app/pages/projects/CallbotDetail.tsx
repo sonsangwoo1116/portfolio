@@ -31,7 +31,7 @@ export function CallbotDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Background", "System Overview", "대화 흐름 설계", "9B LLM의 한계와 코드 가드", "위험 탐지 + 이관", "본인확인 + 대화 제어", "성과", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "System Overview", "대화 흐름 설계", "9B LLM의 한계와 코드 가드", "위험 탐지 + 이관", "본인확인 + 대화 제어", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -39,9 +39,9 @@ export function CallbotDetail() {
           </nav>
         </Section>
 
-        {/* 1. Background */}
+        {/* 1. Overview */}
         <div id="callbot-0">
-          <Section title="1. Background" delay={0.1}>
+          <Section title="1. Overview" delay={0.1}>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               보험 완전판매 모니터링은 보험업법상 법적 의무이나, 수작업 전화는 통화당 인건비가 높고 인력 한계가 있습니다.
               AI 콜봇으로 자동화하되, <strong>고객이 말을 끊거나, 우회적으로 답하거나, 갑자기 민원을 제기하는 등

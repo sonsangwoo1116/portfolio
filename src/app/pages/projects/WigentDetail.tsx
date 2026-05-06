@@ -37,7 +37,7 @@ export function WigentDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Background", "Contract-First Development", "Multi-Agent Orchestrator", "동적 Spawning / Retirement", "랜딩 페이지 즉시 생성", "4번의 피벗", "8가지 에이전트 디자인 패턴", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "Contract-First Development", "Multi-Agent Orchestrator", "동적 Spawning / Retirement", "랜딩 페이지 즉시 생성", "4번의 피벗", "8가지 에이전트 디자인 패턴", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`wg-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -45,9 +45,18 @@ export function WigentDetail() {
           </nav>
         </Section>
 
-        {/* 1. Background */}
+        {/* 1. Overview */}
         <div id="wg-0">
-          <Section title="1. Background" delay={0.1}>
+          <Section title="1. Overview" delay={0.1}>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
+              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <MetricCard label="개발 시간" value="3.5h" desc="12:30 - 16:00" />
+                <MetricCard label="프로토타입" value="55분" desc="E2E 작동까지" />
+                <MetricCard label="커밋" value="26개" desc="병합 충돌 0건" />
+                <MetricCard label="GPT-4o 호출" value="~35회" desc="세션당" />
+              </div>
+            </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               주제를 던지면 PM + 도메인 전문가 AI 에이전트들이 Slack 스타일 채팅 UI에서 실시간으로 토론하고,
               합의에 도달하면 랜딩 페이지가 자동 생성되는 Multi-Agent 토론 플랫폼입니다.

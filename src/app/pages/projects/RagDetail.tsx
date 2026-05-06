@@ -31,7 +31,7 @@ export function RagDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Background", "System Overview", "DocumentManagement Graph", "ChatBot Graph", "문서 파싱 및 구조 보존", "Map-Reduce 요약", "로컬 임베딩 + 멀티 유저", "성과", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "System Overview", "DocumentManagement Graph", "ChatBot Graph", "문서 파싱 및 구조 보존", "Map-Reduce 요약", "로컬 임베딩 + 멀티 유저", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`rag-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -39,9 +39,19 @@ export function RagDetail() {
           </nav>
         </Section>
 
-        {/* 1. Background */}
+        {/* 1. Overview */}
         <div id="rag-0">
-          <Section title="1. Background" delay={0.1}>
+          <Section title="1. Overview" delay={0.1}>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
+              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
+              <ul className="space-y-1">
+                <li className="text-sm text-slate-700">• LangGraph 듀얼 그래프로 문서 처리·채팅 블로킹 해결</li>
+                <li className="text-sm text-slate-700">• 최대 50MB / 100페이지 문서 즉시 처리</li>
+                <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce 재귀적 요약</li>
+                <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거</li>
+                <li className="text-sm text-slate-700">• 청크 500토큰 / 오버랩 100토큰, 검색 Top-3</li>
+              </ul>
+            </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               기업 데이터 플랫폼 상용화 데모로 개발한 실시간 문서 업로드 RAG 챗봇입니다.
               문서를 업로드하면 즉시 파싱 → 임베딩 → VectorDB 인덱싱이 완료되어 바로 검색과 질의응답이 가능합니다.
@@ -231,22 +241,9 @@ export function RagDetail() {
           </Section>
         </div>
 
-        {/* 8. 성과 */}
+        {/* 8. 역할 및 Tech Stack */}
         <div id="rag-7">
-          <Section title="8. 성과" delay={0.45}>
-            <ul className="space-y-1">
-              <li className="text-sm text-slate-700">• LangGraph 듀얼 그래프로 문서 처리·채팅 블로킹 해결</li>
-              <li className="text-sm text-slate-700">• 최대 50MB / 100페이지 문서 즉시 처리</li>
-              <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce 재귀적 요약</li>
-              <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거</li>
-              <li className="text-sm text-slate-700">• 청크 500토큰 / 오버랩 100토큰, 검색 Top-3</li>
-            </ul>
-          </Section>
-        </div>
-
-        {/* 9. 역할 및 Tech Stack */}
-        <div id="rag-8">
-          <Section title="9. 역할 및 Tech Stack" delay={0.5}>
+          <Section title="8. 역할 및 Tech Stack" delay={0.45}>
             <h4 className="text-base font-semibold text-slate-800 mb-3">역할</h4>
             <ul className="space-y-2 mb-6">
               <BulletItem text="전체 RAG 파이프라인(파싱 → 임베딩 → 검색 → 응답 → 요약) 설계부터 구현까지 단독 수행" />
