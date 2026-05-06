@@ -266,7 +266,7 @@ export function SymphonyDetail() {
             <h4 className="text-base font-semibold text-slate-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
               {["Python", "FastAPI", "Temporal", "Triton Inference Server", "Faster Whisper Large-v3-turbo", "Silero VAD (ONNX)", "Docker Compose", "Prometheus", "Grafana", "DCGM Exporter", "gRPC", "MinIO"].map((tag, i) => (
-                <span key={i} className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium">{tag}</span>
+                <span key={i} className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
           </Section>
@@ -292,7 +292,7 @@ function Section({ title, delay, children }: { title: string; delay: number; chi
 function Step({ num, title, desc }: { num: string; title: string; desc?: string }) {
   return (
     <div className="flex items-start gap-3">
-      <span className="flex-shrink-0 px-2 py-1 rounded bg-blue-600 text-white text-xs font-bold">{num}</span>
+      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-bold flex items-center justify-center">{num}</span>
       <div>
         <span className="text-sm font-medium text-slate-800">{title}</span>
         {desc && <p className="text-xs text-slate-500 mt-0.5">{desc}</p>}
@@ -303,7 +303,7 @@ function Step({ num, title, desc }: { num: string; title: string; desc?: string 
 
 function MetricCard({ label, value, desc }: { label: string; value: string; desc: string }) {
   return (
-    <div className="bg-white border border-slate-200 rounded-lg p-4">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
       <div className="text-xs text-slate-500 mb-1">{label}</div>
       <div className="text-lg font-bold text-slate-900 mb-1">{value}</div>
       <div className="text-xs text-slate-600">{desc}</div>

@@ -332,7 +332,7 @@ HEALTH_GOOD=True`}
             <h4 className="text-base font-semibold text-slate-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
               {["Python", "Ollama (Gemma3-27B Q4)", "LangChain", "Streamlit", "WhisperX", "KADI TTS", "YAML Prompts"].map((tag, i) => (
-                <span key={i} className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-sm font-medium">{tag}</span>
+                <span key={i} className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
           </Section>
