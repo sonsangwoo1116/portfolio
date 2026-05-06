@@ -30,7 +30,7 @@ export function KeywordSpottingDetail() {
         {/* 목차 */}
         <Section title="Contents" delay={0.05}>
           <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "Model Architecture", "데이터 증강 전략", "Dual-Threshold 검출", "TFLite 양자화", "성과", "역할 및 Tech Stack"].map((item, i) => (
+            {["Overview", "System Architecture", "데이터 증강 전략", "Dual-Threshold 검출", "TFLite 양자화", "성과", "역할 및 Tech Stack"].map((item, i) => (
               <button key={i} onClick={() => document.getElementById(`kws-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
                 {i + 1}. {item}
               </button>
@@ -61,9 +61,9 @@ export function KeywordSpottingDetail() {
           </Section>
         </div>
 
-        {/* 2. Model Architecture */}
+        {/* 2. System Architecture */}
         <div id="kws-1">
-          <Section title="2. Model Architecture" delay={0.15}>
+          <Section title="2. System Architecture" delay={0.15}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               RNN/CNN 대신 Transformer를 선택한 이유는 1초 오디오 윈도우에서 글로벌 self-attention이
               장거리 음향 의존성을 더 잘 포착하기 때문입니다. 웨이크워드는 고유한 시간적 패턴을 가지므로
