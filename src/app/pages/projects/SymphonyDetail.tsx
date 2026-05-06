@@ -115,7 +115,7 @@ export function SymphonyDetail() {
               <div className="space-y-3">
                 <Step num="1" title="Temporal Payload 크기 제한 해결" desc="Activity 간 bytes 대신 파일 경로(str) 전달 → 최대 100MB 파일 지원" />
                 <Step num="2" title="Activity 통합 (download + transcribe)" desc="Worker 분산 문제 해결 + 파일 I/O 제거로 성능 개선" />
-                <Step num="3" title="Callback Queue 분리" desc="STT 워커 포화 시에도 콜백 처리 보장 (task_queue=CALLBACK_TASK_QUEUE)" />
+                <Step num="3" title="Callback Queue 분리" desc="STT 워커 포화 시에도 콜백 처리 보장 — 별도 태스크 큐로 완전 분리" />
               </div>
             </div>
           </Section>
@@ -172,9 +172,9 @@ export function SymphonyDetail() {
               </div>
             </div>
             <p className="text-sm text-slate-600">
-              멀티 GPU Round-robin 로드밸런싱: <code className="text-xs bg-slate-100 px-1 rounded">_rr_lock</code>으로
-              thread-safe하게 다음 Triton URL 선택, 스레드별 gRPC 클라이언트 캐싱으로 TCP/TLS 핸드셰이크 비용 제거.
-              비동기 병렬 추론은 <code className="text-xs bg-slate-100 px-1 rounded">asyncio.Semaphore(max_inflight=16)</code>으로 동시 요청 제한.
+              멀티 GPU Round-robin 로드밸런싱으로 thread-safe하게 다음 Triton 서버를 선택하고,
+              스레드별 gRPC 클라이언트를 캐싱하여 TCP/TLS 핸드셰이크 비용을 제거했습니다.
+              비동기 병렬 추론은 동시 요청을 최대 16개로 제한하여 GPU 과부하를 방지합니다.
             </p>
           </Section>
         </div>

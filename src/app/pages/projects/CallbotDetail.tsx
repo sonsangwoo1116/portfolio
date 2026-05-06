@@ -146,7 +146,7 @@ export function CallbotDetail() {
               불완전판매 징후를 빠짐없이 탐지합니다.
             </p>
             <div className="space-y-3 mb-4">
-              <GuardrailItem title="1차: LLM risk_suspected 필드" desc="record_answer tool 호출 시 risk_suspected(bool), risk_type(5종: 설계사 대리, 설명 미이행, 계약 미인지, 민원, 사기), risk_evidence(근거)를 함께 채우게 하여 답변 분류와 위험 판단을 한 번의 호출로 통합" />
+              <GuardrailItem title="1차: LLM 위험 판단" desc="LLM이 답변을 분류할 때 위험 여부(bool), 위험 유형(5종: 설계사 대리, 설명 미이행, 계약 미인지, 민원, 사기), 근거를 함께 판단하여 답변 분류와 위험 탐지를 한 번의 호출로 통합" />
               <GuardrailItem title="2차: 키워드 fallback" desc="LLM이 risk_suspected=false로 보냈어도 명백한 위험 키워드가 있으면 강제 escalate — 9B의 위험 누락을 보완하는 안전망" />
               <GuardrailItem title="expected=no 정답 차단" desc={'"강요받으신 적 있나요?"에 "아니요"는 정답이지 위험이 아님. LLM이 부정 답변을 위험으로 잡아도 expected=no 질문이면 무시'} />
             </div>
@@ -195,13 +195,13 @@ export function CallbotDetail() {
             </p>
             <div className="space-y-2 mb-4">
               <GuardrailItem title="1차: 키워드 매칭 (즉시)" desc="발화가 들어오면 LLM 호출 전에 정규식으로 먼저 검사. STT 출력 특성상 초성 변형(ㅅㅂ)이나 영문 욕설은 나오지 않으므로 제외하고, 띄어쓰기 변형만 커버" />
-              <GuardrailItem title="2차: LLM 보조 (답변 분류 시)" desc="LLM이 답변을 분류할 때 profanity_suspected 필드도 함께 판단. 1차 키워드에 안 잡히는 신조어나 비꼬는 표현을 보완" />
+              <GuardrailItem title="2차: LLM 보조 (답변 분류 시)" desc="LLM이 답변을 분류할 때 욕설 여부도 함께 판단. 1차 키워드에 안 잡히는 신조어나 비꼬는 표현을 보완" />
             </div>
             <p className="text-sm text-slate-700 mb-4">
-              두 경로 모두 같은 카운터(profanity_count)를 증가시킵니다.
+              두 경로 모두 같은 욕설 카운터를 증가시킵니다.
               예: 1턴에서 키워드로 1회 → 2턴에서 LLM으로 1회 → 합산 2회로 즉시 이관.
               카운터를 분리하면 매번 다른 방식으로 욕해서 각 경로가 1회에 머물 수 있는데, 통합하여 이를 차단합니다.
-              이관 시 risk_flags에 기록하고 관리자에게 실시간 알림을 전송합니다.
+              이관 시 위험 플래그에 기록하고 관리자에게 실시간 알림을 전송합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <DemoImage src="/portfolio/callbot-6.png" alt="욕설 탐지 모바일" caption="욕설 탐지 1/2 경고 → 2/2 반복 시 상담사 강제 이관" />

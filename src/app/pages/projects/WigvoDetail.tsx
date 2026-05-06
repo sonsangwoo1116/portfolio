@@ -109,7 +109,7 @@ export function WigvoDetail() {
               </div>
               <p className="text-xs text-slate-500 mt-2">
                 STT는 Realtime API 내 Whisper-1 유지, 번역은 GPT-4o-mini Chat API(temperature=0)로 분리.
-                Realtime API의 번역은 환각을 유발하므로 context_prune_keep=0으로 완전 차단.
+                Realtime API의 번역은 환각을 유발하므로 컨텍스트를 완전히 비워서 차단.
               </p>
             </div>
           </Section>

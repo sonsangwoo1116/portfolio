@@ -180,8 +180,8 @@ export function WigentDetail() {
             <div className="bg-slate-50 rounded-lg p-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">Human-in-the-Loop</h4>
               <p className="text-xs text-slate-600">
-                사용자가 결과를 거절하면 PM이 거절 사실을 알리고 <code className="text-xs bg-slate-100 px-1 rounded">continueDebate()</code>로
-                8턴 추가 토론을 진행합니다. 후반 토론(수렴 단계) 프롬프트를 적용하여 빠르게 새 결론에 도달합니다.
+                사용자가 결과를 거절하면 PM이 거절 사실을 알리고
+                8턴 추가 토론을 자동으로 진행합니다. 후반 토론(수렴 단계) 프롬프트를 적용하여 빠르게 새 결론에 도달합니다.
               </p>
             </div>
             <DemoImage src="/portfolio/wigent-spawn-retire.png" alt="에이전트 퇴장 및 새 전문가 입장" caption="박민수 퇴장('좋은 논의였습니다') → 이수혁 기술 전문가 입장. OFFLINE 섹션에 이전 에이전트 표시" />

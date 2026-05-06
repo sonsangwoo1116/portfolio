@@ -271,7 +271,7 @@ export function SeniorCareDetail() {
             </p>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                <h4 className="text-sm font-semibold text-slate-800 mb-2">maybe_skip_state()</h4>
+                <h4 className="text-sm font-semibold text-slate-800 mb-2">자동 건너뛰기 로직</h4>
                 <ul className="space-y-1.5">
                   <li className="text-xs text-slate-600">• 각 메인 상태 진입 시 context_dict 확인</li>
                   <li className="text-xs text-slate-600">• 필수 엔티티가 이미 있으면 while 루프로 연속 건너뛰기</li>
@@ -326,7 +326,7 @@ HEALTH_GOOD=True`}
               <BulletItem text="2단계 상태 머신 설계 — 5개 메인 상태 + 16개 서브 상태, 40+ 조건부 전이 로직" />
               <BulletItem text="LLM 엔티티 추출 + 상호 배타적 쌍 충돌 해소 로직 구현" />
               <BulletItem text="10+ YAML 프롬프트 설계 — 고령자 맞춤 어투, 서브 상태별 분기" />
-              <BulletItem text="자동 건너뛰기(maybe_skip_state) + 반복 방지 카운터 설계" />
+              <BulletItem text="자동 건너뛰기 + 반복 방지 카운터 설계" />
               <BulletItem text="Streamlit 데모 UI + WhisperX STT + KADI TTS 통합" />
             </ul>
             <h4 className="text-base font-semibold text-slate-800 mb-3">Tech Stack</h4>

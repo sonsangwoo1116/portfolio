@@ -176,11 +176,11 @@ export function RagDetail() {
               </div>
             </div>
             <p className="text-sm text-slate-600 mb-4">
-              파싱 결과를 json_tmp/ 디렉토리에 캐시합니다. <code className="text-xs bg-slate-100 px-1 rounded">ExistCheck(output_file)</code>로
-              동일 문서 재업로드 시 API 중복 호출을 차단하여 비용과 지연을 절감합니다.
+              파싱 결과를 캐시 디렉토리에 저장합니다.
+              동일 문서 재업로드 시 캐시 존재 여부를 확인하여 API 중복 호출을 차단하고 비용과 지연을 절감합니다.
             </p>
             <p className="text-sm text-slate-600">
-              Summary에서는 <code className="text-xs bg-slate-100 px-1 rounded">_get_pages()</code>에서
+              요약 시에는 페이지 추출 단계에서
               figure/chart 카테고리를 자동 필터링하여 텍스트 요약에 이미지 설명이 섞이지 않도록 합니다.
             </p>
           </Section>
@@ -191,9 +191,8 @@ export function RagDetail() {
           <Section title="6. Map-Reduce 요약" delay={0.35}>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               고정 배치 크기로 묶으면 각 요약의 길이가 달라서 토큰 오버플로우가 발생합니다.
-              <code className="text-xs bg-slate-100 px-1 rounded">group_by_token_limit()</code>으로
               실제 토크나이저(Qwen)로 프롬프트 템플릿 토큰 + 각 컨텍스트 토큰을 합산하여
-              max_tokens를 초과하지 않게 동적으로 그룹을 생성합니다.
+              최대 토큰 수를 초과하지 않게 동적으로 그룹을 생성합니다.
             </p>
             <div className="bg-slate-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
@@ -221,7 +220,7 @@ export function RagDetail() {
             </p>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
               멀티 유저 환경에서 데이터 오염을 방지하기 위해
-              <code className="text-xs bg-slate-100 px-1 rounded">history/{'{date}_{uuid}'}/</code> 구조로
+              날짜+UUID 기반 디렉토리 구조로
               raw JSON, 이미지, VectorDB(persist_directory)를 사용자별 완전 분리했습니다.
             </p>
             <div className="bg-slate-50 rounded-lg p-4 mb-4">
@@ -234,8 +233,7 @@ export function RagDetail() {
               </pre>
             </div>
             <p className="text-sm text-slate-600">
-              스트리밍 응답에서는 <code className="text-xs bg-slate-100 px-1 rounded">token_generator()</code>의
-              finally 블록에서 전체 응답과 검색 결과를 한 번에 로깅합니다.
+              스트리밍 응답이 끝나면 전체 응답과 검색 결과를 한 번에 로깅합니다.
               사용자는 즉시 토큰을 받고, 관리자는 완전한 로그를 수집할 수 있습니다.
             </p>
           </Section>

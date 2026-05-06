@@ -181,7 +181,7 @@ export function VoiceNoteDetail() {
             </p>
             <div className="bg-slate-50 rounded-lg p-4 mb-4">
               <div className="space-y-3">
-                <Step num="1" title="group_by_token_limit()" desc="프롬프트 템플릿 토큰 + 컨텍스트 토큰 합산, max_tokens(2048) 초과 시 새 그룹 생성" />
+                <Step num="1" title="토크나이저 기반 동적 그룹핑" desc="프롬프트 템플릿 토큰 + 컨텍스트 토큰 합산, 최대 토큰(2048) 초과 시 새 그룹 생성" />
                 <Step num="2" title="Map 요약" desc="각 그룹별 독립 요약. 단일 그룹이면 single_summary 체인으로 바로 처리" />
                 <Step num="3" title="Reduce 재귀적 축약" desc="recursive_token_based_reduce() — len(summaries)>1이면 재귀 호출, 최종 하나로 수렴" />
               </div>
@@ -233,7 +233,7 @@ export function VoiceNoteDetail() {
                 <ul className="space-y-1">
                   <li className="text-xs text-slate-600">• sd_done 상태 감지 → LLM 요약 자동 트리거</li>
                   <li className="text-xs text-slate-600">• asyncio.create_task(run_llm()) 비동기 실행</li>
-                  <li className="text-xs text-slate-600">• segments를 파일에서 자동 복원 (_load_segments)</li>
+                  <li className="text-xs text-slate-600">• 이전 세그먼트 결과를 파일에서 자동 복원</li>
                 </ul>
               </div>
               <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
