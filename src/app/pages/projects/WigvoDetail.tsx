@@ -120,19 +120,14 @@ export function WigvoDetail() {
           <Section title="3. Stage 1 — Echo Gate (7단계 진화)" delay={0.2}>
             <p className="text-base text-gray-700 leading-relaxed mb-4">
               음성 지문(Pearson 상관)부터 시작하여 7단계를 거쳐 최종 Echo Gate를 완성했습니다.
+              핵심 돌파구는 <strong>"Drop vs Replace"</strong>의 발견이었습니다.
             </p>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-              <h4 className="text-sm font-semibold text-blue-900 mb-2">핵심 돌파구 — Drop vs Replace</h4>
-              <div className="grid md:grid-cols-2 gap-3">
-                <div className="bg-white rounded-lg p-3 border border-blue-100">
-                  <div className="text-xs font-semibold text-red-600 mb-1">Drop (실패)</div>
-                  <p className="text-xs text-gray-600">에코 구간 오디오를 버리면 Server VAD가 스트림 중단으로 오인하여 발화 종료(speech_stopped)를 감지하지 못함</p>
-                </div>
-                <div className="bg-white rounded-lg p-3 border border-blue-100">
-                  <div className="text-xs font-semibold text-green-600 mb-1">Replace (해결)</div>
-                  <p className="text-xs text-gray-600">μ-law 무음 프레임(0xFF)으로 대체하면 스트림 연속성을 유지하면서 VAD가 침묵을 올바르게 인식</p>
-                </div>
-              </div>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+              <h4 className="text-sm font-semibold text-gray-800 mb-2">Drop vs Replace</h4>
+              <p className="text-xs text-gray-600">
+                에코 구간 오디오를 버리면 Server VAD가 스트림 중단으로 오인하여 발화 종료를 감지하지 못하는 문제를,
+                μ-law 무음 프레임(0xFF)으로 <strong>대체</strong>하여 스트림 연속성을 유지하면서 VAD가 침묵을 올바르게 인식하도록 해결했습니다.
+              </p>
             </div>
             <div className="bg-gray-50 rounded-lg p-4 mb-4">
               <h4 className="text-sm font-semibold text-gray-800 mb-3">최종 Echo Gate — 3단 구조</h4>
