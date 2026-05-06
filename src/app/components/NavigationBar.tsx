@@ -71,7 +71,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
 
   return (
     <motion.header
-      className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50"
+      className="border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -85,10 +85,10 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
             transition={{ delay: 0.2 }}
           >
             <h1
-              className="text-xl font-semibold text-slate-800 cursor-pointer select-none"
+              className="text-xl font-semibold text-gray-800 cursor-pointer select-none"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
-              {profile.name}
+              Portfolio
             </h1>
           </motion.div>
 
@@ -101,8 +101,8 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                   onClick={() => scrollToSection(link.id)}
                   className={`relative px-3 py-2 text-sm transition-colors ${
                     activeSection === link.id
-                      ? "text-slate-900 font-semibold"
-                      : "text-slate-500 hover:text-slate-900"
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-600 hover:text-gray-900"
                   }`}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                   {link.label}
                   {activeSection === link.id && (
                     <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-slate-800 rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
                       layoutId="activeNav"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -135,7 +135,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-500 hover:text-slate-900 transition-colors"
+                    className="text-gray-500 hover:text-gray-900 transition-colors"
                   >
                     <Linkedin className="w-4 h-4" />
                   </a>
@@ -143,7 +143,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                 {profile.email && (
                   <a
                     href={`mailto:${profile.email}`}
-                    className="text-slate-500 hover:text-slate-900 transition-colors"
+                    className="text-gray-500 hover:text-gray-900 transition-colors"
                   >
                     <Mail className="w-4 h-4" />
                   </a>
@@ -154,13 +154,13 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
               <div className="lg:hidden">
                 <Sheet>
                   <SheetTrigger asChild>
-                    <button className="p-2 text-slate-600 hover:text-slate-900">
+                    <button className="p-2 text-gray-600 hover:text-gray-900">
                       <Menu className="w-5 h-5" />
                     </button>
                   </SheetTrigger>
                   <SheetContent side="right" className="w-72">
-                    <SheetTitle className="text-lg font-semibold text-slate-800">
-                      {profile.name}
+                    <SheetTitle className="text-lg font-semibold text-gray-800">
+                      Portfolio
                     </SheetTitle>
                     <nav className="flex flex-col gap-1 mt-6">
                       {navLinks.map((link) => (
@@ -169,8 +169,8 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                             onClick={() => scrollToSection(link.id)}
                             className={`text-left px-4 py-3 rounded-lg text-sm transition-colors ${
                               activeSection === link.id
-                                ? "bg-slate-100 text-slate-900 font-semibold"
-                                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                ? "bg-blue-50 text-blue-600 font-semibold"
+                                : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                             }`}
                           >
                             {link.label}
@@ -178,13 +178,13 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                         </SheetClose>
                       ))}
                     </nav>
-                    <div className="mt-8 pt-6 border-t border-slate-200 flex gap-4 px-4">
+                    <div className="mt-8 pt-6 border-t border-gray-200 flex gap-4 px-4">
                       {profile.linkedin && (
                         <a
                           href={profile.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-slate-500 hover:text-slate-900 transition-colors"
+                          className="text-gray-500 hover:text-gray-900 transition-colors"
                         >
                           <Linkedin className="w-5 h-5" />
                         </a>
@@ -192,7 +192,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                       {profile.email && (
                         <a
                           href={`mailto:${profile.email}`}
-                          className="text-slate-500 hover:text-slate-900 transition-colors"
+                          className="text-gray-500 hover:text-gray-900 transition-colors"
                         >
                           <Mail className="w-5 h-5" />
                         </a>

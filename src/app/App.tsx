@@ -75,16 +75,16 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gray-50">
       <NavigationBar showNavLinks={true} />
       <HeroSection />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {sections.experience && <ExperienceSection />}
         {sections.publications && <PublicationsSection />}
       </div>
 
-      <section id="projects" className="py-16 bg-white border-y border-slate-200">
+      <section id="projects" className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -93,8 +93,8 @@ export default function App() {
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold text-slate-900 mb-3">Projects</h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto" />
+            <h2 className="text-3xl font-bold text-gray-900 mb-3">Projects</h2>
+            <div className="w-20 h-1 bg-blue-500 mx-auto" />
           </motion.div>
 
           {/* Featured Projects */}
@@ -111,7 +111,7 @@ export default function App() {
           <div className="mt-8 text-center">
             <button
               onClick={() => setShowAllProjects((prev) => !prev)}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
             >
               <span>{showAllProjects ? "접기" : `다른 프로젝트 보기 (${projects.length - FEATURED_IDS.length})`}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${showAllProjects ? "rotate-180" : ""}`} />
@@ -143,7 +143,7 @@ export default function App() {
                   </div>
                 ) : (
                   <div className="text-center py-12">
-                    <p className="text-slate-500">검색 결과가 없습니다.</p>
+                    <p className="text-gray-500">검색 결과가 없습니다.</p>
                   </div>
                 )}
               </div>
@@ -152,15 +152,15 @@ export default function App() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {sections.awards && <AwardsSection />}
         {sections.academicProjects && <AcademicProjectsSection />}
         {sections.partTimeJob && <PartTimeJobSection />}
       </div>
 
-      <footer className="bg-white border-t border-slate-200 mt-20">
+      <footer className="bg-white border-t border-gray-200 mt-20">
         <div className="max-w-7xl mx-auto px-4 py-8">
-          <p className="text-center text-slate-500 text-xs">
+          <p className="text-center text-gray-500 text-xs">
             Last Updated:{" "}
             {new Date().toLocaleDateString("ko-KR", {
               year: "numeric",
