@@ -188,16 +188,19 @@ export function CallbotDetail() {
             <DemoImage src="/portfolio/callbot-10.png" alt="상담사 이관 상세" caption="AI가 대화 맥락을 분석하여 상담사에게 전달할 브리핑 자동 생성" />
 
             {/* 욕설 */}
-            <h4 className="text-base font-semibold text-slate-800 mt-8 mb-3">욕설 감지 — 듀얼 경로</h4>
+            <h4 className="text-base font-semibold text-slate-800 mt-8 mb-3">욕설 감지 — 키워드 + LLM 이중 안전망</h4>
             <p className="text-base text-slate-700 leading-relaxed mb-4">
-              키워드 1차 + LLM 보조 2차, 두 경로가 같은 카운터를 공유하여 회피 시도를 차단합니다.
+              욕설을 두 군데에서 독립적으로 감지하되, 카운터는 하나로 통합합니다.
+              어떤 경로로 잡히든 누적 2회가 되면 즉시 상담사에게 이관됩니다.
             </p>
             <div className="space-y-2 mb-4">
-              <GuardrailItem title="1차: 키워드 매칭" desc="음성 입력 특성에 맞춰 STT 변형까지 커버하는 정규식 패턴. 초성 변형(ㅅㅂ)이나 영문 욕설은 STT에서 나오지 않으므로 제외하고, 띄어쓰기 변형만 허용" />
-              <GuardrailItem title="2차: LLM 보조" desc="record_answer tool에 profanity_suspected 필드 추가. 키워드에 안 잡힌 변형 욕설(새 비속어, 풍자성 표현)을 LLM이 보조 판단. 단순 거절·놀람은 false 처리" />
+              <GuardrailItem title="1차: 키워드 매칭 (즉시)" desc="발화가 들어오면 LLM 호출 전에 정규식으로 먼저 검사. STT 출력 특성상 초성 변형(ㅅㅂ)이나 영문 욕설은 나오지 않으므로 제외하고, 띄어쓰기 변형만 커버" />
+              <GuardrailItem title="2차: LLM 보조 (답변 분류 시)" desc="LLM이 답변을 분류할 때 profanity_suspected 필드도 함께 판단. 1차 키워드에 안 잡히는 신조어나 비꼬는 표현을 보완" />
             </div>
             <p className="text-sm text-slate-700 mb-4">
-              두 경로 모두 같은 카운터를 증가시킵니다. 1차에서 1회, 2차에서 1회 잡혀도 합쳐서 2회가 되면 즉시 이관.
+              두 경로 모두 같은 카운터(profanity_count)를 증가시킵니다.
+              예: 1턴에서 키워드로 1회 → 2턴에서 LLM으로 1회 → 합산 2회로 즉시 이관.
+              카운터를 분리하면 매번 다른 방식으로 욕해서 각 경로가 1회에 머물 수 있는데, 통합하여 이를 차단합니다.
               이관 시 risk_flags에 기록하고 관리자에게 실시간 알림을 전송합니다.
             </p>
             <div className="grid md:grid-cols-2 gap-4">
