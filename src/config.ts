@@ -238,7 +238,9 @@ export const careerData = {
       location: "경기",
       startDate: "2023-01",
       endDate: "2024-07",
-      highlights: [],
+      highlights: [
+        "초·중·고 대상 AI·데이터 분석 강의 보조 및 블록 코딩/딥러닝 교육 멘토링 수행",
+      ],
     },
   ] as Position[],
 
