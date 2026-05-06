@@ -12,10 +12,9 @@ export function AwardsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="mb-6"
         >
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Awards</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto" />
+          <h2 className="text-2xl font-bold text-gray-900">Awards</h2>
         </motion.div>
 
         <div>
