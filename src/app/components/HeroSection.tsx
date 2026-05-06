@@ -11,8 +11,8 @@ export function HeroSection() {
     <section className="relative bg-gray-50 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-purple-200 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-gray-200 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-gray-200 rounded-full opacity-20 blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
@@ -23,7 +23,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            style={{ width: '60%' }}
+            style={{ width: '75%' }}
           >
             <div className="relative aspect-[3/4] max-w-xs mx-auto lg:mx-0 lg:max-w-full">
               {/* Decorative elements */}
@@ -62,9 +62,11 @@ export function HeroSection() {
                 </span>
               </h1>
 
-              <p className="text-lg text-gray-600 leading-relaxed max-w-xl tracking-tight">
-                {profile.heroDescription}
-              </p>
+              <div className="text-lg text-gray-600 leading-relaxed max-w-xl tracking-tight space-y-3">
+                {profile.heroDescription.split("\n\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
               {profile.heroEducation && (
                 <div className="flex items-start gap-2 mt-2 text-sm text-gray-500">
                   <GraduationCap className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
@@ -109,8 +111,8 @@ export function HeroSection() {
               )}
               {profile.email && (
                 <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors">
-                  <div className="p-2 rounded-lg bg-purple-50">
-                    <Mail className="w-4 h-4 text-purple-600" />
+                  <div className="p-2 rounded-lg bg-blue-50">
+                    <Mail className="w-4 h-4 text-blue-600" />
                   </div>
                   <a
                     href={`mailto:${profile.email}`}
