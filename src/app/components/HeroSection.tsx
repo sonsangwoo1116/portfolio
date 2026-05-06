@@ -8,11 +8,11 @@ const profileImage = import.meta.env.BASE_URL + "profile.png";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-gray-50 overflow-hidden">
+    <section className="relative bg-slate-50 overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-        <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-purple-200 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-slate-200 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-slate-200 rounded-full opacity-20 blur-3xl"></div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
@@ -27,12 +27,12 @@ export function HeroSection() {
           >
             <div className="relative aspect-[3/4] max-w-xs mx-auto lg:mx-0 lg:max-w-full">
               {/* Decorative elements */}
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gray-200/40 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-gray-200/40 rounded-full blur-2xl"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-slate-200/40 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-slate-200/40 rounded-full blur-2xl"></div>
 
               {/* Main image */}
               <div className="relative h-full rounded-2xl overflow-hidden group">
-                <div className="absolute inset-0 bg-gray-500/10 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-slate-500/10 z-10 group-hover:opacity-0 transition-opacity duration-500"></div>
                 <img
                   src={profileImage}
                   alt={`${profile.name} 프로필`}
@@ -46,10 +46,9 @@ export function HeroSection() {
                 {/* Status badge */}
                 <div className="absolute bottom-6 right-6 z-20 px-4 py-2 bg-white/95 backdrop-blur-sm rounded-full shadow-lg flex items-center gap-2">
                   <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                   </span>
-                  <span className="text-xs font-medium text-gray-900">Available for collaboration</span>
+                  <span className="text-xs font-medium text-slate-900">Available for collaboration</span>
                 </div>
               </div>
             </div>
@@ -63,19 +62,21 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-6"
             >
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
                 {profile.name}
-                <span className="block text-xl sm:text-2xl lg:text-3xl font-light text-gray-600 mt-4">
+                <span className="block text-lg sm:text-xl lg:text-2xl font-light text-slate-600 mt-4">
                   {profile.title}
                 </span>
               </h1>
 
-              <p className="text-lg text-gray-600 leading-relaxed max-w-xl tracking-tight">
-                {profile.heroDescription}
-              </p>
+              <div className="text-lg text-slate-600 leading-relaxed max-w-xl tracking-tight space-y-3">
+                {profile.heroDescription.split("\n\n").map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
               {profile.heroEducation && (
-                <div className="flex items-start gap-2 mt-2 text-sm text-gray-500">
-                  <GraduationCap className="w-4 h-4 text-gray-400 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-2 mt-2 text-sm text-slate-500">
+                  <GraduationCap className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
                   <div className="space-y-0.5">
                     {profile.heroEducation.split("\n").map((line, i) => (
                       <div key={i}>{line}</div>
@@ -101,7 +102,7 @@ export function HeroSection() {
               className="pt-6 flex items-center gap-6"
             >
               {profile.linkedin && (
-                <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors">
+                <div className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
                   <div className="p-2 rounded-lg bg-blue-50">
                     <Linkedin className="w-4 h-4 text-blue-600" />
                   </div>
@@ -116,9 +117,9 @@ export function HeroSection() {
                 </div>
               )}
               {profile.email && (
-                <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors">
-                  <div className="p-2 rounded-lg bg-purple-50">
-                    <Mail className="w-4 h-4 text-purple-600" />
+                <div className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
+                  <div className="p-2 rounded-lg bg-blue-50">
+                    <Mail className="w-4 h-4 text-blue-600" />
                   </div>
                   <a
                     href={`mailto:${profile.email}`}
