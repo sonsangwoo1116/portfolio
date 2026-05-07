@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { motion } from "motion/react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown } from "lucide-react";
 import { careerData } from "../../config";
+
+const INITIAL_COUNT = 3;
 
 export function PublicationsSection() {
   const publications = careerData.publications;
+  const [showAll, setShowAll] = useState(false);
+  const visiblePubs = showAll ? publications : publications.slice(0, INITIAL_COUNT);
 
   return (
     <section id="publications" className="py-12 bg-slate-50">
@@ -19,7 +24,7 @@ export function PublicationsSection() {
         </motion.div>
 
         <div>
-          {publications.map((pub, index) => (
+          {visiblePubs.map((pub, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 10 }}
@@ -61,6 +66,18 @@ export function PublicationsSection() {
             </motion.div>
           ))}
         </div>
+
+        {publications.length > INITIAL_COUNT && (
+          <div className="mt-4 text-center">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
+            >
+              <span>{showAll ? "접기" : `더보기 (${publications.length - INITIAL_COUNT})`}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${showAll ? "rotate-180" : ""}`} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
