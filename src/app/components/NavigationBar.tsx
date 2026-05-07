@@ -15,7 +15,6 @@ const defaultNavLinks = [
   { id: "publications", label: "Publications" },
   { id: "projects", label: "Projects" },
   { id: "awards", label: "Awards" },
-  { id: "academic", label: "Academic" },
   { id: "parttime", label: "Part-time" },
 ];
 
@@ -25,7 +24,6 @@ export const careerNavLinks = [
   { id: "education", label: "Education" },
   { id: "publications", label: "Publications" },
   { id: "awards", label: "Awards" },
-  { id: "academic", label: "Academic" },
   { id: "parttime", label: "Part-time" },
 ];
 

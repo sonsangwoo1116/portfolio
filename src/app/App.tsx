@@ -18,7 +18,6 @@ import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
 import { AwardsSection } from "./components/AwardsSection";
-import { AcademicProjectsSection } from "./components/AcademicProjectsSection";
 import { PartTimeJobSection } from "./components/PartTimeJobSection";
 import { projects, sections } from "../config";
 
@@ -153,7 +152,6 @@ export default function App() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {sections.awards && <AwardsSection />}
-        {sections.academicProjects && <AcademicProjectsSection />}
         {sections.partTimeJob && <PartTimeJobSection />}
       </div>
 
