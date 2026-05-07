@@ -68,7 +68,7 @@ export function HeroSection() {
               </div>
               {profile.heroEducation && (
                 <div className="flex items-start gap-2 mt-2 text-sm text-slate-500">
-                  <GraduationCap className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
+                  <img src={import.meta.env.BASE_URL + "logo-hanshin.png"} alt="한신대학교" className="w-5 h-5 mt-0.5 shrink-0" />
                   <div className="space-y-0.5">
                     {profile.heroEducation.split("\n").map((line, i) => (
                       <div key={i}>{line}</div>
@@ -100,9 +100,7 @@ export function HeroSection() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors"
                 >
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <Linkedin className="w-4 h-4 text-blue-600" />
-                  </div>
+                  <img src={import.meta.env.BASE_URL + "logo-linkedin.png"} alt="LinkedIn" className="w-5 h-5" />
                   <span className="text-sm">LinkedIn</span>
                 </a>
               )}
