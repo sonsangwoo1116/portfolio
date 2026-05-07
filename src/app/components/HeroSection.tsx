@@ -23,7 +23,6 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            style={{ width: '75%' }}
           >
             <div className="relative aspect-[3/4] max-w-xs mx-auto lg:ml-auto lg:mr-0 lg:max-w-full">
               {/* Decorative elements */}
