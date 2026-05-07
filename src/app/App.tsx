@@ -78,13 +78,13 @@ export default function App() {
       <NavigationBar showNavLinks={true} />
       <HeroSection />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {sections.experience && <ExperienceSection />}
         {sections.publications && <PublicationsSection />}
       </div>
 
       <section id="projects" className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -150,13 +150,13 @@ export default function App() {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {sections.awards && <AwardsSection />}
         {sections.partTimeJob && <PartTimeJobSection />}
       </div>
 
       <footer className="bg-white border-t border-slate-200 mt-20">
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="max-w-5xl mx-auto px-4 py-8">
           <p className="text-center text-slate-500 text-xs">
             Last Updated:{" "}
             {new Date().toLocaleDateString("ko-KR", {
