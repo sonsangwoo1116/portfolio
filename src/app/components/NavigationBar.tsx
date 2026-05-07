@@ -15,7 +15,6 @@ const defaultNavLinks = [
   { id: "publications", label: "Publications" },
   { id: "projects", label: "Projects" },
   { id: "awards", label: "Awards" },
-  { id: "parttime", label: "Part-time" },
 ];
 
 export const careerNavLinks = [
@@ -24,7 +23,6 @@ export const careerNavLinks = [
   { id: "education", label: "Education" },
   { id: "publications", label: "Publications" },
   { id: "awards", label: "Awards" },
-  { id: "parttime", label: "Part-time" },
 ];
 
 interface NavigationBarProps {
@@ -97,10 +95,10 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                 <motion.button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className={`relative px-3 py-2 text-sm transition-colors ${
+                  className={`relative px-3 py-2 text-sm rounded-md transition-all cursor-pointer ${
                     activeSection === link.id
-                      ? "text-blue-600 font-semibold"
-                      : "text-slate-600 hover:text-slate-900"
+                      ? "text-blue-600 font-semibold bg-blue-50"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
                   }`}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
