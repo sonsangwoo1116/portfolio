@@ -94,31 +94,24 @@ export function HeroSection() {
               className="pt-6 flex items-center gap-6"
             >
               {profile.linkedin && (
-                <div className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors"
+                >
                   <div className="p-2 rounded-lg bg-blue-50">
                     <Linkedin className="w-4 h-4 text-blue-600" />
                   </div>
-                  <a
-                    href={profile.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
+                  <span className="text-sm">LinkedIn</span>
+                </a>
               )}
               {profile.email && (
-                <div className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors">
+                <div className="flex items-center gap-3 text-slate-700">
                   <div className="p-2 rounded-lg bg-blue-50">
                     <Mail className="w-4 h-4 text-blue-600" />
                   </div>
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className="text-sm"
-                  >
-                    {profile.email}
-                  </a>
+                  <span className="text-sm">{profile.email}</span>
                 </div>
               )}
             </motion.div>

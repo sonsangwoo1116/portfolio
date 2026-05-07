@@ -119,7 +119,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
             </nav>
           )}
 
-          {/* Social Links + Mobile Menu */}
+          {/* Mobile Menu */}
           {showNavLinks && (
             <div className="flex items-center gap-3">
               <motion.div
@@ -127,26 +127,7 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-              >
-                {profile.linkedin && (
-                  <a
-                    href={profile.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-500 hover:text-slate-900 transition-colors"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                )}
-                {profile.email && (
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className="text-slate-500 hover:text-slate-900 transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
-                )}
-              </motion.div>
+              ></motion.div>
 
               {/* Mobile Hamburger */}
               <div className="lg:hidden">
