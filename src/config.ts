@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     id: "1",
     title: "AI Agent 기반 콜봇 시스템",
-    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. 규칙 기반 가드 + 대화 흐름 제어 + Tool Calling으로 LLM의 자유도를 단계적으로 제약하는 구조를 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
+    description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling으로 LLM의 자유도를 단계적으로 제약하는 아키텍처를 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
     domain: "AI Agent",
     tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
@@ -51,7 +51,7 @@ export const projects: Project[] = [
       "불완전판매 3중 안전망: LLM risk_suspected 1차 → 키워드 fallback 2차 → STEP 일관성 검증(step1_verb/step2_match/step3_unrelated 모순 교정). expected=no 정답 차단으로 오탐 방지",
       "음성 및 대화 엔진 전체(STT/VAD/상태 머신/가드 체인/Tool 스키마) 설계·구현 주도, 팀원 LLM 개발 코칭 병행",
     ],
-    impact: "엣지 52/52 PASS, P50 154ms, 토큰 47% 감축 | 규칙 기반 가드 + 대화 흐름 제어 + LLM Tool Calling 설계",
+    impact: "엣지 52/52 PASS, P50 154ms, 토큰 47% 감축 | Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling 아키텍처 설계",
   },
   {
     id: "3",
@@ -246,7 +246,7 @@ export const careerData = {
       startDate: "2026-03",
       endDate: null,
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] 규칙 기반 가드 + 대화 흐름 제어 + LLM Tool Calling 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling 아키텍처 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
