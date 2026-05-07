@@ -43,7 +43,7 @@ export function ExperienceSection() {
                   <div className="absolute left-0 top-2 w-4 h-4 rounded-full border-2 border-blue-500 bg-white" />
 
                   <div className="p-6">
-                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
                       <span className="text-base font-semibold text-blue-600">
                         {formatPeriod(pos.startDate, pos.endDate)}
                       </span>
