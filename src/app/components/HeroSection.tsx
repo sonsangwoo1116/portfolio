@@ -15,7 +15,7 @@ export function HeroSection() {
         <div className="absolute -bottom-1/2 -left-1/2 w-96 h-96 bg-slate-200 rounded-full opacity-20 blur-3xl"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
           {/* Profile Image - Left Side */}
           <motion.div
