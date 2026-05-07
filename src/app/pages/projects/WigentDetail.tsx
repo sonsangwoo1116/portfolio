@@ -57,7 +57,13 @@ export function WigentDetail() {
                 <MetricCard label="커밋" value="26개" desc="병합 충돌 0건" />
                 <MetricCard label="GPT-4o 호출" value="~35회" desc="세션당" />
               </div>
-              <p className="text-sm font-medium text-blue-700">Build with TRAE Seoul (ByteDance) 해커톤 대상(Grand Prize) 수상</p>
+              <ul className="space-y-1">
+                <li className="text-sm text-slate-700">• AsyncGenerator 기반 Multi-Agent Orchestrator — 30턴 자유 토론 엔진</li>
+                <li className="text-sm text-slate-700">• 동적 Spawning/Retirement — 토론 흐름에 따라 전문가 교체</li>
+                <li className="text-sm text-slate-700">• Contract-First 병렬 개발 — types.ts 계약서로 3인 동시 개발, 병합 충돌 0건</li>
+                <li className="text-sm text-slate-700">• 토론 결론 → 랜딩 페이지 자동 생성 (9가지 디자인 템플릿)</li>
+                <li className="text-sm text-slate-700">• Build with TRAE Seoul (ByteDance) 해커톤 대상(Grand Prize) 수상</li>
+              </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               주제를 던지면 PM + 도메인 전문가 AI 에이전트들이 Slack 스타일 채팅 UI에서 실시간으로 토론하고,

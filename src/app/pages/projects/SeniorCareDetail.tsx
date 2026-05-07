@@ -46,8 +46,10 @@ export function SeniorCareDetail() {
               <ul className="space-y-1">
                 <li className="text-sm text-slate-700">• 식사·약·수면·운동·건강 5영역 자동 체크 — 비정형 답변에서 정확한 정보 추출</li>
                 <li className="text-sm text-slate-700">• 2단계 상태 머신(5 메인 + 16 서브 상태, 40+ 전이)으로 대화 흐름 제어</li>
+                <li className="text-sm text-slate-700">• 30+ 엔티티 키 기반 LLM 구조화 추출 + 상호 배타적 쌍 충돌 자동 해소</li>
                 <li className="text-sm text-slate-700">• 이미 확보된 정보는 자동 건너뛰기 — 중복 질문 없이 자연스러운 대화</li>
-                <li className="text-sm text-slate-700">• 텍스트/음성 듀얼 입출력 (STT + TTS)</li>
+                <li className="text-sm text-slate-700">• 10+ YAML 프롬프트 — 서브 상태별 고령자 맞춤 어투 최적화</li>
+                <li className="text-sm text-slate-700">• 텍스트/음성 듀얼 입출력 (STT: WhisperX, TTS: KADI)</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

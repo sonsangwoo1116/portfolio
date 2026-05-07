@@ -50,14 +50,15 @@ export function WigvoDetail() {
         <div id="wv-0">
           <Section title="1. Overview" delay={0.1}>
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
-              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과 (148통 PSTN 통화)</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                <MetricCard label="Session A 지연" value="555ms" desc="P50, P95: 1,169ms" />
-                <MetricCard label="에코 루프" value="0건" desc="프로토타입 80% → 0%" />
-                <MetricCard label="환각 차단" value="0.3%↓" desc="콜당 평균 0.7건" />
-                <MetricCard label="비용" value="$0.18/분" desc="최적화 후 33% 감소" />
-              </div>
-              <p className="text-sm font-medium text-blue-700">ACL 2026 System Demonstrations Accept (Rating 7.50)</p>
+              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
+              <ul className="space-y-1 mb-3">
+                <li className="text-sm text-slate-700">• 148통 실전 PSTN 통화에서 에코 루프 0건 — 프로토타입 80% 발생률에서 완전 해결</li>
+                <li className="text-sm text-slate-700">• Session A P50 555ms 레이턴시 — 하드웨어 AEC 없이 소프트웨어만으로 달성</li>
+                <li className="text-sm text-slate-700">• Whisper 환각 누수율 0.3% 이하 — 51개 방송 패턴 블록리스트 + 3-Level Guardrail</li>
+                <li className="text-sm text-slate-700">• 통화 비용 $0.30 → $0.18/분 (33% 절감)</li>
+                <li className="text-sm text-slate-700">• 듀얼 세션 아키텍처 + 3단계 에코 필터 + Strategy 패턴 3가지 통신 모드</li>
+                <li className="text-sm text-slate-700">• ACL 2026 System Demonstrations Accept (Rating 7.50)</li>
+              </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               상대방은 앱 설치 없이 일반 전화만 받으면 됩니다.

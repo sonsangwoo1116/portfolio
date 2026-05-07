@@ -46,7 +46,9 @@ export function VoiceNoteDetail() {
               <ul className="space-y-1">
                 <li className="text-sm text-slate-700">• 음성 업로드 → 텍스트 변환 → 화자 분리 → 요약까지 end-to-end 자동화</li>
                 <li className="text-sm text-slate-700">• 5개 마이크로서비스 분리 — NPU(STT) / GPU(화자분리) / CPU(VAD) 하드웨어별 최적 배치</li>
-                <li className="text-sm text-slate-700">• 장애 시 자동 복구 + FIFO 큐 기반 비동기 처리</li>
+                <li className="text-sm text-slate-700">• STT 타임스탬프 ↔ 화자 세그먼트 정렬로 "누가 무슨 말을 했는지" 자동 매핑</li>
+                <li className="text-sm text-slate-700">• 토크나이저 기반 Map-Reduce 재귀적 요약 — 긴 회의록도 처리</li>
+                <li className="text-sm text-slate-700">• TaskManager 상태 관리 — 자동 체이닝 + 장애 복구 + FIFO 큐</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

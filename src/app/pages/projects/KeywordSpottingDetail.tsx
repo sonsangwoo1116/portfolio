@@ -45,9 +45,10 @@ export function KeywordSpottingDetail() {
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
                 <li className="text-sm text-slate-700">• 웨이크워드 인식률 96.81% (6,041 / 6,240 샘플)</li>
-                <li className="text-sm text-slate-700">• False Alarm Rate 0.0% — 12시간+ 연속 테스트, 431,991 윈도우</li>
-                <li className="text-sm text-slate-700">• TFLite INT8 양자화로 엣지 디바이스 배포</li>
-                <li className="text-sm text-slate-700">• 노이즈 환경(SNR 20dB) 인식률 86.60% — Clean 대비 +38.49%p</li>
+                <li className="text-sm text-slate-700">• False Alarm Rate 0.0% — 12시간+ 연속 테스트, 431,991 윈도우, 0건</li>
+                <li className="text-sm text-slate-700">• Dual-Threshold + Score Buffer 검출 설계로 FA Rate 2.04% → 0.0% 달성</li>
+                <li className="text-sm text-slate-700">• 다차원 데이터 증강(5배 확장) + 배경소음 합성으로 노이즈 환경 인식률 86.60%</li>
+                <li className="text-sm text-slate-700">• TFLite INT8 양자화로 모델 75% 경량화 → 엣지 디바이스 배포</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

@@ -47,9 +47,10 @@ export function RagDetail() {
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
                 <li className="text-sm text-slate-700">• 문서 업로드 즉시 Q&A + 요약 가능 — 최대 50MB / 100페이지</li>
-                <li className="text-sm text-slate-700">• 문서 처리 중에도 채팅 응답 가능 — 듀얼 그래프로 블로킹 해결</li>
-                <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce로 긴 문서도 재귀적 요약</li>
-                <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 비용/지연 제거</li>
+                <li className="text-sm text-slate-700">• LangGraph 듀얼 그래프(DocumentManagement + ChatBot)로 문서 처리 중에도 채팅 응답 가능</li>
+                <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce — 긴 문서도 토큰 초과 없이 재귀적 요약</li>
+                <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 비용/지연 제거, 멀티 유저 데이터 격리</li>
+                <li className="text-sm text-slate-700">• Upstage Document Parse로 PDF 표/제목/이미지 구조 보존 + 캐시 중복 호출 차단</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

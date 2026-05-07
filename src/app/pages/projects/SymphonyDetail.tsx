@@ -48,6 +48,9 @@ export function SymphonyDetail() {
                 <li className="text-sm text-slate-700">• RTX 3090 2장에서 분당 200건 안정 처리</li>
                 <li className="text-sm text-slate-700">• 최대 100MB 파일 처리 — Temporal Payload 2MB 제한을 파일 경로 전달로 우회</li>
                 <li className="text-sm text-slate-700">• 2-Pass Bilingual STT — 영어/한국어 혼합 음성을 자동 감지하여 처리</li>
+                <li className="text-sm text-slate-700">• Gateway → Temporal → 3-Worker → Triton 4계층 분리 아키텍처 설계</li>
+                <li className="text-sm text-slate-700">• Silero VAD + 24-29초 Smart Chunking으로 Whisper 할루시네이션 해결</li>
+                <li className="text-sm text-slate-700">• 작업 유형별 재시도 정책 차등 설계 + SSRF 2중 방어</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
