@@ -294,7 +294,7 @@ export const careerData = {
   ] as Publication[],
 
   awards: [
-    { title: "Build with TRAE 해커톤 · 대상", organization: "TRAE", date: "2026", description: "WIGENT: AI Agent 실시간 토론 플랫폼" },
+    { title: "ByteDance, Build with TRAE Hackathon 대상", organization: "ByteDance", date: "2026", description: "WIGENT: AI Agent 실시간 토론 플랫폼" },
     { title: "International oneM2M Hackathon · Encouragement Award", organization: "oneM2M", date: "2022", description: "IoT 웨어러블 생체 데이터 트래블 로깅 시스템" },
     { title: "한신정보과학/융합논문 발표대회 · 우수논문상", organization: "한신대학교", date: "2022", description: "CNN 기반 스쿼트 자세 분석 시스템" },
     { title: "제 3회 한신 ABC 캠프 해커톤 · 우수상", organization: "한신대학교", date: "2022", description: "스쿼트 자세 분석 홈트레이닝 시스템" },
