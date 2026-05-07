@@ -67,8 +67,7 @@ export function HeroSection() {
                 ))}
               </div>
               {profile.heroEducation && (
-                <div className="flex items-center gap-3 mt-2 text-sm text-slate-500">
-                  <img src={import.meta.env.BASE_URL + "logo-hanshin.png"} alt="한신대학교" className="w-10 h-10 shrink-0 object-contain" />
+                <div className="mt-2 text-sm text-slate-500">
                   <div className="space-y-0.5">
                     {profile.heroEducation.split("\n").map((line, i) => (
                       <div key={i}>{line}</div>
