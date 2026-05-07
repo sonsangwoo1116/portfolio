@@ -12,7 +12,7 @@ const domainConfig: Record<string, { label: string; color: string }> = {
   "AI/Voice": { label: "AI/Voice", color: "bg-green-100 text-green-700" },
   "LLM/RAG": { label: "LLM/RAG", color: "bg-purple-100 text-purple-700" },
   "Side Project": { label: "Side Project", color: "bg-teal-100 text-teal-700" },
-  "Academic": { label: "Academic", color: "bg-amber-100 text-amber-700" },
+  "Research": { label: "Research", color: "bg-amber-100 text-amber-700" },
 };
 
 export function PortfolioCard({ item, index }: PortfolioCardProps) {
@@ -20,11 +20,11 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
 
   return (
     <motion.div
-      className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 flex flex-col h-full ${item.domain !== "Academic" ? "cursor-pointer" : ""}`}
+      className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 flex flex-col h-full ${item.domain !== "Research" ? "cursor-pointer" : ""}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      onClick={() => item.domain !== "Academic" && (window.location.hash = `project-${item.id}`)}
+      onClick={() => item.domain !== "Research" && (window.location.hash = `project-${item.id}`)}
     >
       <div className="p-5 flex flex-col h-full">
         {/* Badge + Date */}
@@ -66,7 +66,7 @@ export function PortfolioCard({ item, index }: PortfolioCardProps) {
         <div className="flex-grow"></div>
 
         {/* View Detail */}
-        {item.domain !== "Academic" && (
+        {item.domain !== "Research" && (
           <div className="flex items-center justify-end gap-1 text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
             <span>View Detail</span>
             <ArrowRight className="w-4 h-4" />
