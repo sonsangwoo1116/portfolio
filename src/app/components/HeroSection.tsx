@@ -106,9 +106,7 @@ export function HeroSection() {
               )}
               {profile.email && (
                 <div className="flex items-center gap-3 text-slate-700">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <Mail className="w-4 h-4 text-blue-600" />
-                  </div>
+                  <img src={import.meta.env.BASE_URL + "logo-gmail.png"} alt="Gmail" className="w-5 h-5" />
                   <span className="text-sm">{profile.email}</span>
                 </div>
               )}
