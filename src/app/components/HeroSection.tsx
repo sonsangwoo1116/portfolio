@@ -98,15 +98,15 @@ export function HeroSection() {
                   href={profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors"
+                  className="group flex items-center gap-3 text-slate-700 hover:text-blue-600 transition-colors"
                 >
-                  <img src={import.meta.env.BASE_URL + "logo-linkedin.png"} alt="LinkedIn" className="w-5 h-5" />
+                  <img src={import.meta.env.BASE_URL + "logo-linkedin.png"} alt="LinkedIn" className="w-5 h-5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
                   <span className="text-sm">LinkedIn</span>
                 </a>
               )}
               {profile.email && (
-                <div className="flex items-center gap-3 text-slate-700">
-                  <img src={import.meta.env.BASE_URL + "logo-gmail.png"} alt="Gmail" className="w-5 h-5" />
+                <div className="group flex items-center gap-3 text-slate-700">
+                  <img src={import.meta.env.BASE_URL + "logo-gmail.png"} alt="Gmail" className="w-5 h-5 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300" />
                   <span className="text-sm">{profile.email}</span>
                 </div>
               )}
