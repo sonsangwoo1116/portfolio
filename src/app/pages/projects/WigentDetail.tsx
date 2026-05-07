@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Github } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function WigentDetail() {
   return (
@@ -34,16 +35,16 @@ export function WigentDetail() {
           </div>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "Contract-First Development", "Multi-Agent Orchestrator", "동적 Spawning / Retirement", "랜딩 페이지 즉시 생성", "4번의 피벗", "8가지 에이전트 디자인 패턴", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`wg-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "wg-0", title: "Overview" },
+          { id: "wg-1", title: "Contract-First" },
+          { id: "wg-2", title: "Multi-Agent" },
+          { id: "wg-3", title: "Spawning / Retirement" },
+          { id: "wg-4", title: "랜딩 페이지 생성" },
+          { id: "wg-5", title: "4번의 피벗" },
+          { id: "wg-6", title: "에이전트 디자인 패턴" },
+          { id: "wg-7", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="wg-0">

@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function KeywordSpottingDetail() {
   return (
@@ -27,16 +28,15 @@ export function KeywordSpottingDetail() {
           <p className="text-lg text-slate-600">한국어 웨이크워드("깨비야") 인식 — KWT-3 Transformer + TFLite 엣지 배포</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "Model Configuration", "데이터 증강 전략", "Dual-Threshold 검출", "TFLite 양자화", "성과", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`kws-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "kws-0", title: "Overview" },
+          { id: "kws-1", title: "Model Configuration" },
+          { id: "kws-2", title: "데이터 증강" },
+          { id: "kws-3", title: "Dual-Threshold 검출" },
+          { id: "kws-4", title: "TFLite 양자화" },
+          { id: "kws-5", title: "성과" },
+          { id: "kws-6", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="kws-0">

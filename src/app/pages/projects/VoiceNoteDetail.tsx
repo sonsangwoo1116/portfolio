@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function VoiceNoteDetail() {
   return (
@@ -27,16 +28,15 @@ export function VoiceNoteDetail() {
           <p className="text-lg text-slate-600">음성 업로드 → Whisper STT → pyannote 화자분리 → LLM 요약 자동화 파이프라인</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "STT + VAD 파이프라인", "화자분리 + 라벨 정렬", "LLM Map-Reduce 요약", "TaskManager 상태 관리", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`vn-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "vn-0", title: "Overview" },
+          { id: "vn-1", title: "System Overview" },
+          { id: "vn-2", title: "STT + VAD" },
+          { id: "vn-3", title: "화자분리 + 라벨 정렬" },
+          { id: "vn-4", title: "Map-Reduce 요약" },
+          { id: "vn-5", title: "TaskManager" },
+          { id: "vn-6", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="vn-0">

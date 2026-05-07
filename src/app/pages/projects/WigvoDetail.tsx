@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft, Github } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function WigvoDetail() {
   return (
@@ -34,16 +35,16 @@ export function WigvoDetail() {
           </div>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "Echo Gate (7단계 진화)", "PSTN VAD 독립 아키텍처", "Whisper 환각 필터", "Strategy 패턴 — 3가지 통신 파이프라인", "성과", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`wv-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "wv-0", title: "Overview" },
+          { id: "wv-1", title: "System Overview" },
+          { id: "wv-2", title: "Echo Gate" },
+          { id: "wv-3", title: "PSTN VAD" },
+          { id: "wv-4", title: "Whisper 환각 필터" },
+          { id: "wv-5", title: "Strategy 패턴" },
+          { id: "wv-6", title: "성과" },
+          { id: "wv-7", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="wv-0">

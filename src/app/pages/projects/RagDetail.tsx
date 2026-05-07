@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function RagDetail() {
   return (
@@ -28,16 +29,16 @@ export function RagDetail() {
           <p className="text-lg text-slate-600">문서 업로드 즉시 VectorDB 인덱싱 + RAG 기반 Q&A 및 요약 챗봇</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "DocumentManagement Graph", "ChatBot Graph", "문서 파싱 및 구조 보존", "Map-Reduce 요약", "로컬 임베딩 + 멀티 유저", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`rag-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "rag-0", title: "Overview" },
+          { id: "rag-1", title: "System Overview" },
+          { id: "rag-2", title: "DocumentManagement" },
+          { id: "rag-3", title: "ChatBot Graph" },
+          { id: "rag-4", title: "문서 파싱" },
+          { id: "rag-5", title: "Map-Reduce 요약" },
+          { id: "rag-6", title: "로컬 임베딩 + 멀티 유저" },
+          { id: "rag-7", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="rag-0">

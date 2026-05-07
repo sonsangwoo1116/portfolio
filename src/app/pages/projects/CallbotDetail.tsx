@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function CallbotDetail() {
   return (
@@ -28,16 +29,16 @@ export function CallbotDetail() {
           <p className="text-lg text-slate-600">보험 완전판매 모니터링 자동화를 위한 양방향 음성 콜봇 대화 엔진</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "대화 흐름 설계", "9B LLM의 한계와 5단계 사전 필터", "위험 탐지 + 이관", "본인확인 + 대화 제어", "성과", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`callbot-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "callbot-0", title: "Overview" },
+          { id: "callbot-1", title: "System Overview" },
+          { id: "callbot-2", title: "대화 흐름 설계" },
+          { id: "callbot-3", title: "5단계 사전 필터" },
+          { id: "callbot-4", title: "위험 탐지 + 이관" },
+          { id: "callbot-5", title: "본인확인 + 대화 제어" },
+          { id: "callbot-6", title: "성과" },
+          { id: "callbot-7", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="callbot-0">

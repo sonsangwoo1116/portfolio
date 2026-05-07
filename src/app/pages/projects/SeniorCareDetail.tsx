@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function SeniorCareDetail() {
   return (
@@ -27,16 +28,15 @@ export function SeniorCareDetail() {
           <p className="text-lg text-slate-600">LLM 기반 고령자 일일 건강체크 AI 챗봇 — 2단계 상태 머신 + 엔티티 추출</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Design", "LLM 엔티티 추출", "YAML 프롬프트 설계", "자동 건너뛰기 + 반복 방지", "종합 요약 생성", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`sc-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "sc-0", title: "Overview" },
+          { id: "sc-1", title: "System Design" },
+          { id: "sc-2", title: "LLM 엔티티 추출" },
+          { id: "sc-3", title: "YAML 프롬프트" },
+          { id: "sc-4", title: "자동 건너뛰기" },
+          { id: "sc-5", title: "종합 요약" },
+          { id: "sc-6", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="sc-0">

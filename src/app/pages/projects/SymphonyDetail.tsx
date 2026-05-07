@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
+import { FloatingTOC } from "../../components/FloatingTOC";
 
 export function SymphonyDetail() {
   return (
@@ -27,16 +28,15 @@ export function SymphonyDetail() {
           <p className="text-lg text-slate-600">Temporal + Triton + Faster Whisper 기반 대규모 배치 STT 파이프라인</p>
         </motion.div>
 
-        {/* 목차 */}
-        <Section title="Contents" delay={0.05}>
-          <nav className="grid md:grid-cols-2 gap-2">
-            {["Overview", "System Overview", "3-Worker 분리 아키텍처", "2-Pass Bilingual STT", "Silero VAD + Smart Chunking", "재시도 + 보안 + 모니터링", "역할 및 Tech Stack"].map((item, i) => (
-              <button key={i} onClick={() => document.getElementById(`sym-${i}`)?.scrollIntoView({ behavior: 'smooth' })} className="text-sm text-blue-600 hover:text-blue-800 hover:underline text-left">
-                {i + 1}. {item}
-              </button>
-            ))}
-          </nav>
-        </Section>
+        <FloatingTOC items={[
+          { id: "sym-0", title: "Overview" },
+          { id: "sym-1", title: "System Overview" },
+          { id: "sym-2", title: "3-Worker 분리" },
+          { id: "sym-3", title: "2-Pass Bilingual STT" },
+          { id: "sym-4", title: "VAD + Smart Chunking" },
+          { id: "sym-5", title: "재시도 + 보안" },
+          { id: "sym-6", title: "역할 및 Tech Stack" },
+        ]} />
 
         {/* 1. Overview */}
         <div id="sym-0">
