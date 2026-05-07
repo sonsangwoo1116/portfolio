@@ -49,7 +49,10 @@ export function ExperienceSection() {
                       </span>
                       <span className="text-slate-300">|</span>
                       {pos.company.includes("사운드마인드") && (
-                        <img src={import.meta.env.BASE_URL + "logo-soundmind.png"} alt="사운드마인드" className="h-5 inline-block" />
+                        <img src={import.meta.env.BASE_URL + "logo-soundmind.png"} alt="사운드마인드" className="h-7 inline-block" />
+                      )}
+                      {pos.company.includes("디지털새싹") && (
+                        <img src={import.meta.env.BASE_URL + "logo-digitalsaessak.png"} alt="디지털새싹" className="h-7 inline-block" />
                       )}
                       <span className="text-lg font-bold text-slate-900">{pos.company}</span>
                       <span className="text-slate-300">|</span>
