@@ -103,6 +103,8 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {link.label}
                   {activeSection === link.id && (
