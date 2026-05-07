@@ -29,15 +29,15 @@ export function FloatingTOC({ items }: { items: TOCItem[] }) {
   }, [items]);
 
   return (
-    <nav className="hidden xl:block fixed right-8 top-1/2 -translate-y-1/2 z-40 w-48">
-      <ul className="space-y-1.5 border-l border-slate-200 pl-3">
+    <nav className="hidden xl:block fixed right-8 top-1/2 -translate-y-1/2 z-40 w-52">
+      <ul className="space-y-2 border-l-2 border-slate-200 pl-4">
         {items.map((item) => (
           <li key={item.id}>
             <button
               onClick={() =>
                 document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })
               }
-              className={`block text-left text-xs leading-snug py-1 transition-colors ${
+              className={`block text-left text-sm leading-snug py-1 transition-colors ${
                 activeId === item.id
                   ? "text-blue-600 font-semibold"
                   : "text-slate-400 hover:text-slate-600"
