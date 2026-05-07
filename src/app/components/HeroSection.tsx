@@ -16,7 +16,7 @@ export function HeroSection() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-[2fr_3fr] gap-16 lg:gap-24 items-start">
           {/* Profile Image - Left Side */}
           <motion.div
             className="order-1 relative"
@@ -24,7 +24,7 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative aspect-[3/4] max-w-xs mx-auto lg:ml-auto lg:mr-0 lg:max-w-full">
+            <div className="relative aspect-[3/4] max-w-xs mx-auto lg:mx-0 lg:max-w-full">
               {/* Decorative elements */}
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-slate-200/40 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-slate-200/40 rounded-full blur-2xl"></div>
