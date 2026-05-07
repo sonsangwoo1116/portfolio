@@ -46,11 +46,10 @@ export function RagDetail() {
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• LangGraph 듀얼 그래프로 문서 처리·채팅 블로킹 해결</li>
-                <li className="text-sm text-slate-700">• 최대 50MB / 100페이지 문서 즉시 처리</li>
-                <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce 재귀적 요약</li>
-                <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 의존성 제거</li>
-                <li className="text-sm text-slate-700">• 청크 500토큰 / 오버랩 100토큰, 검색 Top-3</li>
+                <li className="text-sm text-slate-700">• 문서 업로드 즉시 Q&A + 요약 가능 — 최대 50MB / 100페이지</li>
+                <li className="text-sm text-slate-700">• 문서 처리 중에도 채팅 응답 가능 — 듀얼 그래프로 블로킹 해결</li>
+                <li className="text-sm text-slate-700">• 토크나이저 기반 동적 Map-Reduce로 긴 문서도 재귀적 요약</li>
+                <li className="text-sm text-slate-700">• 로컬 임베딩(BGE-M3)으로 외부 API 비용/지연 제거</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

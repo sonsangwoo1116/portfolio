@@ -43,6 +43,16 @@ export function CallbotDetail() {
         {/* 1. Overview */}
         <div id="callbot-0">
           <Section title="1. Overview" delay={0.1}>
+            <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
+              <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
+              <ul className="space-y-1">
+                <li className="text-sm text-slate-700">• 엣지 테스트 52/52 PASS — 전체 시나리오 완주</li>
+                <li className="text-sm text-slate-700">• 5채널 동시 통화 P50 154ms / P99 300ms 미만 (RTX 3090 단일 GPU, 9B 모델)</li>
+                <li className="text-sm text-slate-700">• 입력 토큰 47% 감축 — 비동기 히스토리 요약으로 3,735 → 1,985 토큰</li>
+                <li className="text-sm text-slate-700">• 9노드 상태 머신 + 10개 LLM Tool Calling 기반 대화 엔진</li>
+                <li className="text-sm text-slate-700">• 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM)</li>
+              </ul>
+            </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               보험 완전판매 모니터링은 보험업법상 법적 의무이나, 수작업 전화는 통화당 인건비가 높고 인력 한계가 있습니다.
               AI 콜봇으로 자동화하되, <strong>고객이 말을 끊거나, 우회적으로 답하거나, 갑자기 민원을 제기하는 등

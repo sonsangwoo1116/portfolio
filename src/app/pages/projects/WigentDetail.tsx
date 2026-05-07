@@ -51,12 +51,13 @@ export function WigentDetail() {
           <Section title="1. Overview" delay={0.1}>
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                 <MetricCard label="개발 시간" value="3.5h" desc="12:30 - 16:00" />
                 <MetricCard label="프로토타입" value="55분" desc="E2E 작동까지" />
                 <MetricCard label="커밋" value="26개" desc="병합 충돌 0건" />
                 <MetricCard label="GPT-4o 호출" value="~35회" desc="세션당" />
               </div>
+              <p className="text-sm font-medium text-blue-700">Build with TRAE Seoul (ByteDance) 해커톤 대상(Grand Prize) 수상</p>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               주제를 던지면 PM + 도메인 전문가 AI 에이전트들이 Slack 스타일 채팅 UI에서 실시간으로 토론하고,

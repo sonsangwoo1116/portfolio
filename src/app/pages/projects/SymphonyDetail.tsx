@@ -44,11 +44,10 @@ export function SymphonyDetail() {
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• 3-Worker 분리로 성공률 82% → 95%+ 개선</li>
+                <li className="text-sm text-slate-700">• 성공률 82% → 95%+ 개선 — 3-Worker 분리로 하드웨어 추가 없이 달성</li>
                 <li className="text-sm text-slate-700">• RTX 3090 2장에서 분당 200건 안정 처리</li>
-                <li className="text-sm text-slate-700">• 2-Pass Bilingual STT로 영어/한국어 혼합 음성 처리</li>
-                <li className="text-sm text-slate-700">• Temporal Payload 2MB 제한 → 100MB 파일 처리 가능</li>
-                <li className="text-sm text-slate-700">• SSRF 2중 방어 + Graceful Shutdown + RFC 7807 에러 표준</li>
+                <li className="text-sm text-slate-700">• 최대 100MB 파일 처리 — Temporal Payload 2MB 제한을 파일 경로 전달로 우회</li>
+                <li className="text-sm text-slate-700">• 2-Pass Bilingual STT — 영어/한국어 혼합 음성을 자동 감지하여 처리</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">

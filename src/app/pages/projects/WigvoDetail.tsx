@@ -51,12 +51,13 @@ export function WigvoDetail() {
           <Section title="1. Overview" delay={0.1}>
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과 (148통 PSTN 통화)</h4>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                 <MetricCard label="Session A 지연" value="555ms" desc="P50, P95: 1,169ms" />
                 <MetricCard label="에코 루프" value="0건" desc="프로토타입 80% → 0%" />
                 <MetricCard label="환각 차단" value="0.3%↓" desc="콜당 평균 0.7건" />
                 <MetricCard label="비용" value="$0.18/분" desc="최적화 후 33% 감소" />
               </div>
+              <p className="text-sm font-medium text-blue-700">ACL 2026 System Demonstrations Accept (Rating 7.50)</p>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
               상대방은 앱 설치 없이 일반 전화만 받으면 됩니다.

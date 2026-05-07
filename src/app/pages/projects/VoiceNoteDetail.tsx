@@ -44,10 +44,9 @@ export function VoiceNoteDetail() {
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• STT + 화자분리 + LLM 요약 end-to-end 자동화 파이프라인</li>
-                <li className="text-sm text-slate-700">• 5개 마이크로서비스 분리 — 리소스 특성별 독립 스케일링</li>
-                <li className="text-sm text-slate-700">• Intel NPU(STT) / GPU(화자분리) / CPU(VAD) 하드웨어별 최적 배치</li>
-                <li className="text-sm text-slate-700">• FIFO 큐 기반 비동기 처리 + 장애 복구 자동화</li>
+                <li className="text-sm text-slate-700">• 음성 업로드 → 텍스트 변환 → 화자 분리 → 요약까지 end-to-end 자동화</li>
+                <li className="text-sm text-slate-700">• 5개 마이크로서비스 분리 — NPU(STT) / GPU(화자분리) / CPU(VAD) 하드웨어별 최적 배치</li>
+                <li className="text-sm text-slate-700">• 장애 시 자동 복구 + FIFO 큐 기반 비동기 처리</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
