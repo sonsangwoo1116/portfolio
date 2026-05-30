@@ -40,7 +40,7 @@ export const projects: Project[] = [
     title: "AI Agent 기반 콜봇 시스템",
     description: "보험 완전판매 모니터링 AI Agent 기반 콜봇 시스템에서 모든 발화를 LLM에 넣으면 GPU 비용과 지연이 감당되지 않는 문제를 해결했습니다. Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling으로 LLM의 자유도를 단계적으로 제약하는 아키텍처를 설계해, RTX 3090 단일 GPU에서 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 테스트 52/52 PASS, 입력 토큰 47% 감축을 달성했습니다.",
     domain: "AI Agent",
-    tags: ["Python", "FastAPI", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD"],
+    tags: ["Python", "FastAPI", "LLM Tool Calling", "Qwen3.5-9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
     protected: false,
     date: "2026.03 ~ 진행중",

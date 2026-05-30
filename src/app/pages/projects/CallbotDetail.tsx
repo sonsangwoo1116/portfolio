@@ -304,7 +304,7 @@ export function CallbotDetail() {
             </ul>
             <h4 className="text-base font-semibold text-slate-800 mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-2">
-              {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "EXAONE 9B", "Qwen3-ASR", "Silero VAD", "YAML Prompts"].map((tag, i) => (
+              {["Python", "FastAPI", "WebSocket", "LLM Tool Calling", "Qwen3.5-9B", "Qwen3-ASR", "Silero VAD", "YAML Prompts"].map((tag, i) => (
                 <span key={i} className="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">{tag}</span>
               ))}
             </div>
