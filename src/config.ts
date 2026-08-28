@@ -185,7 +185,7 @@ export const projects: Project[] = [
     description: "문서 파서를 겉보기 품질이 아니라 실제 RAG 검색 성능으로 선택하는 training-free 평가 프로토콜입니다. 294페이지·663 Q-A 고정 프로브에서 파서와 청커 조합을 비교하고, coverage 진단으로 파서 누락과 청킹 분할을 분리합니다. EMNLP 2026 Industry Track Accepted 논문의 1저자로 연구 설계, 실험, 집필 및 카메라레디를 주도했습니다.",
     domain: "Research",
     tags: ["Document RAG", "Document Parsing", "Retrieval Evaluation", "RCPS", "Python", "PyTorch", "Qwen3-VL", "BGE-M3"],
-    links: { github: "https://github.com/wigtn/WigtnOCR-RADP", external: "/portfolio/papers/rcps-emnlp-2026-camera-ready.pdf" },
+    links: { github: "https://github.com/wigtn/WigtnOCR-RADP" },
     protected: false,
     detailPage: true,
     date: "2026.05 - 2026.08",
@@ -306,7 +306,7 @@ export const careerData = {
   certifications: [] as Certification[],
 
   publications: [
-    { title: "Retrieval-Conditional Parsing Score (RCPS): Choosing Document Parsers by Retrieval, Not by Appearance", journal: "EMNLP 2026 Industry Track", date: "2026", url: "/portfolio/papers/rcps-emnlp-2026-camera-ready.pdf", description: "Accepted (Poster) · 1st Author · Camera-ready in progress" },
+    { title: "Retrieval-Conditional Parsing Score (RCPS): Choosing Document Parsers by Retrieval, Not by Appearance", journal: "EMNLP 2026 Industry Track", date: "2026", description: "Accepted · 1st Author" },
     { title: "WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating", journal: "ACL 2026 System Demonstrations", date: "2026", url: "/portfolio/papers/wigvo-acl-2026.pdf", description: "Presented · 2nd Author · Rating 7.50" },
     { title: "Implementation of an IoT Cocktail Machine Using ChatGPT API and ConvAnalyser in the Metaverse", journal: "IEEE Metacom 2024", date: "2024.08", url: "https://ieeexplore.ieee.org/document/10740121/" },
     { title: "A metaverse Avatar Teleport System Using an AIoT Pose Estimation Device", journal: "IEEE Metacom 2023", date: "2023.06", url: "https://ieeexplore.ieee.org/document/10271892/" },

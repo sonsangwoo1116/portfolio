@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowLeft, BookOpen, Github } from "lucide-react";
+import { ArrowLeft, Github } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
 import { FloatingTOC } from "../../components/FloatingTOC";
 
@@ -43,14 +43,6 @@ export function RcpsDetail() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm"
             >
               <Github className="w-4 h-4" /> GitHub
-            </a>
-            <a
-              href={asset("papers/rcps-emnlp-2026-camera-ready.pdf")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
-            >
-              <BookOpen className="w-4 h-4" /> Camera-Ready PDF
             </a>
           </div>
         </motion.div>
