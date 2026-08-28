@@ -14,6 +14,7 @@ import { VoiceNoteDetail } from "./pages/projects/VoiceNoteDetail";
 import { SeniorCareDetail } from "./pages/projects/SeniorCareDetail";
 import { WigentDetail } from "./pages/projects/WigentDetail";
 import { WigvoDetail } from "./pages/projects/WigvoDetail";
+import { RcpsDetail } from "./pages/projects/RcpsDetail";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { EducationSection } from "./components/EducationSection";
 import { PublicationsSection } from "./components/PublicationsSection";
@@ -21,7 +22,7 @@ import { AwardsSection } from "./components/AwardsSection";
 import { PartTimeJobSection } from "./components/PartTimeJobSection";
 import { projects, sections } from "../config";
 
-const FEATURED_IDS = ["1", "9"]; // 콜봇, WIGVO
+const FEATURED_IDS = ["1", "9", "13"]; // 콜봇, WIGVO, RCPS
 
 export default function App() {
   const [activeDomain, setActiveDomain] = useState("all");
@@ -69,6 +70,7 @@ export default function App() {
     if (activeProjectId === "7") return <SeniorCareDetail />;
     if (activeProjectId === "8") return <WigentDetail />;
     if (activeProjectId === "9") return <WigvoDetail />;
+    if (activeProjectId === "13") return <RcpsDetail />;
     const project = projects.find(p => p.id === activeProjectId);
     if (project) return <ProjectDetailPage project={project} />;
   }
@@ -96,7 +98,7 @@ export default function App() {
           </motion.div>
 
           {/* Featured Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {projects
               .filter((p) => FEATURED_IDS.includes(p.id))
               .sort((a, b) => FEATURED_IDS.indexOf(a.id) - FEATURED_IDS.indexOf(b.id))

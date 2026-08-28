@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowLeft, Github } from "lucide-react";
+import { ArrowLeft, BookOpen, Github } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
 import { FloatingTOC } from "../../components/FloatingTOC";
 
@@ -23,7 +23,7 @@ export function WigvoDetail() {
           <div className="flex items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-md text-sm font-medium bg-teal-100 text-teal-700">Side Project</span>
             <span className="text-sm text-slate-500">2026.02</span>
-            <span className="px-3 py-1 rounded-md text-sm font-medium bg-blue-100 text-blue-700">ACL 2026 System Demos Accept</span>
+            <span className="px-3 py-1 rounded-md text-sm font-medium bg-blue-100 text-blue-700">ACL 2026 System Demos · Presented</span>
           </div>
           <h1 className="text-3xl font-bold text-slate-900 mb-2">WIGVO — AI 실시간 전화통역 플랫폼</h1>
           <p className="text-lg text-slate-600">Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</p>
@@ -31,6 +31,10 @@ export function WigvoDetail() {
             <a href="https://github.com/wigtn/wigvo-v2" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm">
               <Github className="w-4 h-4" /> GitHub
+            </a>
+            <a href="/portfolio/papers/wigvo-acl-2026.pdf" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+              <BookOpen className="w-4 h-4" /> View Paper
             </a>
           </div>
         </motion.div>
@@ -57,7 +61,7 @@ export function WigvoDetail() {
                 <li className="text-sm text-slate-700">• Whisper 환각 누수율 0.3% 이하 — 51개 방송 패턴 블록리스트 + 3-Level Guardrail</li>
                 <li className="text-sm text-slate-700">• 통화 비용 $0.30 → $0.18/분 (33% 절감)</li>
                 <li className="text-sm text-slate-700">• 듀얼 세션 아키텍처 + 3단계 에코 필터 + Strategy 패턴 3가지 통신 모드</li>
-                <li className="text-sm text-slate-700">• ACL 2026 System Demonstrations Accept (Rating 7.50)</li>
+                <li className="text-sm text-slate-700">• ACL 2026 System Demonstrations 발표 완료 · 2저자 (Rating 7.50)</li>
               </ul>
             </div>
             <p className="text-base text-slate-700 leading-relaxed mb-3">
@@ -72,7 +76,7 @@ export function WigvoDetail() {
             </p>
             <p className="text-base text-slate-700 leading-relaxed">
               하드웨어 AEC나 통신사 인프라 없이 소프트웨어만으로 PSTN 양방향 번역을 달성했으며,
-              ACL 2026 System Demonstrations에 Accept되었습니다 (Rating 7.50).
+              ACL 2026 System Demonstrations에서 발표를 완료했으며, 논문의 2저자로 참여했습니다 (Rating 7.50).
             </p>
           </Section>
         </div>

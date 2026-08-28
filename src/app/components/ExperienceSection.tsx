@@ -5,8 +5,8 @@ export function ExperienceSection() {
   const positions = careerData.experience;
 
   const formatPeriod = (start: string, end: string | null) => {
-    const s = start.replace("-", ".");
-    const e = end ? end.replace("-", ".") : "Present";
+    const s = start.replace(/-/g, ".");
+    const e = end ? end.replace(/-/g, ".") : "Present";
     return `${s} - ${e}`;
   };
 

@@ -22,7 +22,7 @@ export function CallbotDetail() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <div className="flex items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-md text-sm font-medium bg-blue-100 text-blue-700">AI Agent</span>
-            <span className="text-sm text-slate-500">2026.03 ~ 진행중</span>
+            <span className="text-sm text-slate-500">2026.03 - 2026.06</span>
             <span className="px-3 py-1 rounded-md text-sm font-medium bg-slate-100 text-slate-600">(주)사운드마인드</span>
           </div>
           <h1 className="text-3xl font-bold text-slate-900 mb-2">AI Agent 기반 콜봇 시스템</h1>

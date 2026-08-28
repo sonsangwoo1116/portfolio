@@ -8,7 +8,7 @@ export const profile = {
   email: "xhxh9539@gmail.com",
   github: "https://github.com/sonsangwoo1116",
   linkedin: "https://linkedin.com/in/sangwooson",
-  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.\n\n석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고, 졸업 후 음성 및 언어 AI 솔루션 기반 회사인 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.\n\nAI 콜봇 대화 엔진 설계부터 기업 고객용 RAG 시스템, 대규모 음성인식 파이프라인까지, AI 서비스의 문제 정의부터 아키텍처 설계, 구현까지 전 과정을 주도하고 있습니다.",
+  heroDescription: "AI 시스템을 설계하고, 실제 문제에 적용합니다.\n\n석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고, 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현했습니다.\n\nAI 콜봇 대화 엔진부터 기업용 RAG, 대규모 음성인식 파이프라인을 구축했으며, 실시간 음성 통역과 문서 RAG 평가 연구를 ACL 2026 및 EMNLP 2026 Industry Track 논문으로 확장했습니다.",
   heroEducation: "한신대학교 IT영상데이터융합(협) 석사 (4.5/4.5, 2023-2025)\n한신대학교 IT콘텐츠학과 학사 (3.77/4.5, 2018-2023)",
   protectedPassword: "1234",
 };
@@ -16,6 +16,7 @@ export const profile = {
 export interface Project {
   id: string;
   code?: string;
+  detailPage?: boolean;
   title: string;
   description: string;
   domain: string;
@@ -43,7 +44,7 @@ export const projects: Project[] = [
     tags: ["Python", "FastAPI", "LLM Tool Calling", "Qwen3.5-9B", "Qwen3-ASR", "Silero VAD"],
     links: {},
     protected: false,
-    date: "2026.03 ~ 진행중",
+    date: "2026.03 - 2026.06",
     problemStatement: "9B급 한국어 LLM의 동사 의미 구분·감탄사 분류·답변 번복 인지 한계를 코드 레벨 가드로 보완하면서, GPU 비용을 통제해야 하는 것이 핵심 과제였습니다.",
     technicalDetails: [
       "9노드 상태 머신(ROOT → CONSENT → IDENTITY_VERIFICATION → MONITORING_QA → SUPPLEMENT_QA → AGENT_TRANSFER / PAYMENT_REMINDER → COMPLETED + RECONNECT) + 10개 LLM Tool 기반 AI Agent 대화 흐름 설계",
@@ -164,7 +165,7 @@ export const projects: Project[] = [
     description: "실제 전화망(PSTN)을 통한 양방향 LLM 기반 실시간 음성 통역 플랫폼입니다. 상대방은 앱 설치 없이 일반 전화로 통역 서비스를 이용할 수 있습니다. PSTN 환경에서 AI TTS 음성이 80-600ms 후 에코로 돌아와 무한 번역 루프가 발생하는 문제를 해결했습니다. AI/음성 핵심 모듈 설계·구현 담당.",
     domain: "Side Project",
     tags: ["Python 3.12", "FastAPI", "OpenAI Realtime API", "Twilio PSTN", "Silero VAD", "Supabase", "Google Cloud Run", "Next.js 16", "React Native"],
-    links: { github: "https://github.com/wigtn/wigvo-v2" },
+    links: { github: "https://github.com/wigtn/wigvo-v2", external: "/portfolio/papers/wigvo-acl-2026.pdf" },
     protected: false,
     date: "2026.02",
     problemStatement: "PSTN의 μ-law 비선형 양자화 때문에 상관관계 기반 에코 탐지는 10건 중 3건 오탐이 발생하여 사용할 수 없었습니다.",
@@ -175,7 +176,26 @@ export const projects: Project[] = [
       "Anti-Hallucination 3중 방어: 응답 기대 체크, 번역 속도 검증(100자/초 초과 시 드롭), STT 환각 차단",
       "Google Cloud Run 프로덕션 배포. 전문 통역 대비 9-11배 저렴한 $0.27/min 비용 달성",
     ],
-    impact: "148통 에코 0건, 555ms 레이턴시, $0.18/분 | ACL 2026 System Demonstrations Accept (Rating 7.50)",
+    impact: "148통 에코 0건, 555ms 레이턴시, $0.18/분 | ACL 2026 System Demonstrations 발표 · 2저자",
+  },
+  {
+    id: "13",
+    title: "RCPS — 문서 RAG 파서 선택·진단 프레임워크",
+    description: "문서 파서를 겉보기 품질이 아니라 실제 RAG 검색 성능으로 선택하는 training-free 평가 프로토콜입니다. 294페이지·663 Q-A 고정 프로브에서 파서와 청커 조합을 비교하고, coverage 진단으로 파서 누락과 청킹 분할을 분리합니다. EMNLP 2026 Industry Track Accepted 논문의 1저자로 연구 설계, 실험, 집필 및 카메라레디를 주도했습니다.",
+    domain: "Research",
+    tags: ["Document RAG", "Document Parsing", "Retrieval Evaluation", "RCPS", "Python", "PyTorch", "Qwen3-VL", "BGE-M3"],
+    links: { github: "https://github.com/wigtn/WigtnOCR-RADP", external: "/portfolio/papers/rcps-emnlp-2026-camera-ready.pdf" },
+    protected: false,
+    detailPage: true,
+    date: "2026.05 - 2026.08",
+    problemStatement: "OCR·문서 파서 벤치마크는 편집거리나 경계 품질처럼 사람이 보기 좋은 출력을 주로 평가하지만, 실제 Document RAG에서는 검색 가능한 정보 보존이 더 중요합니다.",
+    technicalDetails: [
+      "RCPS 설계 — 고정 held-out Q-A probe에서 parser-chunker 조합별 MRR을 3개 retriever와 k={1,5,10}에 걸쳐 평균하는 training-free 선택 프로토콜",
+      "294페이지·663 Q-A full-grid 평가 — 5개 complete parser 구성 RCPS 0.137-0.584, 4개 chunker 0.535-0.593",
+      "Coverage 진단 — reference span을 covered/split/absent로 분류하여 parser-side 누락과 chunker-side 경계 분할을 분리",
+      "RADP-aux/DPO/Distill/SimPO 9개 adapter 실험과 paired bootstrap 검증, 재현 가능한 평가 코드·아티팩트 공개",
+    ],
+    impact: "EMNLP 2026 Industry Track Accepted · 1st Author | MinerU-on 대비 Hit@1 +42.6pp · 4.47×",
   },
   {
     id: "10",
@@ -244,9 +264,9 @@ export const careerData = {
       description: "AI Agent 설계·구현 주도, 팀원 코칭 및 프로젝트 리드",
       location: "서울",
       startDate: "2026-03",
-      endDate: null,
+      endDate: "2026-06-12",
       highlights: [
-        "[AI Agent 기반 콜봇 시스템 | 2026.03 ~ 진행중] Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling 아키텍처 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
+        "[AI Agent 기반 콜봇 시스템 | 2026.03 - 2026.06] Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling 아키텍처 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
     },
     {
@@ -285,7 +305,8 @@ export const careerData = {
   certifications: [] as Certification[],
 
   publications: [
-    { title: "WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating", journal: "ACL 2026 System Demonstrations", date: "2026", description: "Accepted (Rating 7.50)" },
+    { title: "Retrieval-Conditional Parsing Score (RCPS): Choosing Document Parsers by Retrieval, Not by Appearance", journal: "EMNLP 2026 Industry Track", date: "2026", url: "/portfolio/papers/rcps-emnlp-2026-camera-ready.pdf", description: "Accepted (Poster) · 1st Author · Camera-ready in progress" },
+    { title: "WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating", journal: "ACL 2026 System Demonstrations", date: "2026", url: "/portfolio/papers/wigvo-acl-2026.pdf", description: "Presented · 2nd Author · Rating 7.50" },
     { title: "Implementation of an IoT Cocktail Machine Using ChatGPT API and ConvAnalyser in the Metaverse", journal: "IEEE Metacom 2024", date: "2024.08", url: "https://ieeexplore.ieee.org/document/10740121/" },
     { title: "A metaverse Avatar Teleport System Using an AIoT Pose Estimation Device", journal: "IEEE Metacom 2023", date: "2023.06", url: "https://ieeexplore.ieee.org/document/10271892/" },
     { title: "IoT 웨어러블 디바이스의 생체 데이터를 활용한 트래블 로깅 시스템 구현", journal: "한국인터넷정보학회 추계학술대회", date: "2023.10" },

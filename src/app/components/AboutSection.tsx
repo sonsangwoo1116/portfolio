@@ -4,7 +4,7 @@ import { GraduationCap, Briefcase, BookOpen, Award, Target, Lightbulb } from "lu
 export function AboutSection() {
   const experiences = [
     {
-      period: "2025.01 - Present",
+      period: "2025.01 - 2026.06.12",
       title: "(주)사운드마인드",
       role: "팀장 / AX",
       description: "AI Agent 개발 및 LLM 기반 서비스 구축, 음성 AI 모델 개발 및 프로덕션 배포, 팀원 LLM 개발 코칭"
@@ -41,7 +41,12 @@ export function AboutSection() {
   const achievements = [
     {
       icon: Award,
-      title: "ACL 2026 Accept",
+      title: "EMNLP 2026 Accepted",
+      description: "Industry Track · RCPS · 1st Author"
+    },
+    {
+      icon: Award,
+      title: "ACL 2026 Presented",
       description: "System Demonstrations · Rating 7.50 · 2nd Author"
     },
     {
@@ -71,8 +76,8 @@ export function AboutSection() {
           <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             석사 과정에서 텍스트·음성 멀티모달 데이터 기반 딥러닝 모델을 연구했고,
-            졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현하고 있습니다.
-            좋은 팀과 함께 더 많은 문제를 풀어나가며, 끊임없이 성장하는 엔지니어가 되고 싶습니다.
+            졸업 후 사운드마인드에서 AI Agent와 LLM 기반 서비스를 설계·구현했습니다.
+            이후 실시간 음성 통역과 문서 RAG 평가 연구를 ACL 2026 및 EMNLP 2026 논문으로 확장했습니다.
           </p>
         </motion.div>
 
