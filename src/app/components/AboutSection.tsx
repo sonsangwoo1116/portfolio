@@ -4,7 +4,7 @@ import { GraduationCap, Briefcase, BookOpen, Award, Target, Lightbulb } from "lu
 export function AboutSection() {
   const experiences = [
     {
-      period: "2025.01 - 2026.06.12",
+      period: "2025.01 - 2026.06",
       title: "(주)사운드마인드",
       role: "팀장 / AX",
       description: "AI Agent 개발 및 LLM 기반 서비스 구축, 음성 AI 모델 개발 및 프로덕션 배포, 팀원 LLM 개발 코칭"

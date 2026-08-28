@@ -265,7 +265,7 @@ export const careerData = {
       description: "AI Agent 설계·구현 주도, 팀원 코칭 및 프로젝트 리드",
       location: "서울",
       startDate: "2026-03",
-      endDate: "2026-06-12",
+      endDate: "2026-06",
       highlights: [
         "[AI Agent 기반 콜봇 시스템 | 2026.03 - 2026.06] Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling 아키텍처 설계 — RTX 3090 단일 GPU, 9B 모델로 5채널 동시 통화 P50 154ms / P99 300ms 미만, 엣지 52/52 PASS, 입력 토큰 47% 감축 — 불완전판매 3중 안전망 + 욕설 이중 감지(키워드+LLM) — 음성 및 대화 엔진 전체 설계·구현 주도 + 팀원 LLM 개발 코칭",
       ],
