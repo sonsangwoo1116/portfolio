@@ -21,7 +21,7 @@ export function WigvoDetail() {
         {/* Title */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10">
           <div className="flex items-center gap-3 mb-4">
-            <span className="px-3 py-1 rounded-md text-sm font-medium bg-teal-100 text-teal-700">Side Project</span>
+            <span className="px-3 py-1 rounded-md text-sm font-medium bg-amber-100 text-amber-700">Research</span>
             <span className="text-sm text-slate-500">2026.02</span>
             <span className="px-3 py-1 rounded-md text-sm font-medium bg-blue-100 text-blue-700">ACL 2026 System Demos · Presented</span>
           </div>

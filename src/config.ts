@@ -163,10 +163,11 @@ export const projects: Project[] = [
     id: "9",
     title: "WIGVO — AI 실시간 전화통역 플랫폼",
     description: "실제 전화망(PSTN)을 통한 양방향 LLM 기반 실시간 음성 통역 플랫폼입니다. 상대방은 앱 설치 없이 일반 전화로 통역 서비스를 이용할 수 있습니다. PSTN 환경에서 AI TTS 음성이 80-600ms 후 에코로 돌아와 무한 번역 루프가 발생하는 문제를 해결했습니다. AI/음성 핵심 모듈 설계·구현 담당.",
-    domain: "Side Project",
+    domain: "Research",
     tags: ["Python 3.12", "FastAPI", "OpenAI Realtime API", "Twilio PSTN", "Silero VAD", "Supabase", "Google Cloud Run", "Next.js 16", "React Native"],
     links: { github: "https://github.com/wigtn/wigvo-v2", external: "/portfolio/papers/wigvo-acl-2026.pdf" },
     protected: false,
+    detailPage: true,
     date: "2026.02",
     problemStatement: "PSTN의 μ-law 비선형 양자화 때문에 상관관계 기반 에코 탐지는 10건 중 3건 오탐이 발생하여 사용할 수 없었습니다.",
     technicalDetails: [

@@ -22,7 +22,7 @@ import { AwardsSection } from "./components/AwardsSection";
 import { PartTimeJobSection } from "./components/PartTimeJobSection";
 import { projects, sections } from "../config";
 
-const FEATURED_IDS = ["1", "9", "13"]; // 콜봇, WIGVO, RCPS
+const FEATURED_IDS = ["1", "13"]; // 콜봇, RCPS
 
 export default function App() {
   const [activeDomain, setActiveDomain] = useState("all");
@@ -98,7 +98,7 @@ export default function App() {
           </motion.div>
 
           {/* Featured Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {projects
               .filter((p) => FEATURED_IDS.includes(p.id))
               .sort((a, b) => FEATURED_IDS.indexOf(a.id) - FEATURED_IDS.indexOf(b.id))
