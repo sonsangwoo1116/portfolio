@@ -127,7 +127,14 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-              ></motion.div>
+              >
+                <a
+                  href={`${import.meta.env.BASE_URL}cv.html`}
+                  className="px-3 py-1.5 text-sm font-medium text-blue-600 border border-blue-600 rounded-md hover:bg-blue-600 hover:text-white transition-colors"
+                >
+                  CV
+                </a>
+              </motion.div>
 
               {/* Mobile Hamburger */}
               <div className="lg:hidden">
@@ -156,6 +163,12 @@ export function NavigationBar({ showNavLinks = true, navLinks: customNavLinks }:
                           </button>
                         </SheetClose>
                       ))}
+                      <a
+                        href={`${import.meta.env.BASE_URL}cv.html`}
+                        className="text-left px-4 py-3 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors"
+                      >
+                        CV
+                      </a>
                     </nav>
                     <div className="mt-8 pt-6 border-t border-slate-200 flex gap-4 px-4">
                       {profile.linkedin && (
