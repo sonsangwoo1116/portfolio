@@ -46,7 +46,7 @@ export function CallbotDetail() {
             <div className="bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 mb-4">
               <h4 className="text-sm font-semibold text-slate-800 mb-2">주요 성과</h4>
               <ul className="space-y-1">
-                <li className="text-sm text-slate-700">• 엣지 테스트 52/52 PASS — 전체 시나리오 완주</li>
+                <li className="text-sm text-slate-700">• 엣지 테스트 55/55 PASS — 전체 시나리오 완주</li>
                 <li className="text-sm text-slate-700">• 5채널 동시 통화 P50 154ms / P99 300ms 미만 (RTX 3090 단일 GPU, 9B 모델)</li>
                 <li className="text-sm text-slate-700">• 입력 토큰 47% 감축 — 비동기 히스토리 요약으로 3,735 → 1,985 토큰</li>
                 <li className="text-sm text-slate-700">• Rule-based Guardrails + 대화 흐름 Routing + LLM Tool Calling으로 LLM의 자유도를 단계적으로 제약하는 아키텍처 설계</li>
@@ -282,7 +282,7 @@ export function CallbotDetail() {
               <MetricCard label="P99 TTFT (5채널)" value="< 300ms" desc="권장 동시 채널 기준" />
               <MetricCard label="TPOT" value="21~29ms" desc="토큰당 출력 시간" />
               <MetricCard label="포화 처리량" value="~18 req/s" desc="최대 동시 처리" />
-              <MetricCard label="엣지 테스트" value="52/52 PASS" desc="E1~E12 분류 정확도 100%" />
+              <MetricCard label="엣지 테스트" value="55/55 PASS" desc="E1~E12 분류 정확도 100%" />
             </div>
 
             <h4 className="text-base font-semibold text-slate-800 mb-3">토큰 최적화</h4>
