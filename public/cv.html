@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CV | Sang-Woo Son</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curriculum Vitae of Sang-Woo Son (Diego Son).">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+  <link rel="stylesheet" href="cv.css">
+</head>
+<body>
+<main class="cv">
+  <div class="cv-actions">
+    <a class="cv-actions__btn" href="./">Portfolio</a>
+    <a class="cv-actions__btn" href="./Sang-Woo_Son_CV.pdf" download>Download PDF</a>
+  </div>
+
+  <header class="cv-header">
+    <h1 class="cv-header__name">Sang-Woo Son</h1>
+    <p class="cv-header__alias">(Diego Son)</p>
+    <p class="cv-header__contact">
+      <a href="mailto:sangwoo@wigtn.com">sangwoo@wigtn.com</a> &middot;
+      <a href="https://github.com/sonsangwoo1116">github.com/sonsangwoo1116</a> &middot;
+      Seoul, Republic of Korea
+    </p>
+  </header>
+
+  <!-- Research Interests -->
+  <section class="section">
+    <h2 class="section__title">Research Interests</h2>
+    <p>LLM agents that hold up in production, including tool-calling control and guardrails, multi-agent orchestration, retrieval-grounded evaluation, and agents that act over real-time voice.</p>
+  </section>
+
+  <!-- Publications -->
+  <section class="section">
+    <h2 class="section__title">Publications</h2>
+    <p class="section__sub">International</p>
+
+    <article class="pub">
+      <p class="pub__authors"><strong>Sang-Woo Son</strong>, Hyeong-seob Kim, Hyeonsang Kim, Hyun-woo Cho, Jinmo Kim</p>
+      <p class="pub__title">Retrieval-Conditional Parsing Score (RCPS): Choosing Document Parsers by Retrieval, Not by Appearance</p>
+      <p class="pub__venue">Accepted to EMNLP 2026 Industry Track.</p>
+      <div class="pub__links">
+        <a class="pub__link" href="https://github.com/wigtn/WigtnOCR-RADP">GitHub</a>
+      <a class="pub__link" href="./?from=cv#project-13">View Details</a></div>
+    </article>
+
+    <article class="pub">
+      <p class="pub__authors">Hyeong-seob Kim, <strong>Sang-Woo Son</strong>, Hyun-woo Cho, Hyeonsang Kim, Jinmo Kim</p>
+      <p class="pub__title">WIGVO: Real-Time Bidirectional Speech Translation over Legacy PSTN Calls via Dual-Session Echo Gating</p>
+      <p class="pub__venue">In Proceedings of ACL 2026 System Demonstrations.</p>
+      <div class="pub__links">
+        <a class="pub__link" href="https://aclanthology.org/2026.acl-demo.33/">Paper</a>
+        <a class="pub__link" href="https://youtu.be/jK1CDOQExLw">Video</a>
+        <a class="pub__link" href="https://github.com/wigtn/wigvo-v2">GitHub</a>
+      </div>
+    </article>
+
+    <article class="pub">
+      <p class="pub__authors"><strong>Sang-Woo Son</strong>, Jae Hyun Rho, Jae-Won Lee, Hye-Min Lee, Youngwoo Lee, Hyeon-Beom Choi, Eeksu Leem, Jeongwook Seo</p>
+      <p class="pub__title">Implementation of an IoT Cocktail Machine Using ChatGPT API and ConvAnalyser in the Metaverse</p>
+      <p class="pub__venue">In Proceedings of IEEE MetaCom 2024, pp. 305&ndash;309.</p>
+      <div class="pub__links">
+        <a class="pub__link" href="https://doi.org/10.1109/MetaCom62920.2024.00057">Paper</a>
+      </div>
+    </article>
+
+    <article class="pub">
+      <p class="pub__authors">Jae-Won Lee, Youngwoo Lee, Hyeon-Beom Choi, <strong>Sang-Woo Son</strong>, Eeksu Leem, Jeongwook Seo</p>
+      <p class="pub__title">A Metaverse Avatar Teleport System Using an AIoT Pose Estimation Device</p>
+      <p class="pub__venue">In Proceedings of IEEE MetaCom 2023, pp. 698&ndash;703.</p>
+      <div class="pub__links">
+        <a class="pub__link" href="https://doi.org/10.1109/MetaCom57706.2023.00131">Paper</a>
+      </div>
+    </article>
+
+    <p class="section__sub">Domestic</p>
+
+    <article class="pub">
+      <p class="pub__authors"><strong>Sang-Woo Son</strong>, Seung-Mi Ham, Min-Jun Kim, Jae-Hyun Rho, Jae-Won Lee, Min-Gu Kang, Jeongwook Seo</p>
+      <p class="pub__title">Development of Digital Twins of IoT Motion and Vibration Sensors for Attendance Checking and Announcements in the Metaverse</p>
+      <p class="pub__venue">KICS Summer Conference 2022, pp. 327&ndash;328 (in Korean).</p>
+      <div class="pub__links">
+        <a class="pub__link" href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11107719">Paper</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Work Experience -->
+  <section class="section">
+    <h2 class="section__title">Work Experience</h2>
+    <table class="entries"><tbody>
+      <tr>
+        <td class="entries__date">Jan 2026 - Present</td>
+        <td>
+          <div class="entries__org">WIGTN</div>
+          <div class="entries__role">AI Research Engineer, AI Research &amp; Engineering Company</div>
+          <div class="entries__desc"><ul>
+            <li>Develop WIGVO, a production real-time phone translation service over PSTN, improving translation quality through the echo gate and VAD pipeline, operator speaker identification, and a noise-robust audio front end. <a class="pub__link pub__link--inline" href="./?from=cv#project-9">View Details</a></li>
+            <li>Built call observability and evaluation: per-turn Langfuse tracing, a live pipeline monitor, and an LLM-judge translation-quality evaluation with self-validation.</li>
+          </ul></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="entries__date">Mar 2026 - Jun 2026</td>
+        <td>
+          <div class="entries__org">Soundmind</div>
+          <div class="entries__role">Team Lead, AX Division</div>
+          <div class="entries__desc"><ul>
+            <li>Led the design and implementation of a real-time voice AI agent engine for insurance sales-compliance monitoring, handling simple intents with rule-based guardrails and routing only complex ones (risky utterances, complaints, answer reversals) to LLM tool calling. <a class="pub__link pub__link--inline" href="./?from=cv#project-1">View Details</a></li>
+            <li>Served five concurrent calls with a 9B model on a single RTX 3090 at 154 ms P50 and under 300 ms P99, cutting input tokens by 47%.</li>
+            <li>Covered non-compliant sales the LLM misses with keyword fallbacks and step-consistency checks, passing all 55 edge-case QA scenarios.</li>
+          </ul></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="entries__date">Jan 2025 - Feb 2026</td>
+        <td>
+          <div class="entries__org">Soundmind</div>
+          <div class="entries__role">Manager, AX Division</div>
+          <div class="entries__desc"><ul>
+            <li>Built speech AI and LLM products from problem definition and architecture to deployment, across batch STT, keyword spotting, meeting analysis, document RAG, and dialogue agents.</li>
+            <li>Designed a large-scale batch STT pipeline on Temporal, Triton, and Faster Whisper, decoupling STT from result callbacks to raise the success rate from 82% to over 95% at 200 requests per minute on two RTX 3090 GPUs. <a class="pub__link pub__link--inline" href="./?from=cv#project-3">View Details</a></li>
+            <li>Developed a KWT-3 custom Korean wake-word model with dual-threshold detection, reaching zero false alarms over 430K+ windows and 96.81% recognition, and cut its size by 75% with TFLite INT8 quantization for edge deployment. <a class="pub__link pub__link--inline" href="./?from=cv#project-5">View Details</a></li>
+            <li>Built a LangGraph document RAG system that separates indexing from chat and handles documents up to 50 MB or 100 pages. <a class="pub__link pub__link--inline" href="./?from=cv#project-4">View Details</a></li>
+            <li>Built a meeting-analysis platform with Whisper, pyannote diarization, and overlap-weighted speaker-transcript alignment. <a class="pub__link pub__link--inline" href="./?from=cv#project-6">View Details</a></li>
+          </ul></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="entries__date">Jan 2023 - Jul 2024<div class="entries__status">Part-time</div></td>
+        <td>
+          <div class="entries__org">Digital Saessak (Digital New Sprouts)</div>
+          <div class="entries__role">Assistant Instructor, AI Education</div>
+          <div class="entries__desc"><ul>
+            <li>Assisted AI and data-analysis courses and mentored K&ndash;12 students in block coding and deep learning.</li>
+          </ul></div>
+        </td>
+      </tr>
+    </tbody></table>
+  </section>
+
+  <!-- Research Experience -->
+  <section class="section">
+    <h2 class="section__title">Research Experience</h2>
+    <table class="entries"><tbody>
+      <tr>
+        <td class="entries__date">Sep 2022 - Dec 2024</td>
+        <td>
+          <div class="entries__org">AID Lab, Hanshin University</div>
+          <div class="entries__desc"><ul>
+            <li>Core Technologies for Autonomous Twins in the Metaverse (ITRC program, MSIT/IITP, led by Sejong University, Sep 2022 - Dec 2024). Built a multimodal depression classifier from text and speech, and an emotion-based IoT cocktail recommender driven by a chatbot.</li>
+            <li>Edge-Based Digital Intelligence Platform for Small Businesses (Small Business Smart Technology R&amp;D, MSS/TIPA, led by Ditonic, Oct 2023 - Dec 2024). Built on-device real-time customer behavior recognition, and customer classification and payment prediction from transaction data.</li>
+            <li>On-Device IoT Intelligence Engines for Drones and Robots in 5G Environments (ICT R&amp;D program, MSIT/IITP, led by KETI, Sep 2022 - Aug 2023). Built image preprocessing, a behavior-recognition dataset, and an on-device multi-user behavior recognition model.</li>
+          </ul></div>
+        </td>
+      </tr>
+    </tbody></table>
+  </section>
+
+  <!-- Hackathons -->
+  <section class="section">
+    <h2 class="section__title">Hackathons</h2>
+
+    <article class="proj">
+      <p class="proj__meta">ByteDance Build with TRAE Hackathon 2026 · Grand Prize</p>
+      <p class="proj__title">WIGENT: Real-Time Multi-Agent Debate Platform</p>
+      <p class="proj__desc">AI agents debate a business idea and turn the outcome into a landing page. Built the debate interface, real-time streaming, and landing page generation from nine templates in a team of four.</p>
+      <div class="pub__links"><a class="pub__link" href="https://github.com/wigtn/wigent">GitHub</a><a class="pub__link" href="./?from=cv#project-8">View Details</a></div>
+    </article>
+
+    <article class="proj">
+      <p class="proj__meta">OBA Weekendthon S1 2026 · Top 6</p>
+      <p class="proj__title">MyunZy: AI Mock Interviewer</p>
+      <p class="proj__desc">Reads a real resume and job posting, then runs a spoken mock interview with four interviewer personas that follow up on weak answers. Tracks weaknesses across rounds and allows answer replays.</p>
+      <div class="pub__links"><a class="pub__link" href="https://github.com/wigtn/myunzy-hackathone">GitHub</a></div>
+    </article>
+
+    <article class="proj">
+      <p class="proj__meta">Google Cloud Rapid Agent Hackathon</p>
+      <p class="proj__title">Custos: Always-On AI Code Review Bot for GitLab</p>
+      <p class="proj__desc">Four reviewer personas analyze each GitLab merge request and post their reviews in under 60 seconds. An hourly proactive lane files prioritized issues on its own and recalibrates from how maintainers react.</p>
+      <div class="pub__links"><a class="pub__link" href="https://devpost.com/software/wigtn-bot">Devpost</a><a class="pub__link" href="https://youtu.be/UOhzd3VeB84">Video</a></div>
+    </article>
+
+    <article class="proj">
+      <p class="proj__meta">H0: Hack the Zero Stack · Vercel &times; AWS</p>
+      <p class="proj__title">OpenSlot: Zero-Oversell Ticketing Infrastructure</p>
+      <p class="proj__desc">Ticketing infrastructure where each seat is one ledger row changed only by versioned conditional writes. Verified with zero oversells against a simulated 2,000-buyer stampede.</p>
+      <div class="pub__links"><a class="pub__link" href="https://devpost.com/software/openslot">Devpost</a><a class="pub__link" href="https://youtu.be/o9iaDAvBSZY">Video</a></div>
+    </article>
+
+    <article class="proj">
+      <p class="proj__meta">Gemini Live Agent Challenge · Google</p>
+      <p class="proj__title">TimeLens: Multimodal AI Museum Curator</p>
+      <p class="proj__desc">A museum curator agent that listens and watches through the visitor's microphone and camera and answers by voice. Audio and vision are processed together in real time on a dual pipeline.</p>
+      <div class="pub__links"><a class="pub__link" href="https://devpost.com/software/wigtn-agent">Devpost</a><a class="pub__link" href="https://youtu.be/ITaMtVO5jFg">Video</a></div>
+    </article>
+
+    <article class="proj">
+      <p class="proj__meta">International oneM2M Hackathon 2022 · Encouragement Award</p>
+      <p class="proj__title">Travel Logging with Biometric Data from IoT Wearables</p>
+      <p class="proj__desc">Collects biometric data from IoT wearable devices during a trip and turns it into a travel log. Built on the oneM2M IoT standard for the international oneM2M hackathon.</p>
+    </article>
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <h2 class="section__title">Education</h2>
+    <table class="entries"><tbody>
+      <tr>
+        <td class="entries__date">Sep 2023 - Feb 2025</td>
+        <td>
+          <div class="entries__org">Hanshin University</div>
+          <div class="entries__role">Convergence of IT Image Data Analytics</div>
+          <div class="entries__desc">GPA 4.5 / 4.5</div>
+          <div class="entries__desc">Thesis: <a href="https://dl.nanet.go.kr/detail/KDMT12025000059160">Depression Classification in the Metaverse Using Text and Speech Data</a></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="entries__date">Mar 2018 - Aug 2023</td>
+        <td>
+          <div class="entries__org">Hanshin University</div>
+          <div class="entries__role">IT Transmedia Contents</div>
+          <div class="entries__desc">GPA 3.77 / 4.5</div>
+        </td>
+      </tr>
+    </tbody></table>
+  </section>
+
+  <!-- Honors & Awards -->
+  <section class="section">
+    <h2 class="section__title">Honors &amp; Awards</h2>
+    <table class="entries"><tbody>
+      <tr>
+        <td class="entries__date">May 2026</td>
+        <td><div class="entries__org">Top 6, OBA Weekendthon S1</div><div class="entries__role">Team WIGTN, MyunZy</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Mar 2026</td>
+        <td><div class="entries__org">Grand Prize, ByteDance Build with TRAE Hackathon</div><div class="entries__role">Team WIGTN, WIGENT</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Nov 2022</td>
+        <td><div class="entries__org">Encouragement Award, International oneM2M Hackathon</div><div class="entries__role">IoT wearable travel logging system</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Nov 2022</td>
+        <td><div class="entries__org">Honorable Mention, Hanshin Information Science &amp; Convergence Paper Competition</div><div class="entries__role">CNN-based squat posture analysis system</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Oct 2022</td>
+        <td><div class="entries__org">Excellence Award, 3rd Hanshin ABC Camp Hackathon</div><div class="entries__role">Squat posture correction system for home training</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Mar 2022</td>
+        <td><div class="entries__org">Excellence Award, 2nd Hanshin ABC Camp Hackathon</div><div class="entries__role">Unity-based promotional content for Osan City</div></td>
+      </tr>
+    </tbody></table>
+  </section>
+
+  <!-- Patents & Software -->
+  <section class="section">
+    <h2 class="section__title">Patents &amp; Software</h2>
+    <table class="entries"><tbody>
+      <tr>
+        <td class="entries__date">Dec 2023</td>
+        <td><div class="entries__org">IoT-Based Metaverse Management Platform</div><div class="entries__role">Patent application (Korea) · No. 10-2023-0189803</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Nov 2023</td>
+        <td><div class="entries__org">Metaverse Emotion Mapping System Using an AIoT Facial-Expression Device</div><div class="entries__role">Software registration (Korea) · No. C-2023-054487</div></td>
+      </tr>
+      <tr>
+        <td class="entries__date">Nov 2023</td>
+        <td><div class="entries__org">LSTM-Based Walking Motion Recognition in Industrial Sites Using YOLOv7 Pose Estimation</div><div class="entries__role">Software registration (Korea) · No. C-2023-049743</div></td>
+      </tr>
+    </tbody></table>
+  </section>
+
+</main>
+</body>
+</html>
