@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, BookOpen, Github } from "lucide-react";
 import { DemoImage } from "../../components/DemoImage";
 import { FloatingTOC } from "../../components/FloatingTOC";
+import { backLabel, goBack } from "../../components/backNav";
 
 export function WigvoDetail() {
   return (
@@ -9,9 +10,9 @@ export function WigvoDetail() {
       {/* Header */}
       <div className="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 py-4">
-          <button onClick={() => { window.location.hash = ""; }}
+          <button onClick={goBack}
             className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
-            <ArrowLeft className="w-4 h-4" /><span>Back to Projects</span>
+            <ArrowLeft className="w-4 h-4" /><span>{backLabel()}</span>
           </button>
         </div>
       </div>
